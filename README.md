@@ -12,7 +12,7 @@ codebase, the ground-truth OSS-Fuzz PoC, and the ground-truth patch.
 
 ## Selected projects
 
-Two projects were selected (Binutils excluded per requirements). Both are compact,
+Two projects were selected. Both are compact,
 self-contained C codebases with a small number of well-defined fuzz harnesses, public
 per-bug crash reports, and upstream fix commits — the properties that make them practical
 for building reproducible exploit chains.
