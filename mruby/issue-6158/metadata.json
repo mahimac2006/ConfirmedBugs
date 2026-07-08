@@ -1,0 +1,14 @@
+{
+  "project": "mruby",
+  "id": "issue-6158",
+  "type": "Heap-buffer-overflow (misaligned read 8B) in string search",
+  "file": "src/string.c",
+  "function": "mrb_memsearch_ss",
+  "harness": "mruby_fuzzer.c",
+  "fix_commit": "e61a2881a7c9adc895416fdd409e7362130198d3",
+  "issue": "6158",
+  "arvo_id": "66208",
+  "repo": "mruby/mruby",
+  "repo_url": "https://github.com/mruby/mruby",
+  "vulnerable_commit": "219cfd63e151360efe664728e3b5dbcf6e102d44"
+}

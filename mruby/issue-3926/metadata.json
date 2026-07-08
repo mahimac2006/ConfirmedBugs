@@ -1,0 +1,16 @@
+{
+  "project": "mruby",
+  "id": "issue-3926",
+  "type": "Stack-overflow via unbounded recursion; nested Struct.new",
+  "file": "src/class.c",
+  "function": "mrb_class_path",
+  "harness": "mruby_fuzzer.c",
+  "fix_commit": "e5fb21b6d281e76ed1aadf488706600739b7f787",
+  "issue": "3926",
+  "arvo_id": null,
+  "repo": "mruby/mruby",
+  "repo_url": "https://github.com/mruby/mruby",
+  "vulnerable_commit": "3ae621fcb32a87e65de0ad68c291a12d315a81dd",
+  "fix_file": "src/variable.c",
+  "fix_site_note": "Crash manifests in src/class.c (mrb_class_path); upstream fix is in src/variable.c (root cause)."
+}

@@ -1,0 +1,13 @@
+{
+  "project": "mruby",
+  "id": "OSS-Fuzz-49255",
+  "type": "Heap-buffer-overflow (read 8B); bitwise XOR on big integers",
+  "file": "mrbgems/mruby-bigint/core/bigint.c",
+  "function": "mrb_bint_xor",
+  "harness": "mruby_fuzzer.c",
+  "fix_commit": "b84bca666fdc4fe94286b49b6f6b9a64e4c3a534",
+  "arvo_id": "49255",
+  "repo": "mruby/mruby",
+  "repo_url": "https://github.com/mruby/mruby",
+  "vulnerable_commit": "a99d0036222ad4c3a300243113f7afff2618aff9"
+}

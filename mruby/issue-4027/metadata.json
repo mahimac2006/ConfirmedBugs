@@ -1,0 +1,16 @@
+{
+  "project": "mruby",
+  "id": "issue-4027",
+  "type": "SEGV / uninitialized-pointer deref; Hash prepend Enumerable dup",
+  "file": "src/hash.c",
+  "function": "mrb_hash_keys",
+  "harness": "mruby_fuzzer.c",
+  "fix_commit": "b64ce17852b180dfeea81cf458660be41a78974d",
+  "issue": "4027",
+  "arvo_id": null,
+  "repo": "mruby/mruby",
+  "repo_url": "https://github.com/mruby/mruby",
+  "vulnerable_commit": "1dddc2f712f774b22a8f65432299cebb3b26361b",
+  "fix_file": "src/kernel.c",
+  "fix_site_note": "Crash manifests in src/hash.c (mrb_hash_keys); upstream fix is in src/kernel.c (root cause)."
+}
