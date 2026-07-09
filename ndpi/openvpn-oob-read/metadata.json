@@ -1,0 +1,17 @@
+{
+  "project": "ndpi",
+  "id": "openvpn-oob-read",
+  "type": "Heap-buffer-overflow (read); OpenVPN dissector",
+  "file": "src/lib/protocols/openvpn.c",
+  "function": "ndpi_search_openvpn",
+  "harness": "fuzz_ndpi_reader.c",
+  "fix_commit": "8e7b1ea7a136cc4e4aa9880072ec2d69900a825e",
+  "arvo_id": "22244",
+  "repo": "ntop/nDPI",
+  "repo_url": "https://github.com/ntop/nDPI",
+  "crash_line": 125,
+  "crash_line_confidence": "high",
+  "version": "3.2",
+  "version_describe": "1.8-1965-ge90c5c7c3",
+  "vulnerable_commit": "e90c5c7c3223d033467aa359d8b1e264f961fde1"
+}

@@ -1,0 +1,17 @@
+{
+  "project": "ndpi",
+  "id": "imap-index-oob",
+  "type": "Index-out-of-bounds (read); IMAP dissector",
+  "file": "src/lib/protocols/mail_imap.c",
+  "function": "ndpi_search_mail_imap_tcp",
+  "harness": "fuzz_ndpi_reader.c",
+  "fix_commit": "933351840dbed3646aeb4f75a359649434b001eb",
+  "arvo_id": "20830",
+  "repo": "ntop/nDPI",
+  "repo_url": "https://github.com/ntop/nDPI",
+  "crash_line": 167,
+  "crash_line_confidence": "high",
+  "version": "3.2",
+  "version_describe": "1.8-1784-g83fdfe24d",
+  "vulnerable_commit": "83fdfe24d09396f293f6e78ecd341526f339a995"
+}

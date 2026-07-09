@@ -1,0 +1,17 @@
+{
+  "project": "ndpi",
+  "id": "tinc-oob-read",
+  "type": "Heap-buffer-overflow (read); TINC dissector",
+  "file": "src/lib/protocols/tinc.c",
+  "function": "ndpi_check_tinc",
+  "harness": "fuzz_ndpi_reader.c",
+  "fix_commit": "06a0abb6fdf8fb7a446ef5aafdf2c7d24608977f",
+  "arvo_id": "46499",
+  "repo": "ntop/nDPI",
+  "repo_url": "https://github.com/ntop/nDPI",
+  "crash_line": 105,
+  "crash_line_confidence": "high",
+  "version": "4.2",
+  "version_describe": "3.4-756-ge3faecf9d",
+  "vulnerable_commit": "e3faecf9de165adececbf77cbe54a8cbe373a91c"
+}

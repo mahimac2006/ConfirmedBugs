@@ -1,0 +1,17 @@
+{
+  "project": "ndpi",
+  "id": "raknet-oob-read",
+  "type": "Heap-buffer-overflow (read); RakNet dissector",
+  "file": "src/lib/protocols/raknet.c",
+  "function": "ndpi_search_raknet",
+  "harness": "fuzz_ndpi_reader.c",
+  "fix_commit": "d5005f584c4baf67e084e3bc8b052ca27004550e",
+  "arvo_id": "47000",
+  "repo": "ntop/nDPI",
+  "repo_url": "https://github.com/ntop/nDPI",
+  "crash_line": 152,
+  "crash_line_confidence": "high",
+  "version": "4.2",
+  "version_describe": "3.4-777-gbc2ad3407",
+  "vulnerable_commit": "bc2ad3407a1cf7f6d2913f113df31dfbf735c6f6"
+}

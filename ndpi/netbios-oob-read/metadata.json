@@ -1,0 +1,17 @@
+{
+  "project": "ndpi",
+  "id": "netbios-oob-read",
+  "type": "Heap-buffer-overflow (read); NetBIOS name parse",
+  "file": "src/lib/protocols/netbios.c",
+  "function": "ndpi_netbios_name_interpret",
+  "harness": "fuzz_ndpi_reader.c",
+  "fix_commit": "7a2bcd9c395f9fe554109e04add33e9e65564d82",
+  "arvo_id": "20823",
+  "repo": "ntop/nDPI",
+  "repo_url": "https://github.com/ntop/nDPI",
+  "crash_line": 50,
+  "crash_line_confidence": "high",
+  "version": "3.2",
+  "version_describe": "1.8-1796-gfe513014a",
+  "vulnerable_commit": "fe513014a8f5156b243ec2eb5e6862a0506c6632"
+}

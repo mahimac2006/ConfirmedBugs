@@ -1,0 +1,17 @@
+{
+  "project": "ndpi",
+  "id": "stun-oob-read",
+  "type": "Heap-buffer-overflow (read); STUN dissector",
+  "file": "src/lib/protocols/stun.c",
+  "function": "ndpi_int_check_stun",
+  "harness": "fuzz_ndpi_reader.c",
+  "fix_commit": "843204299c79c55c736231c06db98def2b3a6bba",
+  "arvo_id": "19332",
+  "repo": "ntop/nDPI",
+  "repo_url": "https://github.com/ntop/nDPI",
+  "crash_line": 319,
+  "crash_line_confidence": "high",
+  "version": "3.0",
+  "version_describe": "1.8-1617-g09cd95d54",
+  "vulnerable_commit": "09cd95d54ab5141795a0653b1f6a6149725dbbf7"
+}
