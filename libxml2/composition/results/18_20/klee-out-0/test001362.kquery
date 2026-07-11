@@ -1,0 +1,39 @@
+array buf[32] : w32 -> w8 = symbolic
+array len[4] : w32 -> w8 = symbolic
+(query [(Ule 1
+              N0:(ReadLSB w32 0 len))
+         (Ule N0 32)
+         (Ult (ZExt w32 (Read w8 0 buf))
+              128)
+         (Ult 130602714005505
+              N1:(Add w64 130602714005504 (ZExt w64 N0)))
+         (Eq false
+             (Ult N2:(ZExt w32 (Read w8 1 buf))
+                  128))
+         (Eq false (Ult N2 224))
+         (Eq false
+             (Ult N1
+                  N3:(Add w64 130602714005505
+                              N4:(SExt w64 (Select w32 (Ult N2 240) 3 4)))))
+         (Ult N3 N1)
+         (Eq false
+             (Ult N5:(ZExt w32 (Read w8 (Extract w32 0 (Add w64 1 N4))
+                                        buf))
+                  128))
+         (Ult N5 224)
+         (Eq false
+             (Ult N1 N6:(Add w64 130602714005507 N4)))
+         (Ult N6 N1)
+         (Ult (ZExt w32 (Read w8 (Extract w32 0 (Add w64 3 N4))
+                                 buf))
+              128)
+         (Ult (Add w64 130602714005508 N4) N1)
+         (Eq false
+             (Ult N7:(ZExt w32 (Read w8 (Extract w32 0 (Add w64 4 N4))
+                                        buf))
+                  128))
+         (Ult N7 224)
+         (Eq false
+             (Ult N1 N8:(Add w64 130602714005510 N4)))
+         (Eq false (Ult N8 N1))]
+        false)

@@ -1,0 +1,23 @@
+klee --max-time=50 linked_19_22.bc
+PID: 5408
+Using monotonic steady clock with 1/1000000000s resolution
+Started: 2026-07-11 15:12:07
+BEGIN searcher description
+<InterleavedSearcher> containing 2 searchers:
+RandomPathSearcher
+WeightedRandomSearcher::CoveringNew
+</InterleavedSearcher>
+END searcher description
+Finished: 2026-07-11 15:14:05
+Elapsed: 00:01:58
+KLEE: done: explored paths = 34202
+KLEE: done: avg. constructs per query = 23
+KLEE: done: total queries = 111
+KLEE: done: valid queries = 51
+KLEE: done: invalid queries = 60
+KLEE: done: query cex = 111
+
+KLEE: done: total instructions = 760149
+KLEE: done: completed paths = 5587
+KLEE: done: partially completed paths = 28615
+KLEE: done: generated tests = 33689

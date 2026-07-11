@@ -1,0 +1,16 @@
+KLEE: output directory is "/home/mahima/Downloads/ChainingPaper/libxml2/composition/klee-out-0"
+KLEE: Using Z3 solver backend
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x77e1d0600000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x77df50600000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x76df50600000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x76bf50600000 size=128 GiB)
+KLEE: ERROR: driver_18_20.c:42: ASSERTION FAIL: 0 && "BOTH_REACHABLE_18_20"
+KLEE: NOTE: now ignoring this error at this location
+KLEE: HaltTimer invoked
+KLEE: halting execution, dumping remaining states
+
+KLEE: done: total instructions = 86694
+KLEE: done: completed paths = 504
+KLEE: done: partially completed paths = 2548
+KLEE: done: generated tests = 2953

@@ -1,0 +1,33 @@
+array buf[32] : w32 -> w8 = symbolic
+array len[4] : w32 -> w8 = symbolic
+(query [(Ule 1
+              N0:(ReadLSB w32 0 len))
+         (Ule N0 32)
+         (Eq 34 (Read w8 0 buf))
+         (Ult 125798056984577
+              N1:(Add w64 125798056984576 (ZExt w64 N0)))
+         (Eq 34 (Read w8 1 buf))
+         (Ult 125798056984578 N1)
+         (Eq 34 (Read w8 2 buf))
+         (Ult 125798056984579 N1)
+         (Eq 34 (Read w8 3 buf))
+         (Ult 125798056984580 N1)
+         (Eq 39 (Read w8 4 buf))
+         (Ult 125798056984581 N1)
+         (Eq false
+             (Eq 39 (Read w8 5 buf)))
+         (Ult 125798056984582 N1)
+         (Eq false
+             (Eq 39 (Read w8 6 buf)))
+         (Ult 125798056984583 N1)
+         (Eq 39 (Read w8 7 buf))
+         (Ult 125798056984584 N1)
+         (Eq 34 (Read w8 8 buf))
+         (Ult 125798056984585 N1)
+         (Eq 34 (Read w8 9 buf))
+         (Ult 125798056984586 N1)
+         (Eq false
+             (Eq 34 N2:(Read w8 10 buf)))
+         (Eq false (Eq 39 N2))
+         (Eq false (Ult 125798056984587 N1))]
+        false)
