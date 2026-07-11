@@ -30,13 +30,20 @@ does `return 1` instead of the out-of-bounds access — `return 0` on every safe
 never over-reads, one run can evaluate both predicates.
 
 The **driver** allocates one shared symbolic buffer `buf[N]` + a shared symbolic `len`, calls both
-predicates on the **same** input, then:
+predicates on the **same** input, then guards the marker with an `if`:
 ```c
-klee_assume(rX == 1 && rY == 1);          /* force both vulnerable paths to be reached */
-klee_assert(0 && "BOTH_REACHABLE_X_Y");   /* fires iff the conjunction is satisfiable  */
+if (rX == 1 && rY == 1)
+    klee_assert(0 && "BOTH_REACHABLE_X_Y");   /* fires iff one input reaches both bugs */
 ```
 **SAT** → the assertion fires and KLEE writes a `.ktest`: one concrete `(buf, len)` reaching both
-bugs. **UNSAT** → no single input reaches both on this model.
+bugs. **UNSAT** → the assertion is never reached and KLEE completes with 0 errors.
+
+> **Why `if`, not `klee_assume(rX==1 && rY==1)`?** Each predicate returns a *concrete* 0/1 on a given
+> path, so on every non-matching path `klee_assume(rX==1 && rY==1)` would be a provably-false assume
+> and KLEE reports it as an error (`invalid klee_assume call (provably false)`). The `if` prunes those
+> paths silently while still firing the assertion on the satisfying path — same SAT/UNSAT answer,
+> no spurious errors. The `klee_assume(len …)` on the symbolic length stays, since that constrains
+> the input and is always feasible.
 
 ## Build & run one pair (predicates are in this same folder)
 ```sh

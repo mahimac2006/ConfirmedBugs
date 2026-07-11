@@ -1,9 +1,15 @@
 /* Composition driver for libxml2 bugs 19 & 22 (both vulnerable in 2.10.4).
  *
  * One SHARED symbolic input (buf + len) is handed to BOTH non-crashing predicates. Each predicate
- * returns 1 iff its bug's vulnerable path is reached. Constraining both to 1 and asserting makes
- * KLEE search for a single concrete input that reaches BOTH bugs; if SAT, KLEE emits a .ktest
- * witness and the assertion fires ("BOTH_REACHABLE_19_22"). If UNSAT, no shared input reaches both.
+ * returns 1 iff its bug's vulnerable path is reached. When BOTH return 1, the assertion fires and
+ * KLEE emits a .ktest witness — one concrete input reaching BOTH bugs ("BOTH_REACHABLE_19_22").
+ * If no such input exists the assertion is never reached (UNSAT) and KLEE completes with 0 errors.
+ *
+ * NOTE: the both-reached condition is checked with an `if`, not klee_assume. Because each predicate
+ * returns a CONCRETE 0/1 on a given path, `klee_assume(rX==1 && rY==1)` would be a provably-false
+ * assume on every non-matching path and KLEE would report it as an error. The `if` prunes those
+ * paths silently while still firing the assertion on the satisfying path. (The klee_assume on `len`
+ * is fine — it constrains the symbolic input and is always feasible.)
  *
  * Build (predicates live in this same folder):
  *   clang -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone predicate_19.c -o p19.bc
@@ -32,7 +38,8 @@ int main(void) {
     int r19 = predicate_19(buf, len);
     int r22 = predicate_22(buf, len);
 
-    klee_assume(r19 == 1 && r22 == 1);
-    klee_assert(0 && "BOTH_REACHABLE_19_22");
+    if (r19 == 1 && r22 == 1)
+        klee_assert(0 && "BOTH_REACHABLE_19_22");   /* fires iff one input reaches both bugs */
+
     return 0;
 }

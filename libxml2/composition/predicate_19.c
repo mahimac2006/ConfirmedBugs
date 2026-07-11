@@ -5,17 +5,24 @@
  * the span. If the closing quote never appears before input->end, cur runs past the buffer and the
  * strndup over-reads.
  *
- * Non-crashing predicate: `end = buf + len`. Return 1 when an opening quote has no matching closing
- * quote before `end` (the unterminated-literal path that reaches the xmlStrndup over-read).
+ * Non-crashing predicate: `end = buf + len`. Scan the buffer for an opening quote (the literal is
+ * preceded by `<!DOCTYPE ... SYSTEM ` in a real document, so it is NOT at offset 0); return 1 if any
+ * opening quote has no matching closing quote before `end` (the unterminated-literal over-read).
  */
 int predicate_19(const unsigned char *buf, unsigned int len) {
     const unsigned char *end = buf + len;
     const unsigned char *cur = buf;
-    if (cur >= end) return 0;
-    unsigned char q = cur[0];
-    if (q != '"' && q != '\'') return 0;        /* must open a SYSTEM literal with ' or "     */
-    cur += 1;                                   /* NEXT past the opening quote                 */
-    while (cur < end && cur[0] != q) cur += 1;  /* scan for the closing quote                  */
-    if (cur >= end) return 1;                   /* SINK: unterminated -> xmlStrndup over-reads */
+    while (cur < end) {
+        unsigned char c = cur[0];
+        if (c == '"' || c == '\'') {                 /* opening quote of a SYSTEM literal */
+            unsigned char q = c;
+            const unsigned char *p = cur + 1;
+            while (p < end && p[0] != q) p += 1;     /* scan for the closing quote        */
+            if (p >= end) return 1;                  /* SINK: unterminated -> over-read   */
+            cur = p + 1;                             /* skip the closed literal, continue */
+        } else {
+            cur += 1;
+        }
+    }
     return 0;
 }
