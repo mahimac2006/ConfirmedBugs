@@ -1,4 +1,4 @@
-# Pairwise reachability composition — libxml2 2.10.4 bugs 21–25
+# Pairwise reachability composition — libxml2 2.10.4 bugs 18–22
 
 Non-crashing **predicates** for each of the 5 libxml2 bugs, and a shared-symbolic-input **driver**
 for every pair (10 drivers = C(5,2)). Run each driver with KLEE to ask: *is there a single input
@@ -8,15 +8,15 @@ Bug numbering (all vulnerable in **libxml2 2.10.4**):
 
 | # | Function | File:line | Type |
 |---|---|---|---|
-| 21 | `htmlCurrentChar` | HTMLparser.c:474 | global-buffer-overflow read |
-| 22 | `htmlParseSystemLiteral` | HTMLparser.c:3004 | global-buffer-overflow read |
-| 23 | `htmlParseHTMLAttribute` | HTMLparser.c:2843 | uninitialized/over-read |
-| 24 | `xmlParseTryOrFinish` | parser.c:12168 | heap-buffer-overflow read |
-| 25 | `xmlSwitchInputEncodingInt` | parserInternals.c:1124 | over-read root cause |
+| 18 | `htmlCurrentChar` | HTMLparser.c:474 | global-buffer-overflow read |
+| 19 | `htmlParseSystemLiteral` | HTMLparser.c:3004 | global-buffer-overflow read |
+| 20 | `htmlParseHTMLAttribute` | HTMLparser.c:2843 | uninitialized/over-read |
+| 21 | `xmlParseTryOrFinish` | parser.c:12168 | heap-buffer-overflow read |
+| 22 | `xmlSwitchInputEncodingInt` | parserInternals.c:1124 | over-read root cause |
 
 ```
-predicates/predicate_21.c … predicate_25.c      # one non-crashing twin per bug
-drivers/driver_21_22.c … driver_24_25.c          # one composition driver per pair (10)
+predicates/predicate_18.c … predicate_22.c      # one non-crashing twin per bug
+drivers/driver_18_19.c … driver_21_22.c          # one composition driver per pair (10)
 ```
 
 ## How the method works
@@ -53,12 +53,12 @@ bug Y?", not real exploitation.
 ## Build & run one pair
 ```sh
 KS=$KLEE_SRC   # dir containing include/klee/klee.h
-clang -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone predicates/predicate_21.c -o p21.bc
-clang -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone predicates/predicate_23.c -o p23.bc
-clang -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone -I$KS/include drivers/driver_21_23.c -o d.bc
-llvm-link d.bc p21.bc p23.bc -o linked.bc
+clang -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone predicates/predicate_18.c -o p18.bc
+clang -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone predicates/predicate_20.c -o p20.bc
+clang -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone -I$KS/include drivers/driver_18_20.c -o d.bc
+llvm-link d.bc p18.bc p20.bc -o linked.bc
 klee --max-time=300 linked.bc
-# SAT -> "KLEE: ERROR: ... ASSERTION FAIL: 0 && \"BOTH_REACHABLE_21_23\"" + a testNNN.ktest witness
+# SAT -> "KLEE: ERROR: ... ASSERTION FAIL: 0 && \"BOTH_REACHABLE_18_20\"" + a testNNN.ktest witness
 ```
 
 ## The two prompts used to generate these files
@@ -83,10 +83,10 @@ klee --max-time=300 linked.bc
 > reaching both vulnerable paths.
 
 ## Notes on fidelity
-- Predicates 21/22/23/24 mirror the real cursor/bounds logic closely (UTF-8 sequence length, quote
-  scanning, the 4-byte `encoding_error` diagnostic). Predicate **25** is the most abstracted: it
+- Predicates 18/19/20/21 mirror the real cursor/bounds logic closely (UTF-8 sequence length, quote
+  scanning, the 4-byte `encoding_error` diagnostic). Predicate **22** is the most abstracted: it
   models the *outcome* of the encoding conversion (`nbchars < 0`) rather than replicating the
   converter, because the real failure depends on `xmlCharEncInput`.
-- Bugs 21 and 23 share the same underlying sink (`htmlCurrentChar`), and bug 25 is the root cause of
-  bug 23 — so several pairs are expected SAT with tiny witnesses (e.g. a truncated multi-byte lead).
+- Bugs 18 and 20 share the same underlying sink (`htmlCurrentChar`), and bug 22 is the root cause of
+  bug 20 — so several pairs are expected SAT with tiny witnesses (e.g. a truncated multi-byte lead).
 - `N = 32` is a tractability choice; increase it if a pair needs a longer input to satisfy both.
