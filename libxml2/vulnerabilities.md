@@ -1,69 +1,30 @@
-# libxml2 — confirmed vulnerabilities
+# libxml2 — 5 CyberGym vulnerabilities, all from **version 2.10.4**
 
-Source project: <https://gitlab.gnome.org/GNOME/libxml2> · CyberGym count: **38** · Documented here: **13**
+All five bugs below are CyberGym/ARVO tasks whose vulnerable code is **present and unfixed in the
+exact same release, libxml2 2.10.4** (git tag `v2.10.4`), and all were fixed in 2.11.0. Each was
+verified by extracting the function from the `v2.10.4` tree and confirming the vulnerable statement
+is present (candidates whose buggy code was a later master-only regression — e.g. arvo:53613 — were
+dropped). They are all **input-buffer over-reads in the HTML/XML parser**, reachable through the
+`fuzz/html.c` / `fuzz/xml.c` harnesses.
 
-Each bug lives in its own subfolder with **`driver/`**, **`stubs/`**, **`vulnerable/`**, **`patch/`**, and **`poc/`** (see e.g. [`CVE-2017-9047/`](./CVE-2017-9047/)).
+Per-bug folder: `metadata.json`, `BUG.md` (full dossier), `vulnerable/<function>.c` (complete
+pre-patch function + the macros/structs/typedefs/globals/helpers for standalone reasoning),
+`patch/fix.patch` (the upstream fix diff).
 
-## Per-bug folder layout
+| # | Bug ID | CyberGym | File | Function | Line @2.10.4 | Type |
+|---|---|---|---|---|---|---|
+| 1 | [htmlCurrentChar-oob-read](./htmlCurrentChar-oob-read/) | `arvo:56964` | HTMLparser.c | `htmlCurrentChar` | :474 | global-buffer-overflow read (truncated UTF-8 lead) |
+| 2 | [htmlParseSystemLiteral-oob-read](./htmlParseSystemLiteral-oob-read/) | `arvo:57469` | HTMLparser.c | `htmlParseSystemLiteral` | :3004 | global-buffer-overflow read (via `xmlStrndup`) |
+| 3 | [htmlParseHTMLAttribute-uninit-read](./htmlParseHTMLAttribute-uninit-read/) | `arvo:57223` | HTMLparser.c | `htmlParseHTMLAttribute` | :2843 | uninitialized/over-read via `CUR_CHAR`→`htmlCurrentChar` |
+| 4 | [xmlParseTryOrFinish-oob-read](./xmlParseTryOrFinish-oob-read/) | `arvo:55980` | parser.c | `xmlParseTryOrFinish` | :12168 | heap-buffer-overflow read (encoding-error diagnostic) |
+| 5 | [xmlSwitchInputEncoding-overread](./xmlSwitchInputEncoding-overread/) | `arvo:57521` | parserInternals.c | `xmlSwitchInputEncodingInt` | :1124 | over-read root cause: parser not halted on encoding-switch failure |
 
-```
-libxml2/<bug-id>/
-├── README.md          # summary + reproduce steps
-├── metadata.json      # structured fields (fix commit, harness, ARVO id, …)
-├── driver/            # fuzz harness + shared fuzz helpers
-├── stubs/             # OSS-Fuzz build.sh, Dockerfile, project.yaml
-├── vulnerable/        # pre-patch source of the crashing file
-├── patch/fix.patch    # upstream fix as unified diff
-└── poc/               # ground-truth crash input (or fetch instructions)
-```
-
-Re-populate or refresh from upstream with `python3 scripts/populate_bugs.py`.
-
-## Drivers / harnesses
-
-libxml2's OSS-Fuzz fuzz targets live in the repo's **`fuzz/`** directory, each an
-`LLVMFuzzerTestOneInput`:
-
-- `fuzz/xml.c` — XML parser
-- `fuzz/html.c` — HTML parser
-- `fuzz/reader.c` — xmlReader API
-- `fuzz/xpath.c` — XPath / XPointer
-- `fuzz/schema.c` — XSD schema
-- `fuzz/valid.c` — DTD validation
-- `fuzz/regexp.c`, `fuzz/uri.c`, `fuzz/api.c` — other paths
-
-Shared helpers (`xmlFuzz*` input readers, option handling) are in `fuzz/fuzz.c`.
-
-- Harnesses: <https://gitlab.gnome.org/GNOME/libxml2/-/tree/master/fuzz>
-- OSS-Fuzz project dir: <https://github.com/google/oss-fuzz/tree/master/projects/libxml2>
-
-## Vulnerabilities
-
-| # | Bug ID | Folder | Type / trigger | Vulnerable file → function | Harness |
-|---|---|---|---|---|---|
-| 1 | CVE-2017-9047 | [`CVE-2017-9047/`](./CVE-2017-9047/) | Stack buffer overflow (write); malformed DTD element-content decl | `valid.c` → `xmlSnprintfElementContent` | `valid.c` / `xml.c` |
-| 2 | CVE-2017-9048 | [`CVE-2017-9048/`](./CVE-2017-9048/) | Stack buffer overflow (companion `strcat` without length check) | `valid.c` → `xmlSnprintfElementContent` | `valid.c` / `xml.c` |
-| 3 | CVE-2016-1762 | [`CVE-2016-1762/`](./CVE-2016-1762/) | Heap buffer over-read after parse error | `parser.c` → `xmlNextChar` | `xml.c` |
-| 4 | CVE-2016-5131 | [`CVE-2016-5131/`](./CVE-2016-5131/) | Use-after-free via XPointer `range-to` | `xpointer.c` → `xmlXPtrRangeToFunction` | `xpath.c` |
-| 5 | CVE-2017-8872 | [`CVE-2017-8872/`](./CVE-2017-8872/) | Heap buffer over-read in progressive HTML push parse | `HTMLparser.c` → `htmlParseTryOrFinish` | `html.c` |
-| 6 | CVE-2020-24977 | [`CVE-2020-24977/`](./CVE-2020-24977/) | Global/heap over-read; truncated UTF-8 in error formatting | `xmllint.c` → `xmlHTMLEncodeSend` (CLI) | xmllint `--htmlout` |
-| 7 | CVE-2021-3517 | [`CVE-2021-3517/`](./CVE-2021-3517/) | Heap-buffer-overflow (read); invalid UTF-8 attribute content | `entities.c` → `xmlEncodeEntitiesInternal` | `xml.c` |
-| 8 | CVE-2021-3518 | [`CVE-2021-3518/`](./CVE-2021-3518/) | Use-after-free processing crafted XInclude | `xinclude.c` → `xmlXIncludeDoProcess` | `xml.c` |
-| 9 | CVE-2021-3537 | [`CVE-2021-3537/`](./CVE-2021-3537/) | NULL-deref (DoS); errors not propagated in mixed content | `valid.c` → `xmlValidBuildAContentModel` | `xml.c` / `valid.c` |
-| 10 | CVE-2022-29824 | [`CVE-2022-29824/`](./CVE-2022-29824/) | Integer overflow → OOB write in buffer grow | `buf.c` → `xmlBufAdd` | `xml.c` |
-| 11 | CVE-2022-40303 | [`CVE-2022-40303/`](./CVE-2022-40303/) | Integer overflow with `XML_PARSE_HUGE` on >2³² char names | `parser.c` → `xmlParseNameComplex` | `xml.c` |
-| 12 | CVE-2022-40304 | [`CVE-2022-40304/`](./CVE-2022-40304/) | UAF / double-free; bad hash for empty dict strings | `dict.c` → `xmlDictComputeFastKey` | `xml.c` |
-| 13 | CVE-2023-28484 | [`CVE-2023-28484/`](./CVE-2023-28484/) | NULL-deref (DoS) parsing invalid XSD schema | `xmlschemas.c` → `xmlSchemaFixupComplexType` | `schema.c` |
-
-## Accuracy caveats
-
-- **Crash site vs. fix site.** For several bugs the *vulnerable file* column is the crash
-  location, while the upstream **fix** lands in a different file holding the root cause:
-  **#5** (crash `HTMLparser.c` → fix `parser.c`, "Free input buffer in xmlHaltParser"),
-  **#9** (crash `valid.c` → fix `parser.c`, error propagation), **#12** (crash `dict.c` → fix
-  `entities.c`). Each such `metadata.json` records both `file` (crash) and `fix_file` (patch).
-- **#1 and #2** are two distinct overflows in the same function fixed by **one** commit
-  (`932cc989…`) — treat as one patch if you need independent fixes.
-- **#6 (CVE-2020-24977)** is reached through the **`xmllint` CLI** (`--htmlout`), *not* a
-  `fuzz/*.c` harness. Many databases mis-attribute it to `entities.c` — that is **#7**.
-- Harness attribution is a best-effort mapping; confirm per-bug via ARVO-Meta or `metadata.json`.
+## Notes / honest caveats
+- **#1 and #3 share a sink:** `htmlParseHTMLAttribute` (#3) over-reads *inside* `htmlCurrentChar`
+  (#1) via the `CUR_CHAR` macro — a natural shared-input composition pair.
+- **#5 is the root cause of #3:** its fix message is literally *"Halt parser if switching encodings
+  fails — Avoids buffer overread in `htmlParseHTMLAttribute`."* At 2.10.4 the vulnerable pattern
+  lives in the static `xmlSwitchInputEncodingInt`; the upstream fix diff targets a later-refactored
+  form (documented in the folder's `BUG.md`).
+- Line numbers are within the **v2.10.4** source (not the fix commit's tree).
+- `arvo`/`oss-fuzz` local ids cross-check each `fix_commit` against `n132/ARVO-Meta`.

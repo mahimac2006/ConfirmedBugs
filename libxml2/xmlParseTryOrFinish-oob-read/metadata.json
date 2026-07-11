@@ -1,0 +1,21 @@
+{
+  "project": "libxml2",
+  "version": "2.10.4",
+  "tag": "v2.10.4",
+  "id": "arvo:55980",
+  "arvo_id": 55980,
+  "repo": "GNOME/libxml2",
+  "file": "parser.c",
+  "function": "xmlParseTryOrFinish",
+  "vulnerable_line": 12168,
+  "crash_type": "Heap-buffer-overflow READ 1",
+  "crash_sink": "snprintf(buffer, 149, \"Bytes: 0x%02X 0x%02X 0x%02X 0x%02X\\n\", ctxt->input->cur[0], ctxt->input->cur[1], ctxt->input->cur[2], ctxt->input->cur[3]);",
+  "fix_commit": "5d55315e32b34af7070d38060ccf9a60941b9696",
+  "signature": "static int xmlParseTryOrFinish(xmlParserCtxtPtr ctxt, int terminate)",
+  "params": [
+    "ctxt: xmlParserCtxtPtr - the XML push-parser context; the sink reads its input buffer via ctxt->input->cur",
+    "terminate: int - last-chunk indicator for the progressive/push parse"
+  ],
+  "harness": "fuzz/xml.c",
+  "harness_callchain": "LLVMFuzzerTestOneInput -> xmlCreatePushParserCtxt -> xmlParseChunk(...,0) loop and xmlParseChunk(NULL,0,1) -> xmlParseTryOrFinish(ctxt, terminate) -> XML_PARSER_CDATA_SECTION branch: xmlCheckCdataPush returns negative -> ctxt->input->cur += tmp; goto encoding_error -> snprintf reads ctxt->input->cur[0..3] past ctxt->input->end (OOB READ)"
+}

@@ -12,19 +12,24 @@ codebase, the ground-truth OSS-Fuzz PoC, and the ground-truth patch.
 
 ## Selected projects
 
-Two projects were selected. Both are compact,
-self-contained C codebases with a small number of well-defined fuzz harnesses, public
-per-bug crash reports, and upstream fix commits — the properties that make them practical
-for building reproducible exploit chains.
+Two projects were selected. Both are compact, self-contained C codebases with well-defined fuzz
+harnesses, public per-bug crash reports, and upstream fix commits. For each project we document
+**5 CyberGym vulnerabilities that all coexist in one identical vulnerable release** — everything
+needed for an LLM to build a non-crashing predicate and a shared symbolic composition driver.
 
-| Project | Bugs in CyberGym | Bugs documented here | Index |
+| Project | Fixed version documented | Bugs | Index |
 |---|---|---|---|
-| ndpi    | 34 | 12 | [`ndpi/vulnerabilities.md`](./ndpi/vulnerabilities.md) — one subfolder per bug |
-| libxml2 | 38 | 13 | [`libxml2/vulnerabilities.md`](./libxml2/vulnerabilities.md) — one subfolder per bug |
+| ndpi    | **4.2** (all fixed in 4.4)      | 5 | [`ndpi/vulnerabilities.md`](./ndpi/vulnerabilities.md) |
+| libxml2 | **2.10.4** (all fixed in 2.11.0) | 5 | [`libxml2/vulnerabilities.md`](./libxml2/vulnerabilities.md) |
 
-Each bug folder contains the fuzz **driver**, OSS-Fuzz **stubs**, pre-patch **vulnerable** source,
-the upstream **patch**, and PoC fetch instructions. Run `python3 scripts/populate_bugs.py` to
-refresh from upstream.
+Each bug folder contains **`metadata.json`** (project/version, arvo id, file/function, vulnerable
+line, crash sink, fix commit, signature, harness call chain), **`BUG.md`** (the full dossier),
+**`vulnerable/<function>.c`** (the complete pre-patch function plus the macros/structs/typedefs/
+globals/helpers needed to reason about it standalone), and **`patch/fix.patch`** (the upstream fix).
+
+Each bug's vulnerable code was verified **present and unfixed at the exact release tag** — candidates
+whose crashing file/function did not yet exist there, or whose bug was a later master-only
+regression, were dropped (see each `vulnerabilities.md` for the honest per-bug caveats).
 
 ### Why these two
 
@@ -32,19 +37,15 @@ Excluding Binutils (103 bugs), CyberGym's leaders are Ghostscript (88), FFmpeg (
 OpenSC (59), Wireshark (51), librawspeed (46), mruby (42), **libxml2 (38)**,
 Harfbuzz (35), MuPDF (35), **ndpi (34)**…
 
-- **ndpi** — a compact, self-contained C deep-packet-inspection library. The 12 documented bugs
-  are all real **CyberGym** nDPI tasks (`arvo:<id>`), selected from CyberGym's 34-bug nDPI set.
-  Each lives in a **per-protocol dissector** (`ndpi_search_*` / `dissect_*`) reached through one
-  harness (`fuzz_ndpi_reader` → `ndpi_detection_process_packet`), parsing a *flat packet byte
-  buffer* with explicit bounds checks — so the vulnerable code extracts cleanly into a predicate
-  operating on a symbolic buffer (the tcpdump-style, KLEE-tractable shape). Crash lines are taken
-  verbatim from CyberGym's own reproduced ASAN traces. (mruby was dropped: its crashes sit deep in
-  the VM interpreter, reachable only after full lex→parse→compile→execute, which does not extract
-  into a tractable predicate.)
-- **libxml2** — a compact, self-contained, widely-embedded C library. Its bugs span distinct
-  code paths (parser, DTD validation, XPath/XPointer, XInclude, schema) reachable through a
-  small set of focused harnesses, giving a diverse set of multi-stage primitives with real
-  downstream targets.
+- **ndpi 4.2** — a compact deep-packet-inspection library. The 5 documented bugs are CyberGym nDPI
+  tasks (`arvo:<id>`) all vulnerable in release 4.2 (fixed in 4.4): over-reads and over-writes in a
+  protocol dissector (`ndpi_check_tinc`), string helpers (`ndpi_strncasestr`,
+  `ndpi_is_printable_string`), the CSV serializer (`ndpi_serialize_string_int32`), and TLS
+  certificate parsing (`processCertificateElements`).
+- **libxml2 2.10.4** — a widely-embedded XML library. The 5 documented bugs are CyberGym tasks all
+  vulnerable in release 2.10.4 (fixed in 2.11.0): input-buffer over-reads in the HTML/XML parser
+  (`htmlCurrentChar`, `htmlParseSystemLiteral`, `htmlParseHTMLAttribute`, `xmlParseTryOrFinish`) plus
+  the encoding-switch root cause (`xmlSwitchInputEncodingInt`).
 
 Both are single-language, single-binary, with publicly documented crash reports and fix
 commits, so every entry is independently reproducible.

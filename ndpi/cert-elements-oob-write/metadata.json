@@ -1,0 +1,23 @@
+{
+  "project": "ndpi",
+  "version": "4.2",
+  "tag": "4.2",
+  "id": "arvo:57317",
+  "arvo_id": 57317,
+  "repo": "ntop/nDPI",
+  "file": "src/lib/protocols/tls.c",
+  "function": "processCertificateElements",
+  "vulnerable_line": 593,
+  "crash_type": "Out-of-bounds WRITE (crafted certificate elements)",
+  "crash_sink": "flow->protos.tls_quic.server_names[flow->protos.tls_quic.server_names_len] = ',';",
+  "fix_commit": "ddb9aa0f95ba263361b9be2ba0a122ea1e001be9",
+  "signature": "static void processCertificateElements(struct ndpi_detection_module_struct *ndpi_struct, struct ndpi_flow_struct *flow, u_int16_t p_offset, u_int16_t certificate_len)",
+  "params": [
+    "struct ndpi_detection_module_struct *ndpi_struct - nDPI engine/detection context; holds the current packet being dissected",
+    "struct ndpi_flow_struct *flow - per-flow state; destination of parsed certificate fields (server_names, issuerDN, subjectDN, ...)",
+    "u_int16_t p_offset - start offset into packet->payload for this certificate block",
+    "u_int16_t certificate_len - length of the certificate block to parse"
+  ],
+  "harness": "fuzz/fuzz_ndpi_reader.c",
+  "harness_callchain": "LLVMFuzzerTestOneInput (fuzz/fuzz_ndpi_reader.c: writes Data to a temp pcap, pcap_open_offline, loops pcap_next_ex) -> ndpi_detection_process_packet -> ndpi_search_tls_wrapper (tls.c:2352) -> ndpi_search_tls_tcp (tls.c:873) -> ndpi_search_tls_tcp_memory / processTLSBlock (tls.c:810, on reassembled handshake) -> processCertificate (tls.c:684) -> processCertificateElements (tls.c:790 call site; 317 definition). NOTE: the original OSS-Fuzz 57317 report used the dedicated harness fuzz/fuzz_tls_certificate.c, which was added AFTER tag 4.2 and is not present at this tag; at 4.2 the same sink is reachable via fuzz/fuzz_ndpi_reader.c feeding a crafted TLS certificate handshake."
+}

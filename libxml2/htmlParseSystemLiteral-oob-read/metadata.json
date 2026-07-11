@@ -1,0 +1,20 @@
+{
+  "project": "libxml2",
+  "version": "2.10.4",
+  "tag": "v2.10.4",
+  "id": "arvo:57469",
+  "arvo_id": 57469,
+  "repo": "GNOME/libxml2",
+  "file": "HTMLparser.c",
+  "function": "htmlParseSystemLiteral",
+  "vulnerable_line": 3004,
+  "crash_type": "Global-buffer-overflow READ (over-read via xmlStrndup)",
+  "crash_sink": "ret = xmlStrndup((BASE_PTR+startPosition), len);",
+  "fix_commit": "1061537efdf3874c91fd50d18f98c4b8a3518e52",
+  "signature": "static xmlChar *htmlParseSystemLiteral(htmlParserCtxtPtr ctxt)",
+  "params": [
+    "ctxt - the HTML parser context; input bytes are in ctxt->input->base..ctxt->input->end with ctxt->input->cur as the read cursor"
+  ],
+  "harness": "fuzz/html.c",
+  "harness_callchain": "LLVMFuzzerTestOneInput -> htmlReadMemory(docBuffer, docSize, ...) -> htmlDoRead -> htmlParseDocument -> htmlParseDocTypeDecl -> htmlParseExternalID -> htmlParseSystemLiteral (sink: xmlStrndup(BASE_PTR+startPosition, len)). Also reachable via the push path: htmlCreatePushParserCtxt/htmlParseChunk -> htmlParseTryOrFinish -> htmlParseDocTypeDecl -> htmlParseExternalID -> htmlParseSystemLiteral."
+}

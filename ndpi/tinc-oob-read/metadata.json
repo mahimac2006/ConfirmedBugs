@@ -1,17 +1,21 @@
 {
   "project": "ndpi",
-  "id": "tinc-oob-read",
-  "type": "Heap-buffer-overflow (read); TINC dissector",
+  "version": "4.2",
+  "tag": "4.2",
+  "id": "arvo:46499",
+  "arvo_id": 46499,
+  "repo": "ntop/nDPI",
   "file": "src/lib/protocols/tinc.c",
   "function": "ndpi_check_tinc",
-  "harness": "fuzz_ndpi_reader.c",
+  "vulnerable_line": 105,
+  "crash_type": "Heap-buffer-overflow READ 1",
+  "crash_sink": "while((packet_payload[i] >= '0' && packet_payload[i] <= '9') || (packet_payload[i] >= 'A' && packet_payload[i] <= 'Z')) { i++; }",
   "fix_commit": "06a0abb6fdf8fb7a446ef5aafdf2c7d24608977f",
-  "arvo_id": "46499",
-  "repo": "ntop/nDPI",
-  "repo_url": "https://github.com/ntop/nDPI",
-  "crash_line": 105,
-  "crash_line_confidence": "high",
-  "version": "4.2",
-  "version_describe": "3.4-756-ge3faecf9d",
-  "vulnerable_commit": "e3faecf9de165adececbf77cbe54a8cbe373a91c"
+  "signature": "static void ndpi_check_tinc(struct ndpi_detection_module_struct *ndpi_struct, struct ndpi_flow_struct *flow)",
+  "params": [
+    "struct ndpi_detection_module_struct *ndpi_struct - detection module context; current packet in ndpi_struct->packet, TINC cache in ndpi_struct->tinc_cache",
+    "struct ndpi_flow_struct *flow - per-flow state; flow->tinc_state and flow->tinc_cache_entry"
+  ],
+  "harness": "fuzz/fuzz_ndpi_reader.c",
+  "harness_callchain": "LLVMFuzzerTestOneInput (writes fuzz input to a temp pcap, opens it with pcap_open_offline) -> pcap_next_ex loop -> ndpi_workflow_process_packet (example/reader_util.c) -> packet_processing (reader_util.c:1519) -> ndpi_detection_process_packet (ndpi_main.c:5924) -> ndpi_check_flow_func -> check_ndpi_tcp_flow_func (ndpi_main.c:5084) -> check_ndpi_detection_func (ndpi_main.c:5013) -> ndpi_search_tinc (tinc.c:135) -> ndpi_check_tinc (tinc.c, OOB read at tinc.c:105)"
 }

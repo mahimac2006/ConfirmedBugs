@@ -1,0 +1,21 @@
+{
+  "project": "ndpi",
+  "version": "4.2",
+  "tag": "4.2",
+  "id": "arvo:44280",
+  "arvo_id": 44280,
+  "repo": "ntop/nDPI",
+  "file": "src/lib/ndpi_utils.c",
+  "function": "ndpi_is_printable_string",
+  "vulnerable_line": 2200,
+  "crash_type": "Heap-buffer-overflow READ (over-read / use-of-uninitialized-value of the string buffer)",
+  "crash_sink": "if (ndpi_isprint(str[i]) == 0) {",
+  "fix_commit": "ff38d4b98008d3b10dbdee0330e9b8c62a99ce9a",
+  "signature": "int ndpi_is_printable_string(char * const str, size_t len)",
+  "params": [
+    "char * const str - buffer scanned for printable chars; non-printable bytes rewritten to '?'; in the vulnerable path it is the 2048-byte stack rdnSeqBuf",
+    "size_t len - number of bytes of str to inspect; in the vulnerable path it is rdn_len, advanced by snprintf's would-have-written return value and thus can exceed the valid/initialized region of str"
+  ],
+  "harness": "fuzz/fuzz_ndpi_reader.c",
+  "harness_callchain": "LLVMFuzzerTestOneInput -> pcap_open_offline(input as pcap) -> ndpi_workflow_process_packet -> ndpi_detection_process_packet / check_ndpi_detection_func -> ndpi_search_tls_wrapper -> ndpi_search_tls_tcp -> processTLSBlock -> processCertificate -> processCertificateElements -> ndpi_is_printable_string(rdnSeqBuf, rdn_len)"
+}

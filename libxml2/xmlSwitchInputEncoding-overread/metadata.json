@@ -1,0 +1,23 @@
+{
+  "project": "libxml2",
+  "version": "2.10.4",
+  "tag": "v2.10.4",
+  "id": "arvo:57521",
+  "arvo_id": 57521,
+  "repo": "GNOME/libxml2",
+  "file": "parserInternals.c",
+  "function": "xmlSwitchInputEncodingInt",
+  "vulnerable_line": 1124,
+  "crash_type": "Use-of-uninitialized-value / buffer over-read (parser not halted after encoding-switch failure)",
+  "crash_sink": "return (-1);",
+  "fix_commit": "0e42adce77a9c115402d7f24d8d3b0130f841ed1",
+  "signature": "static int xmlSwitchInputEncodingInt(xmlParserCtxtPtr ctxt, xmlParserInputPtr input, xmlCharEncodingHandlerPtr handler, int len)",
+  "params": [
+    "ctxt: the parser context (state machine driving the parse)",
+    "input: the input stream whose encoding is being switched",
+    "handler: the encoding handler to install on input->buf",
+    "len: number of bytes to convert for the first line, or -1 for all"
+  ],
+  "harness": "fuzz/html.c",
+  "harness_callchain": "LLVMFuzzerTestOneInput -> htmlReadMemory(docBuffer, docSize, ...) -> htmlDoRead -> htmlCtxtReadMemory/htmlParseDocument -> htmlCurrentChar/encoding detection -> xmlSwitchEncoding / xmlSwitchToEncoding -> xmlSwitchInputEncodingInt (ctxt->html != 0 path calls xmlCharEncInput; on nbchars < 0 hits the unguarded return(-1) at parserInternals.c:1124 without xmlHaltParser, so parsing continues and later over-reads in htmlParseHTMLAttribute = arvo:57223)"
+}

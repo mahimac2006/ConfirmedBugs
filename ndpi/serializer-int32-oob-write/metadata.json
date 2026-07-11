@@ -1,0 +1,23 @@
+{
+  "project": "ndpi",
+  "version": "4.2",
+  "tag": "4.2",
+  "id": "arvo:63179",
+  "arvo_id": "63179",
+  "repo": "ntop/nDPI",
+  "file": "src/lib/ndpi_serializer.c",
+  "function": "ndpi_serialize_string_int32",
+  "vulnerable_line": 1289,
+  "crash_type": "Heap-buffer-overflow WRITE",
+  "crash_sink": "rc = snprintf((char*)&serializer->buffer.data[serializer->status.buffer.size_used], needed, \"%u\", value);",
+  "fix_commit": "30fc89e556e5c09bf62b9548862cc3d924b9ec81",
+  "signature": "int ndpi_serialize_string_int32(ndpi_serializer *_serializer, const char *key, int32_t value)",
+  "params": [
+    "_serializer: opaque serializer handle (cast to ndpi_private_serializer*)",
+    "key: field name (ignored in CSV format)",
+    "value: the 32-bit integer appended to the CSV row"
+  ],
+  "harness": "fuzz/fuzz_ndpi_reader.c",
+  "harness_callchain": "fuzz_ndpi_reader (CSV/serializer output path) -> ndpi_serialize_string_int32 (CSV branch, built with OPTIMIZE_CSV_SERIALIZATION) -> ndpi_serialize_csv_pre + snprintf write into serializer->buffer.data",
+  "note": "Task originally named ndpi_vsnprintf at ndpi_utils.c (a post-4.2 refactor that does not exist at tag 4.2). The real arvo:63179 defect is in ndpi_serialize_string_int32 in ndpi_serializer.c and IS present verbatim at 4.2. crash line 1289 is the line number in the 4.2 source."
+}

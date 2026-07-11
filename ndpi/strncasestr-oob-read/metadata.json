@@ -1,0 +1,22 @@
+{
+  "project": "ndpi",
+  "version": "4.2",
+  "tag": "4.2",
+  "id": "arvo:44482",
+  "arvo_id": 44482,
+  "repo": "ntop/nDPI",
+  "file": "src/lib/ndpi_main.c",
+  "function": "ndpi_strncasestr",
+  "vulnerable_line": 7109,
+  "crash_type": "Heap-buffer-overflow READ (over-read when str1_len < str2_len)",
+  "crash_sink": "for(i = 0; i < (str1_len - str2_len + 1); i++){",
+  "fix_commit": "f229068fd3844cd2fd458e5ae76c20ec059c8d3e",
+  "signature": "const char * ndpi_strncasestr(const char *str1, const char *str2, size_t len)",
+  "params": [
+    "str1 - haystack buffer to search; only `len` bytes are valid (not guaranteed NUL-terminated)",
+    "str2 - NUL-terminated needle string to search for (case-insensitive)",
+    "len  - number of valid bytes available in str1 (bound passed to strnlen)"
+  ],
+  "harness": "fuzz/fuzz_ndpi_reader.c",
+  "harness_callchain": "LLVMFuzzerTestOneInput (fuzz/fuzz_ndpi_reader.c) writes the input bytes to a temp pcap, opens it with pcap_open_offline, then for each packet calls ndpi_workflow_process_packet -> ndpi_detection_process_packet -> the HTTP dissector (ndpi_search_http_tcp / check_content_type_and_change_protocol in src/lib/protocols/http.c). When an HTTP 'Authorization:' header is present, the dissector calls ndpi_strncasestr(packet->authorization_line.ptr, \"Basic\"/\"Digest\", packet->authorization_line.len). A header value shorter than the 5/6-char needle makes str1_len < str2_len, triggering the unsigned underflow and the OOB read. CAVEAT: the vulnerable ndpi_strncasestr body is present verbatim at tag 4.2, but this specific reachable caller (authorization_line via ndpi_strncasestr) was added by commit 0dd5ac89f on 2022-02-03, two days AFTER the 4.2 tag (2022-02-01); at exactly 4.2 the function has no in-tree caller. The oss-fuzz crash 44482 was reported/fixed on master shortly after 4.2 (fix dated 2022-02-09)."
+}

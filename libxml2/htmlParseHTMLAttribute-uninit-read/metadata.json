@@ -1,0 +1,21 @@
+{
+  "project": "libxml2",
+  "version": "2.10.4",
+  "tag": "v2.10.4",
+  "id": "arvo:57223",
+  "arvo_id": 57223,
+  "repo": "GNOME/libxml2",
+  "file": "HTMLparser.c",
+  "function": "htmlParseHTMLAttribute",
+  "vulnerable_line": 2843,
+  "crash_type": "Use-of-uninitialized-value (input over-read)",
+  "crash_sink": "c = CUR_CHAR(l);",
+  "fix_commit": "62f199ed7d1c99999030810495bd12fd5b86fee1",
+  "signature": "static xmlChar *htmlParseHTMLAttribute(htmlParserCtxtPtr ctxt, const xmlChar stop)",
+  "params": [
+    "ctxt: the HTML parser context (holds ctxt->input buffer with cur/end pointers and ctxt->instate parser state)",
+    "stop: a char stop value (the closing quote); if 0 the value stops at the first blank or '>'"
+  ],
+  "harness": "fuzz/html.c",
+  "harness_callchain": "LLVMFuzzerTestOneInput (fuzz/html.c:25) -> htmlReadMemory(docBuffer, docSize, ...) (fuzz/html.c:45) -> htmlParseDocument -> htmlParseContentInternal/htmlParseElementInternal -> htmlParseStartTag (HTMLparser.c:3947) -> htmlParseAttribute (HTMLparser.c:3746, line 4038) -> htmlParseAttValue (HTMLparser.c:2926, val = htmlParseAttValue) -> htmlParseHTMLAttribute (HTMLparser.c:2736; calls at 2931/2939/2949) -> CUR_CHAR(l) => htmlCurrentChar (HTMLparser.c:400) over-reads input buffer at SINK HTMLparser.c:2843"
+}

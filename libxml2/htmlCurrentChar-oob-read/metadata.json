@@ -1,0 +1,21 @@
+{
+  "project": "libxml2",
+  "version": "2.10.4",
+  "tag": "v2.10.4",
+  "id": "arvo:56964",
+  "arvo_id": 56964,
+  "repo": "GNOME/libxml2",
+  "file": "HTMLparser.c",
+  "function": "htmlCurrentChar",
+  "vulnerable_line": 474,
+  "crash_type": "Global-buffer-overflow READ 1",
+  "crash_sink": "if (cur[1] == 0) {",
+  "fix_commit": "3eb6bf03869b449bbe990efe7e5101457d40f36e",
+  "signature": "static int htmlCurrentChar(xmlParserCtxtPtr ctxt, int *len)",
+  "params": [
+    "ctxt: the HTML parser context (supplies ctxt->input->cur/->end, charset, state)",
+    "len: out-parameter for the byte length of the decoded character"
+  ],
+  "harness": "fuzz/html.c",
+  "harness_callchain": "LLVMFuzzerTestOneInput -> htmlReadMemory(docBuffer, docSize, ...) -> htmlDoRead -> htmlParseDocument -> htmlParseContent/htmlParseElement -> ... -> CUR_CHAR(l) macro (#define CUR_CHAR(l) htmlCurrentChar(ctxt, &l)) -> htmlCurrentChar; on a non-growable in-memory buffer a truncated UTF-8 lead byte at end-of-input makes the guarded cur[1]/cur[2]/cur[3] reads walk past ctxt->input->end."
+}
