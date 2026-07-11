@@ -51,7 +51,7 @@ KS=$KLEE_SRC   # dir containing include/klee/klee.h
 clang -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone predicate_18.c -o predicate_18.bc
 clang -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone predicate_20.c -o predicate_20.bc
 clang -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone -I$KS/include driver_18_20.c -o d.bc
-llvm-link d.bc p18.bc p20.bc -o linked.bc
-klee --max-time=300 linked.bc
+llvm-link d.bc predicate_18.bc predicate_20.bc -o linked_18_19.bc
+klee --max-time=300 linked_18_19.bc
 # SAT -> "KLEE: ERROR: ... ASSERTION FAIL: 0 && \"BOTH_REACHABLE_18_20\"" + a testNNN.ktest witness
 ```
