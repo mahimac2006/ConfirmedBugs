@@ -1,0 +1,74 @@
+array buf[64] : w32 -> w8 = symbolic
+array len[4] : w32 -> w8 = symbolic
+(query [(Ule 1
+              N0:(ReadLSB w32 0 len))
+         (Ule N0 64)
+         (Eq false
+             (Eq 255 (Read w8 0 buf)))
+         (Ult 133704068366337
+              N1:(Add w64 133704068366336 (ZExt w64 N0)))
+         (Eq false
+             (Eq 255 (Read w8 1 buf)))
+         (Ult 133704068366338 N1)
+         (Eq false
+             (Eq 255 (Read w8 2 buf)))
+         (Ult 133704068366339 N1)
+         (Eq false
+             (Eq 255 (Read w8 3 buf)))
+         (Ult 133704068366340 N1)
+         (Eq false
+             (Eq 255 (Read w8 4 buf)))
+         (Ult 133704068366341 N1)
+         (Eq false
+             (Eq 255 (Read w8 5 buf)))
+         (Ult 133704068366342 N1)
+         (Eq false
+             (Eq 255 (Read w8 6 buf)))
+         (Ult 133704068366343 N1)
+         (Eq false
+             (Eq 255 (Read w8 7 buf)))
+         (Ult 133704068366344 N1)
+         (Eq false
+             (Eq 255 (Read w8 8 buf)))
+         (Ult 133704068366345 N1)
+         (Eq false
+             (Eq 255 (Read w8 9 buf)))
+         (Ult 133704068366346 N1)
+         (Eq false
+             (Eq 255 (Read w8 10 buf)))
+         (Ult 133704068366347 N1)
+         (Eq false
+             (Eq 255 (Read w8 11 buf)))
+         (Ult 133704068366348 N1)
+         (Eq false
+             (Eq 255 (Read w8 12 buf)))
+         (Ult 133704068366349 N1)
+         (Eq false
+             (Eq 255 (Read w8 13 buf)))
+         (Ult 133704068366350 N1)
+         (Eq false
+             (Eq 255 (Read w8 14 buf)))
+         (Ult 133704068366351 N1)
+         (Eq false
+             (Eq 255 (Read w8 15 buf)))
+         (Ult 133704068366352 N1)
+         (Eq false
+             (Eq 255 (Read w8 16 buf)))
+         (Ult 133704068366353 N1)
+         (Eq false
+             (Eq 255 (Read w8 17 buf)))
+         (Ult 133704068366354 N1)
+         (Eq false
+             (Eq 255 (Read w8 18 buf)))
+         (Ult 133704068366355 N1)
+         (Eq false
+             (Eq 255 (Read w8 19 buf)))
+         (Ult 133704068366356 N1)
+         (Eq false
+             (Eq 255 (Read w8 20 buf)))
+         (Ult 133704068366357 N1)
+         (Eq false
+             (Eq 255 (Read w8 21 buf)))
+         (Ult 133704068366358 N1)
+         (Eq 255 (Read w8 22 buf))]
+        false)

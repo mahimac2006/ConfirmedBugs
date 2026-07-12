@@ -1,0 +1,9 @@
+array len[4] : w32 -> w8 = symbolic
+(query [(Ule 1
+              N0:(ReadLSB w32 0 len))
+         (Ule N0 64)
+         (Eq false
+             (Ult N1:(Add w64 137004824133632 (ZExt w64 N0))
+                  137004824133636))
+         (Eq false (Ult N1 137004824133648))]
+        false)

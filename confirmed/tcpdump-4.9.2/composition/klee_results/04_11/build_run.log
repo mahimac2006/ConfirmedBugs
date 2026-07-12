@@ -1,0 +1,24 @@
+$ /home/vishva/toolchains/llvm13/bin/clang -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone -I /snap/klee/20/usr/local/include /home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/driver_04_11.c -o /home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/04_11/d.bc
+
+$ /home/vishva/toolchains/llvm13/bin/llvm-link /home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/04_11/d.bc /home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/predicates/p04.bc /home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/predicates/p11.bc -o /home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/04_11/linked.bc
+
+$ klee --max-time=300 --output-dir=/home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/04_11/klee-out --only-output-states-covering-new --max-memory=1500 /home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/04_11/linked.bc
+KLEE: WARNING: Module and host target triples do not match: 'x86_64-unknown-linux-gnu' != 'x86_64-pc-linux-gnu'
+This may cause unexpected crashes or assertion violations.
+KLEE: output directory is "/home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/04_11/klee-out"
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7de404600000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7de184600000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x7ce184600000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x7cc184600000 size=128 GiB)
+KLEE: WARNING ONCE: skipping fork (memory cap exceeded)
+KLEE: HaltTimer invoked
+KLEE: halting execution, dumping remaining states
+
+KLEE: done: total instructions = 14824696
+KLEE: done: completed paths = 48811
+KLEE: done: partially completed paths = 301340
+KLEE: done: generated tests = 11
+

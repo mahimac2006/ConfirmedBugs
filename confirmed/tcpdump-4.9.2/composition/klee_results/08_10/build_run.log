@@ -1,0 +1,40 @@
+$ /home/vishva/toolchains/llvm13/bin/clang -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone -I /snap/klee/20/usr/local/include /home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/driver_08_10.c -o /home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/08_10/d.bc
+
+$ /home/vishva/toolchains/llvm13/bin/llvm-link /home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/08_10/d.bc /home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/predicates/p08.bc /home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/predicates/p10.bc -o /home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/08_10/linked.bc
+
+$ klee --max-time=300 --output-dir=/home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/08_10/klee-out --only-output-states-covering-new --max-memory=1500 /home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/08_10/linked.bc
+KLEE: WARNING: Module and host target triples do not match: 'x86_64-unknown-linux-gnu' != 'x86_64-pc-linux-gnu'
+This may cause unexpected crashes or assertion violations.
+KLEE: output directory is "/home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/08_10/klee-out"
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x75d818000000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x75d598000000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x74d598000000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x74b598000000 size=128 GiB)
+KLEE: ERROR: driver_08_10.c:42: ASSERTION FAIL: 0 && "BOTH_REACHABLE_08_10"
+KLEE: NOTE: now ignoring this error at this location
+
+KLEE: done: total instructions = 190
+KLEE: done: completed paths = 2
+KLEE: done: partially completed paths = 1
+KLEE: done: generated tests = 3
+
+$ klee.ktest-tool /home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/08_10/klee-out/test000003.ktest
+ktest file : '/home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/08_10/klee-out/test000003.ktest'
+args       : ['/home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/08_10/linked.bc']
+num objects: 2
+object 0: name: 'buf'
+object 0: size: 64
+object 0: data: b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+object 0: hex : 0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+object 0: text: ................................................................
+object 1: name: 'len'
+object 1: size: 4
+object 1: data: b'\x10\x00\x00\x00'
+object 1: hex : 0x10000000
+object 1: int : 16
+object 1: uint: 16
+object 1: text: ....
+

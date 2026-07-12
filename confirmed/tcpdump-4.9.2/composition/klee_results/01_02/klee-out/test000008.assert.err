@@ -1,0 +1,7 @@
+Error: ASSERTION FAIL: 0 && "BOTH_REACHABLE_01_02"
+File: driver_01_02.c
+Line: 42
+assembly.ll line: 55
+State: 10
+Stack: 
+	#000000055 in main() at driver_01_02.c:42

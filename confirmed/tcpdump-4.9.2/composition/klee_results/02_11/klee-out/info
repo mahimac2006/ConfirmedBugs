@@ -1,0 +1,23 @@
+/snap/klee/20/usr/local/bin/klee --max-time=300 --output-dir=/home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/02_11/klee-out /home/vishva/ChainingPaper/confirmed/tcpdump-4.9.2/composition/klee_results/02_11/linked.bc
+PID: 1954308
+Using monotonic steady clock with 1/1000000000s resolution
+Started: 2026-07-12 14:40:07
+BEGIN searcher description
+<InterleavedSearcher> containing 2 searchers:
+RandomPathSearcher
+WeightedRandomSearcher::CoveringNew
+</InterleavedSearcher>
+END searcher description
+Finished: 2026-07-12 14:45:35
+Elapsed: 00:05:28
+KLEE: done: explored paths = 7111
+KLEE: done: avg. constructs per query = 1575
+KLEE: done: total queries = 15034
+KLEE: done: valid queries = 7922
+KLEE: done: invalid queries = 7112
+KLEE: done: query cex = 15034
+
+KLEE: done: total instructions = 354052
+KLEE: done: completed paths = 3258
+KLEE: done: partially completed paths = 3853
+KLEE: done: generated tests = 6720

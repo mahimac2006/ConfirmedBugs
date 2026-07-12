@@ -1,0 +1,9 @@
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7fa0bcc00000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7f9e3cc00000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x7e9e3cc00000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x7e7e3cc00000 size=128 GiB)
+KLEE: ERROR: driver_06_09.c:42: ASSERTION FAIL: 0 && "BOTH_REACHABLE_06_09"
+KLEE: NOTE: now ignoring this error at this location
