@@ -1,0 +1,20 @@
+{
+  "path_map": {},
+  "sink_info": {
+    "sink_labels": [],
+    "sink_conditions": [],
+    "buffer_requirements": []
+  },
+  "stub_prescriptions": {},
+  "constants": {
+    "BGP_SIZE": 19,
+    "BGP_OPEN_SIZE": 29,
+    "BGP_OPT_SIZE": 2,
+    "BGP_CAP_HEADER_SIZE": 2,
+    "BGP_NOTIFICATION_SIZE": 21,
+    "BGP_ROUTE_REFRESH_SIZE": 23,
+    "BGP_MP_NLRI_MINSIZE": 3,
+    "BGP_NOTIFY_MINOR_CEASE_MAXPRFX": 1
+  },
+  "init_template": "/* === PATH-SENSITIVE INITIALIZATION TEMPLATE ===\n * Generated from backward analysis: sink \u2192 target \u2192 entry \u2192 driver */\n\n"
+}

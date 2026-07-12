@@ -1,0 +1,165 @@
+  [i] Copying source tree to /app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/src_copy...
+  [i] Source copy ready (2127 files)
+  [i] Build headers: 1 templates found, 0 headers generated
+  [i] Build headers: 1 templates found, 0 headers generated
+  [i] Loaded: compile_commands.json
+  [i] Loaded: fact_pack.json
+  [i] Loaded: findings.json
+  [i] Spec loaded: 096_print-babel.c_127_local_cpp_cwe-125-oob-read.json
+  [SA] fact_pack: 811 findings (list format)
+  [i] Vulnerable function: format_prefix
+  [i] Entry from source scan: babel_print_v2
+  [!] Entry 'babel_print_v2' is static — searching for public caller
+  [✓] Found public entry: babel_print
+  [✓] New spine: babel_print → babel_print_v2 → format_prefix
+  [SA] Compile flags from compile_commands: 8 flags, build_dir=/app/dataset/tcp/tcpdump-4.9.2
+  [i] Struct groom: 0 guards, 8 stub prescriptions, 0 constants
+  [i] SA context written to /app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/sa_context
+  [i] Auto-generated baseline driver.c (899 chars)
+  [!] JSON parse failed (attempt 1/3), retrying...
+  [!] JSON parse failed (attempt 2/3), retrying...
+  [Turn 1] Tool: ReadSAContext
+  [Turn 2] Tool: ReadSAContext
+  [Turn 3] Tool: GatherCode
+  [Tool] GatherCode(funcs=babel_print,babel_print_v2,format_prefix, types=netdissect_options)
+  [!] JSON parse failed (attempt 1/3), retrying...
+  [Turn 4] Thought: Need fix driver syntax/JSON formatting and compile path; write driver with proper prototype, no auto keyword, likely include klee.
+  [Turn 4] Tool: WriteDriver
+  [Tool] WriteDriver: 507 chars
+  [Turn 5] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Generating smart stubs...
+    [i] SmartStubs: 0 symbolic + 0 hardcoded + 0 proactive → smart_stubs.c
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+  [Turn 6] Tool: WriteDriver
+  [Tool] WriteDriver: 535 chars
+  [Turn 7] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+  [Turn 8] Tool: ReadSource
+  [System] NUDGE: Turn 8, no harness yet — write code now
+  [Turn 9] Tool: WriteDriver
+  [Tool] WriteDriver: 604 chars
+  [Turn 10] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+    [+] smart_stubs.c -> OK
+    [KLEE] Running: timeout=300s
+    [KLEE] Command: /opt/klee/bin/klee --output-dir=/app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/logs/klee_run_1 --max-time=300s --write-kqueries --write-smt2s --optimize --search=random-path --search=dfs --only-output-states-covering-new --external-calls=all --check-overshift --max-depth=1000 --max-memory=2048 /app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/harness/slice.bc
+    KLEE: output directory is "/app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/logs/klee_run_1"
+    KLEE: Using Z3 solver backend
+    KLEE: Deterministic allocator: Using quarantine queue size 8
+    KLEE: Deterministic allocator: globals (start-address=0x79a271adc000 size=10 GiB)
+    KLEE: Deterministic allocator: constants (start-address=0x799ff1adc000 size=10 GiB)
+    KLEE: Deterministic allocator: heap (start-address=0x789ff1adc000 size=1024 GiB)
+    KLEE: Deterministic allocator: stack (start-address=0x787ff1adc000 size=128 GiB)
+    KLEE: WARNING: undefined reference to function: babel_print
+    KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+    KLEE: WARNING ONCE: silently concretizing (reason: external call) expression (Read w8 2 buf) to value 0 (driver.c:24)
+    KLEE: WARNING ONCE: calling external: babel_print(132868867997696, 133006306951168, 64) at driver.c:24 5
+    KLEE: ERROR: driver.c:23: failed external call: babel_print
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: done: total instructions = 25
+    KLEE: done: completed paths = 0
+    KLEE: done: partially completed paths = 1
+    KLEE: done: generated tests = 1
+    [KLEE] Exit code: 0, Elapsed: 0.1s
+    [KLEE] Log saved: /app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/logs/klee_1.log
+    [KLEE] Crash: CRASH: external at driver.c:23
+    [KLEE] SPINE COVERAGE: babel_print: NOT REACHED | babel_print_v2: NOT REACHED | format_prefix: NOT REACHED
+    [KLEE] Results: bug_found=True, sink_reached=False, paths=0, tests=1
+    [KLEE] Crash: CRASH: external at driver.c:23
+    [KLEE] Diagnostics: EXTERNAL CALLS (needs stubs): babel_print; SPINE COVERAGE: babel_print: NOT REACHED | babel_print_v2: NOT REACHED | format_prefix: NOT REACHED; TARGET format_prefix NOT REACHED and no spine functions entered. Check driver — is it calling babel_print?
+  [Turn 11] Tool: WriteHarness
+    [+] Wrote harness: print-babel.c (31 lines)
+    [+] Inserted 3 spine coverage probes
+    [+] Injected CWE-125 bounds check + sink BEFORE memcmp() at line 17
+    [+] Injected spine probes
+    [+] Line map: 12 harness lines mapped to original source
+    [+] Generated harness_types.h (14 lines, 1 structs, 3 typedefs)
+    [i] Driver MUST: #include "harness_types.h" for correct struct layouts
+    [⚠] BROKEN CALL CHAIN: babel_print_v2 does NOT call format_prefix!
+    [✓] AUTO-FIX: Injected 'format_prefix(...)' into babel_print_v2's body
+    [✓] Harness call chain auto-fixed and saved
+  [Turn 12] Tool: WriteDriver
+  [Tool] WriteDriver: 395 chars
+  [Turn 13] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+  [Turn 14] Tool: ReplaceCode
+  [Turn 15] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+    [+] print-babel.c -> OK
+    [+] smart_stubs.c -> OK
+    [KLEE] Running: timeout=300s
+    [KLEE] Command: /opt/klee/bin/klee --output-dir=/app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/logs/klee_run_2 --max-time=300s --write-kqueries --write-smt2s --optimize --search=random-path --search=dfs --only-output-states-covering-new --external-calls=all --check-overshift --max-depth=1000 --max-memory=2048 /app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/harness/slice.bc
+    KLEE: output directory is "/app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/logs/klee_run_2"
+    KLEE: Using Z3 solver backend
+    KLEE: Deterministic allocator: Using quarantine queue size 8
+    KLEE: Deterministic allocator: globals (start-address=0x78f1a5072000 size=10 GiB)
+    KLEE: Deterministic allocator: constants (start-address=0x78ef25072000 size=10 GiB)
+    KLEE: Deterministic allocator: heap (start-address=0x77ef25072000 size=1024 GiB)
+    KLEE: Deterministic allocator: stack (start-address=0x77cf25072000 size=128 GiB)
+    KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+    KLEE: WARNING ONCE: babel_print: SPINE_PROBE:babel_print:ENTRY
+    KLEE: ERROR: print-babel.c:18: memory error: invalid pointer: klee_get_obj_size
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: done: total instructions = 59
+    KLEE: done: completed paths = 0
+    KLEE: done: partially completed paths = 1
+    KLEE: done: generated tests = 1
+    [KLEE] Exit code: 0, Elapsed: 0.1s
+    [KLEE] Log saved: /app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/logs/klee_2.log
+    [KLEE] *** BUG TRIGGERED — KLEE  error at line 18 (sink assert at 20) ***
+    [KLEE] Send to concrete validation.
+    [KLEE] Crash: CRASH: ptr at print-babel.c:18
+    [KLEE] SPINE COVERAGE: babel_print: REACHED [ENTRY] | babel_print_v2: NOT REACHED | format_prefix: NOT REACHED
+    [KLEE] Results: bug_found=True, sink_reached=True, paths=0, tests=1
+    [KLEE] Crash: CRASH: ptr at print-babel.c:18
+    [KLEE] Diagnostics: BUG TRIGGERED: KLEE  error at line 18 (sink assert at 20); MEMORY ERROR detected by KLEE.; SPINE COVERAGE: babel_print: REACHED [ENTRY] | babel_print_v2: NOT REACHED | format_prefix: NOT REACHED; NOTE: Spine probe for format_prefix didn't fire, but bug_triggered=True. KLEE crashed at the vulnerable statement before the probe could execute.
+  [BUG] KLEE  error at line 18 (sink assert at 20)
+    [+] Line map: 13 harness lines mapped to original source
+  [MAP] harness print-babel.c:18 → print-babel.c:126
+  [MAP] Code: static char buf[50];
+  [Phase 5] Concrete validation (ASan replay)
+    [i] KLEE output: /app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/logs/klee_run_2
+    [i] test000001.ptr.err: ptr at print-babel.c:18 [real]
+    [i] Found 1 total errors, 1 real (non-harness)
+    [i] Decoded /app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/logs/klee_run_2/test000001.ktest: 1 symbolic objects
+    [✓] Mapped: harness print-babel.c:18 → print-babel.c:126
+        Code: static char buf[50];
+    [ASan-Real] Source: /app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/src_copy/print-babel.c
+    [ASan-Real] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h (-I /app/dataset/tcp/tcpdump-4.9.2)
+    [ASan-Real] Copying source tree from /app/dataset/tcp/tcpdump-4.9.2 to /app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/asan_real/asan_src...
+    [ASan-Real] Cleaning previous build...
+    [ASan-Real] configure (custom) + ASan...
+    [ASan-Real] Configured, running make...
+    [ASan-Real] Make errors: /bin/sh: 1: Syntax error: "(" unexpected
+make: *** [Makefile:71: setsignal.o] Error 2
+make: *** Waiting for unfinished jobs....
+/bin/sh: 1: Syntax error: "(" unexpected
+make: *** [Makefile:71: tcpdump.o] Error 2
+
+    [ASan-Real] No .a/.so files produced by build
+    [ASan-Real] Trying make with ASan in /app/dataset/tcp/tcpdump-4.9.2...
+    [ASan-Real] Make succeeded: /app/dataset/tcp/tcpdump-4.9.2/libnetdissect.a
+    [ASan-Real] Linking replay driver against libnetdissect.a...
+    [ASan-Real] Linking against existing library /app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/src_copy/libnetdissect.a...
+    [ASan-Real] Last resort: compiling real source directly...
+    [ASan-Real] All compilation approaches failed: /usr/bin/ld: /tmp/print-babel-b3b70a.o: in function `babel_print_v2':
+print-babel.c:(.text+0x468a): undefined reference to `istr'
+/usr/bin/ld: /tmp/print-babel-b3b70a.o: in function `subtlvs_print':
+print-babel.c:(.text+0x4b54): undefined reference to `tok2str'
+/usr/bin/ld: print-babel.c:(.text+0x4f
+    [Report] Verdict: LIKELY_TP
+    [Report] KLEE crash: harness print-babel.c:18 → original print-babel.c:126
+    [Report] Target crashes: 1
+    [✓] Bug report saved: /app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/bug_report.json
+    [SUMMARY] Verdict: LIKELY_TP
+    [SUMMARY] ptr at harness print-babel.c:18 → print-babel.c:126
+  [AUTO-DONE] verdict=LIKELY_TP, asan=False
+Done.

@@ -1,0 +1,90 @@
+{
+  "schema": "llmse.vul_spec.v1",
+  "id": "local_cpp_cwe-120-overflow@print-bgp.c:1173",
+  "project": null,
+  "rule_id": "local/cpp/cwe-120-overflow",
+  "family": "GENERIC",
+  "file": "/app/dataset/tcp/tcpdump-4.9.2/print-bgp.c",
+  "line": 1173,
+  "column": 2,
+  "end_line": 1173,
+  "end_column": 8,
+  "message": "CWE-120: Potential Buffer Overflow via memcpy (unchecked length).",
+  "context": {
+    "contextStart": 1153,
+    "contextEnd": 1193,
+    "snippet": "\tstruct in6_addr addr;\n\tu_int plen, plenbytes;\n\n\t/* prefix length and label = 4 bytes */\n\tND_TCHECK2(pptr[0], 4);\n\tITEMCHECK(4);\n\tplen = pptr[0]; /* get prefix length */\n\n\tif (24 > plen)\n\t\treturn -1;\n\n        plen-=24; /* adjust prefixlen - labellength */\n\n\tif (128 < plen)\n\t\treturn -1;\n\titemlen -= 4;\n\n\tmemset(&addr, 0, sizeof(addr));\n\tplenbytes = (plen + 7) / 8;\n\tND_TCHECK2(pptr[4], plenbytes);\n\tmemcpy(&addr, &pptr[4], plenbytes);\n\tif (plen % 8) {\n\t\taddr.s6_addr[plenbytes - 1] &=\n\t\t\t((0xff00 >> (plen % 8)) & 0xff);\n\t}\n        /* the label may get offsetted by 4 bits so lets shift it right */\n\tsnprintf(buf, buflen, \"%s/%d, label:%u %s\",\n                 ip6addr_string(ndo, &addr),\n                 plen,\n                 EXTRACT_24BITS(pptr+1)>>4,\n                 ((pptr[3]&1)==0) ? \"(BOGUS: Bottom of Stack NOT set!)\" : \"(bottom)\" );\n\n\treturn 4 + plenbytes;\n\ntrunc:\n\treturn -2;\n\nbadtlv:\n\treturn -3;\n}\n"
+  },
+  "target_statement": {
+    "text": null,
+    "line": 1173,
+    "column_start": 2,
+    "column_end": 8
+  },
+  "facts": {
+    "suspect_calls": [
+      "EXTRACT_24BITS",
+      "ITEMCHECK",
+      "ND_TCHECK2",
+      "ip6addr_string",
+      "memcpy",
+      "memset",
+      "snprintf"
+    ],
+    "pointer_vars": [],
+    "length_vars": [
+      "buflen",
+      "itemlen",
+      "labellength",
+      "plen",
+      "prefixlen",
+      "return"
+    ],
+    "bounds_hints": [
+      {
+        "var": "buflen",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "itemlen",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "labellength",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "plen",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "prefixlen",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "return",
+        "relation": ">= 0",
+        "source": "heuristic"
+      }
+    ]
+  },
+  "llm_hints": {
+    "entrypoint": {
+      "strategy": "LLM_INFER",
+      "candidates": []
+    },
+    "assertions": {
+      "presence_assertion_hint": "/* fill with program-specific property */",
+      "reachability_assertion": "klee_assert(0);  /* must be placed immediately before the vulnerable instruction */"
+    },
+    "notes": [
+      "Non-in-path helpers should be stub candidates.",
+      "Groom all in-path data structures to avoid null derefs."
+    ]
+  }
+}

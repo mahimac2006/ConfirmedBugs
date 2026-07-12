@@ -1,0 +1,35 @@
+{
+    "summary": {
+        "verdict": "SE_DETECTED",
+        "asan_confirmed": true,
+        "crash_relevance": "asan_confirmed",
+        "cwe": "heap-buffer-overflow",
+        "total_asan_crashes": 1
+    },
+    "vulnerability": {
+        "original_file": "print-dvmrp.c",
+        "original_line": 0
+    },
+    "all_crashes": [],
+    "all_asan_crashes": [
+        {
+            "error_type": "heap-buffer-overflow",
+            "crash_function": "dvmrp_print",
+            "crash_file": "print-dvmrp.c",
+            "crash_line": 75
+        }
+    ],
+    "asan_result": {
+        "triggered": true,
+        "harness_artifact": false,
+        "error_type": "heap-buffer-overflow",
+        "crash_function": "dvmrp_print",
+        "crash_file": "print-dvmrp.c",
+        "crash_line": 75,
+        "original_file": "",
+        "original_line": 0,
+        "original_code": "",
+        "original_context": "",
+        "output": "=================================================================\n==137179==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x502000000090 at pc 0x59aa281d0b78 bp 0x7ffff74df9a0 sp 0x7ffff74df990\nREAD of size 8 at 0x502000000090 thread T0\n    #0 0x59aa281d0b77 in dvmrp_print print-dvmrp.c:75\n    #1 0x59aa281d0a82 in main /root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/217_print-dvmrp.c_79_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/asan_real/replay_driver.c:14\n    #2 0x77bac822a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #3 0x77bac822a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #4 0x59aa281d08c4 in _start (/root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/217_print-dvmrp.c_79_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/asan_real/replay_bin+0x1118c4) (BuildId: 39c6e057d589f3fcbc4a41a92159a436ce092d5c)\n\n0x502000000090 is located 95 bytes after 1-byte region [0x502000000030,0x502000000031)\nallocated by thread T0 here:\n    #0 0x77bac8afd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69\n    #1 0x59aa281d09b1 in main /root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/217_print-dvmrp.c_79_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/asan_real/replay_driver.c:8\n    #2 0x77bac822a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #3 0x77bac822a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #4 0x59aa281d08c4 in _start (/root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/217_print-dvmrp.c_79_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/asan_real/replay_bin+0x1118c4) (BuildId: 39c6e057d589f3fcbc4a41a92159a43"
+    }
+}

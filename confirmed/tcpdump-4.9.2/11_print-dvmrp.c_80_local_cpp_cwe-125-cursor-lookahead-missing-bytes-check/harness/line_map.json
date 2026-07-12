@@ -1,0 +1,290 @@
+{
+  "print-dvmrp.c": {
+    "32": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 44,
+      "code": "#define DVMRP_NEIGHBORS2 6",
+      "match_type": "fuzzy"
+    },
+    "37": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 66,
+      "code": "static uint32_t target_level;"
+    },
+    "48": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 71,
+      "code": "{"
+    },
+    "50": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 72,
+      "code": "register const u_char *ep;"
+    },
+    "51": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 73,
+      "code": "register u_char type;"
+    },
+    "53": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 75,
+      "code": "ep = (const u_char *)ndo->ndo_snapend;"
+    },
+    "54": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 76,
+      "code": "if (bp >= ep)"
+    },
+    "55": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 77,
+      "code": "return;"
+    },
+    "57": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 80,
+      "code": "type = bp[1];"
+    },
+    "62": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 83,
+      "code": "bp += 8;"
+    },
+    "63": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 84,
+      "code": "len -= 8;"
+    },
+    "65": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 86,
+      "code": "switch (type) {"
+    },
+    "66": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 88,
+      "code": "case DVMRP_PROBE:"
+    },
+    "68": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 90,
+      "code": "if (ndo->ndo_vflag) {"
+    },
+    "69": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 91,
+      "code": "if (print_probe(ndo, bp, ep, len) < 0)"
+    },
+    "70": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 92,
+      "code": "goto trunc;"
+    },
+    "71": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 93,
+      "code": "}"
+    },
+    "72": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 94,
+      "code": "break;"
+    },
+    "73": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 96,
+      "code": "case DVMRP_REPORT:"
+    },
+    "75": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 98,
+      "code": "if (ndo->ndo_vflag > 1) {"
+    },
+    "76": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 99,
+      "code": "if (print_report(ndo, bp, ep, len) < 0)"
+    },
+    "77": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 100,
+      "code": "goto trunc;"
+    },
+    "78": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 101,
+      "code": "}"
+    },
+    "79": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 102,
+      "code": "break;"
+    },
+    "80": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 104,
+      "code": "case DVMRP_ASK_NEIGHBORS:"
+    },
+    "81": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 106,
+      "code": "break;"
+    },
+    "82": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 108,
+      "code": "case DVMRP_NEIGHBORS:"
+    },
+    "84": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 110,
+      "code": "if (print_neighbors(ndo, bp, ep, len) < 0)"
+    },
+    "85": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 111,
+      "code": "goto trunc;"
+    },
+    "86": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 112,
+      "code": "break;"
+    },
+    "87": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 114,
+      "code": "case DVMRP_ASK_NEIGHBORS2:"
+    },
+    "88": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 116,
+      "code": "break;"
+    },
+    "89": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 118,
+      "code": "case DVMRP_NEIGHBORS2:"
+    },
+    "91": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 124,
+      "code": "bp -= 4;"
+    },
+    "93": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 128,
+      "code": "bp += 4;"
+    },
+    "94": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 129,
+      "code": "if (print_neighbors2(ndo, bp, ep, len) < 0)"
+    },
+    "95": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 130,
+      "code": "goto trunc;"
+    },
+    "96": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 131,
+      "code": "break;"
+    },
+    "97": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 133,
+      "code": "case DVMRP_PRUNE:"
+    },
+    "99": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 135,
+      "code": "if (print_prune(ndo, bp) < 0)"
+    },
+    "100": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 136,
+      "code": "goto trunc;"
+    },
+    "101": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 137,
+      "code": "break;"
+    },
+    "102": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 139,
+      "code": "case DVMRP_GRAFT:"
+    },
+    "104": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 141,
+      "code": "if (print_graft(ndo, bp) < 0)"
+    },
+    "105": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 142,
+      "code": "goto trunc;"
+    },
+    "106": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 143,
+      "code": "break;"
+    },
+    "107": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 145,
+      "code": "case DVMRP_GRAFT_ACK:"
+    },
+    "109": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 147,
+      "code": "if (print_graft_ack(ndo, bp) < 0)"
+    },
+    "110": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 148,
+      "code": "goto trunc;"
+    },
+    "111": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 149,
+      "code": "break;"
+    },
+    "112": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 151,
+      "code": "default:"
+    },
+    "113": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 153,
+      "code": "break;"
+    },
+    "114": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 154,
+      "code": "}"
+    },
+    "115": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 155,
+      "code": "return;"
+    },
+    "116": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 157,
+      "code": "trunc:"
+    },
+    "119": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 159,
+      "code": "return;"
+    },
+    "120": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 160,
+      "code": "}"
+    }
+  }
+}

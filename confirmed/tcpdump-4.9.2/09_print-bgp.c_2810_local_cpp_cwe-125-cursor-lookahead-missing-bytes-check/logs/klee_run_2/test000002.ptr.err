@@ -1,0 +1,13 @@
+Error: memory error: out of bound pointer
+File: runtime/Freestanding/memcmp.c
+Line: 47
+assembly.ll line: 271
+State: 483009
+Stack: 
+	#000000271 in memcmp(134192927047743, 133707595743232, 16) at runtime/Freestanding/memcmp.c:47
+	#100000183 in bgp_print(134261646524416, 134192927047680, 64) at print-bgp.c:60
+	#200000075 in main() at driver.c:29
+Info: 
+	address: 134192927047744
+	next: object at 133687194648576 of size 2
+		MO65[2] allocated at bgp_print():  %12 = alloca i16, align 2

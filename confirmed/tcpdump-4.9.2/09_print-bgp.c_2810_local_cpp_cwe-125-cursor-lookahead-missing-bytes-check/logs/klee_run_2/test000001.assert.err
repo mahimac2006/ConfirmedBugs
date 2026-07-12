@@ -1,0 +1,8 @@
+Error: ASSERTION FAIL: 0 && "SAILOR_SINK_REACHED"
+File: print-bgp.c
+Line: 78
+assembly.ll line: 240
+State: 1
+Stack: 
+	#000000240 in bgp_print(134261646524416, 134192927047680, 64) at print-bgp.c:78
+	#100000075 in main() at driver.c:29

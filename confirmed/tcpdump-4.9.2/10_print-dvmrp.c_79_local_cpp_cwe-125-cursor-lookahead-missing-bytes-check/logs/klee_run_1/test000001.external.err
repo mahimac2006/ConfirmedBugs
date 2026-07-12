@@ -1,0 +1,7 @@
+Error: failed external call: dvmrp_print
+File: driver.c
+Line: 30
+assembly.ll line: 53
+State: 1
+Stack: 
+	#000000053 in main() at driver.c:30

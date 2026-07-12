@@ -1,0 +1,3 @@
+KLEE: WARNING: undefined reference to function: bgp_header_print
+KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+KLEE: WARNING ONCE: bgp_print: SPINE_PROBE:bgp_print:ENTRY

@@ -1,0 +1,13 @@
+Error: memory error: out of bound pointer
+File: runtime/Freestanding/memcmp.c
+Line: 47
+assembly.ll line: 302
+State: 1
+Stack: 
+	#000000302 in memcmp(135600788254720, 134653278203904, 6) at runtime/Freestanding/memcmp.c:47
+	#100000161 in cip_if_print(134670458073088, 134807897026560, 134653278203904) at print-cip.c:45
+	#200000060 in main() at driver.c:22
+Info: 
+	address: 134653278203908
+	next: object at 134370884104192 of size 4
+		MO64[4] allocated at cip_if_print():  %9 = alloca i32, align 4

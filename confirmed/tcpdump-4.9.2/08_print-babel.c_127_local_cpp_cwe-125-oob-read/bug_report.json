@@ -1,0 +1,77 @@
+{
+    "summary": {
+        "verdict": "SE_DETECTED",
+        "asan_confirmed": true,
+        "crash_relevance": "asan_confirmed",
+        "cwe": "heap-buffer-overflow",
+        "cwe_description": "",
+        "total_asan_crashes": 1,
+        "target_asan_crashes": 0,
+        "secondary_asan_crashes": 0,
+        "target_crashes": 1,
+        "secondary_bugs": 0
+    },
+    "vulnerability": {
+        "original_file": "print-babel.c",
+        "original_line": 127,
+        "function": "format_prefix",
+        "entry_point": "babel_print",
+        "spine": [
+            "babel_print",
+            "babel_print_v2",
+            "format_prefix"
+        ],
+        "original_context": "122: \n123: static const char *\n124: format_prefix(netdissect_options *ndo, const u_char *prefix, unsigned char plen)\n125: {\n126:     static char buf[50];\n127:     if(plen >= 96 && memcmp(prefix, v4prefix, 12) == 0)\n128:         snprintf(buf, 50, \"%s/%u\", ipaddr_string(ndo, prefix + 12), plen - 96);\n129:     else\n130:         snprintf(buf, 50, \"%s/%u\", ip6addr_string(ndo, prefix), plen);\n131:     buf[49] = '\\0';\n132:     return buf;"
+    },
+    "klee_crash": {
+        "harness_file": "print-babel.c",
+        "harness_line": 18,
+        "original_file": "print-babel.c",
+        "original_line": 126,
+        "original_code": "static char buf[50];",
+        "original_context": "    123: static const char *\n    124: format_prefix(netdissect_options *ndo, const u_char *prefix, unsigned char plen)\n    125: {\n>>> 126:     static char buf[50];\n    127:     if(plen >= 96 && memcmp(prefix, v4prefix, 12) == 0)\n    128:         snprintf(buf, 50, \"%s/%u\", ipaddr_string(ndo, prefix + 12), plen - 96);\n    129:     else",
+        "error_type": "ptr",
+        "error_details": "Error: memory error: invalid pointer: klee_get_obj_size\nFile: print-babel.c\nLine: 18\nassembly.ll line: 81\nState: 1\nStack: \n\t#000000081 in format_prefix(132040800804864) at print-babel.c:18\n\t#100000064 in babel_print_v2(132040800804864, 132246959235072, 64) at print-babel.c:31\n\t#200000119 in babel_print(132040800804864, 132246959235072, 64) at print-babel.c:39\n\t#300000040 in main() at driver.c:13\nInfo: \n\taddress: 0\n\tnext: object at 131735858126848 of size 1\n\t\tMO62[1] allocated at format_prefix():"
+    },
+    "concrete_inputs": [
+        {
+            "name": "buf",
+            "size": 64,
+            "data": "b'\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x"
+        }
+    ],
+    "asan_result": {
+        "triggered": true,
+        "harness_artifact": false,
+        "error_type": "heap-buffer-overflow",
+        "crash_function": "babel_print",
+        "crash_file": "print-babel.c",
+        "crash_line": 52,
+        "original_file": "",
+        "original_line": 0,
+        "original_code": "",
+        "original_context": "",
+        "output": "=================================================================\n==137143==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x5020000000a8 at pc 0x5b80ec9c0c30 bp 0x7ffd471a81b0 sp 0x7ffd471a81a0\nREAD of size 8 at 0x5020000000a8 thread T0\n    #0 0x5b80ec9c0c2f in babel_print print-babel.c:52\n    #1 0x5b80ec9c0ae4 in main /root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/asan_real/replay_driver.c:13\n    #2 0x77938382a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #3 0x77938382a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #4 0x5b80ec9c08c4 in _start (/root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/asan_real/replay_bin+0x1118c4) (BuildId: e8dfcf2697fe1bbffe00d6051e03de88cb7620f9)\n\n0x5020000000a8 is located 148 bytes after 4-byte region [0x502000000010,0x502000000014)\nallocated by thread T0 here:\n    #0 0x7793840fd340 in calloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:77\n    #1 0x5b80ec9c09a4 in main /root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/asan_real/replay_driver.c:8\n    #2 0x77938382a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #3 0x77938382a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #4 0x5b80ec9c08c4 in _start (/root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/asan_real/replay_bin+0x1118c4) (BuildId: e8dfcf2697fe1bbffe00d6051e03de88cb7620f9)\n\nSUMMARY: AddressSanitizer: heap-buffer-overflow print-babel.c:52 in babel_print\nShadow bytes ar"
+    },
+    "line_map_file": "/app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/harness/line_map.json",
+    "all_crashes": [
+        {
+            "harness_file": "print-babel.c",
+            "harness_line": 18,
+            "original_file": "print-babel.c",
+            "original_line": 126,
+            "error_type": "ptr",
+            "crash_function": "format_prefix",
+            "relevance": "target_crash",
+            "ktest": "/app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/logs/klee_run_2/test000001.ktest"
+        }
+    ],
+    "all_asan_crashes": [
+        {
+            "error_type": "heap-buffer-overflow",
+            "crash_function": "babel_print",
+            "crash_file": "print-babel.c",
+            "crash_line": 52
+        }
+    ]
+}

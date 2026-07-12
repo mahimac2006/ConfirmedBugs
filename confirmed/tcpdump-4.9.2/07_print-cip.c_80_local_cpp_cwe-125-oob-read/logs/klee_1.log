@@ -1,0 +1,20 @@
+KLEE: output directory is "/app/se_runs/sailor_engine/tcpdump-4.9.2/094_print-cip.c_80_local_cpp_cwe-125-oob-read/logs/klee_run_1"
+KLEE: Using Z3 solver backend
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7759e7310000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x775767310000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x765767310000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x763767310000 size=128 GiB)
+KLEE: WARNING: undefined reference to function: cip_if_print
+KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+KLEE: WARNING ONCE: Alignment of memory from call "malloc" is not modelled. Using alignment of 8.
+KLEE: WARNING ONCE: silently concretizing (reason: external call) expression (Read w8 0 h) to value 0 (driver.c:31)
+KLEE: WARNING ONCE: calling external: cip_if_print(130289564188672, 130427003142144, 130495722618880) at driver.c:31 5
+KLEE: ERROR: driver.c:30: failed external call: cip_if_print
+KLEE: NOTE: now ignoring this error at this location
+
+KLEE: done: total instructions = 40
+KLEE: done: completed paths = 0
+KLEE: done: partially completed paths = 1
+KLEE: done: generated tests = 1
+

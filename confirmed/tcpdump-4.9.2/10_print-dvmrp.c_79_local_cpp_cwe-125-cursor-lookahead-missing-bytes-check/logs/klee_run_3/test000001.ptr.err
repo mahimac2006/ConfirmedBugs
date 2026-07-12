@@ -1,0 +1,12 @@
+Error: memory error: out of bound pointer
+File: print-dvmrp.c
+Line: 29
+assembly.ll line: 90
+State: 1
+Stack: 
+	#000000090 in dvmrp_print(125127652143104, 125058932666368, 1) at print-dvmrp.c:29
+	#100000038 in main() at driver.c:13
+Info: 
+	address: 125058932666369
+	next: object at 124753989988352 of size 1
+		MO40[1] allocated at dvmrp_print():  %8 = alloca i8, align 1

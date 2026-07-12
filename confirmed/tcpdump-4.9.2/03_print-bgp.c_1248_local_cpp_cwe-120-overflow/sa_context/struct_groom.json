@@ -1,0 +1,1419 @@
+{
+  "path_map": {
+    "bgp_print": {
+      "target": "bgp_header_print",
+      "target_line": 52,
+      "guards": [],
+      "on_path_calls": [
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 15
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 38
+        },
+        {
+          "func": "memcpy",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 39
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 42
+        },
+        {
+          "func": "ntohs",
+          "ret_var": "hlen",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 44
+        }
+      ],
+      "branch_skips": [
+        {
+          "start": 23,
+          "end": 24,
+          "condition": "if (!ND_TTEST2(p[0], 1))",
+          "calls": [
+            "ND_TTEST2"
+          ]
+        },
+        {
+          "start": 25,
+          "end": 28,
+          "condition": "if (p[0] != 0xff) {",
+          "calls": []
+        },
+        {
+          "start": 30,
+          "end": 31,
+          "condition": "if (!ND_TTEST2(p[0], sizeof(marker)))",
+          "calls": [
+            "ND_TTEST2"
+          ]
+        },
+        {
+          "start": 32,
+          "end": 35,
+          "condition": "if (memcmp(p, marker, sizeof(marker)) != 0) {",
+          "calls": [
+            "memcmp"
+          ]
+        },
+        {
+          "start": 45,
+          "end": 49,
+          "condition": "if (hlen < BGP_SIZE) {",
+          "calls": [
+            "ND_PRINT"
+          ]
+        }
+      ]
+    },
+    "bgp_header_print": {
+      "target": "bgp_update_print",
+      "target_line": 15,
+      "guards": [],
+      "on_path_calls": [
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 3
+        },
+        {
+          "func": "memcpy",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 4
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 5
+        },
+        {
+          "func": "tok2str",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 6
+        },
+        {
+          "func": "bgp_open_print",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 12
+        }
+      ],
+      "branch_skips": []
+    },
+    "bgp_update_print": {
+      "target": "bgp_attr_print",
+      "target_line": 94,
+      "guards": [],
+      "on_path_calls": [
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 7
+        },
+        {
+          "func": "memcpy",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 10
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 15
+        },
+        {
+          "func": "EXTRACT_16BITS",
+          "ret_var": "withdrawn_routes_len",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 18
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 35
+        },
+        {
+          "func": "EXTRACT_16BITS",
+          "ret_var": "len",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 38
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 53
+        },
+        {
+          "func": "bgp_attr_lenlen",
+          "ret_var": "alenlen",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 63
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 64
+        },
+        {
+          "func": "bgp_attr_len",
+          "ret_var": "alen",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 69
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 74
+        },
+        {
+          "func": "tok2str",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 75
+        }
+      ],
+      "branch_skips": [
+        {
+          "start": 21,
+          "end": 33,
+          "condition": "if (withdrawn_routes_len) {",
+          "calls": [
+            "ND_TCHECK2",
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 42,
+          "end": 46,
+          "condition": "if (withdrawn_routes_len == 0 && len == 0 && length == 0) {",
+          "calls": [
+            "Marker",
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 80,
+          "end": 89,
+          "condition": "if (aflags) {",
+          "calls": [
+            "ND_PRINT"
+          ]
+        }
+      ]
+    },
+    "bgp_attr_print": {
+      "target": "decode_clnp_prefix",
+      "target_line": 493,
+      "guards": [],
+      "on_path_calls": [
+        {
+          "func": "ND_TCHECK",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 22
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 23
+        },
+        {
+          "func": "bgp_attr_get_as_size",
+          "ret_var": "as_size",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 51
+        },
+        {
+          "func": "ND_TCHECK",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 54
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 55
+        },
+        {
+          "func": "ND_TCHECK",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 57
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 59
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 60
+        },
+        {
+          "func": "as_printf",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 61
+        },
+        {
+          "func": "EXTRACT_16BITS",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 63
+        },
+        {
+          "func": "EXTRACT_32BITS",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 64
+        },
+        {
+          "func": "ND_TCHECK",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 66
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 67
+        },
+        {
+          "func": "ND_TCHECK",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 69
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 77
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 78
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 86
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 87
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 92
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 104
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 120
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 121
+        },
+        {
+          "func": "as_printf",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 122
+        },
+        {
+          "func": "ipaddr_string",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 123
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 132
+        },
+        {
+          "func": "EXTRACT_32BITS",
+          "ret_var": "comm",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 133
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 136
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 139
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 142
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 145
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 160
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 161
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 169
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 170
+        },
+        {
+          "func": "ipaddr_string",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 171
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 178
+        },
+        {
+          "func": "EXTRACT_16BITS",
+          "ret_var": "af",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 179
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 182
+        },
+        {
+          "func": "tok2str",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 183
+        },
+        {
+          "func": "tok2str",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 186
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 190
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 191
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 192
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 193
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 194
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 195
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 196
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 197
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 198
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 199
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 200
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 201
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 202
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 203
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 204
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 205
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 206
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 207
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 208
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 209
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 210
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 211
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 212
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 213
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 214
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 215
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 216
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 219
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 220
+        },
+        {
+          "func": "print_unknown_data",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 222
+        },
+        {
+          "func": "ND_TCHECK",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 229
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 359
+        },
+        {
+          "func": "ND_TCHECK",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 362
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 379
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 380
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 381
+        },
+        {
+          "func": "decode_prefix4",
+          "ret_var": "advance",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 382
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 384
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 390
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 392
+        },
+        {
+          "func": "decode_labeled_prefix4",
+          "ret_var": "advance",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 393
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 395
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 401
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 403
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 404
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 405
+        },
+        {
+          "func": "decode_labeled_vpn_prefix4",
+          "ret_var": "advance",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 406
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 408
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 412
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 414
+        },
+        {
+          "func": "decode_rt_routing_info",
+          "ret_var": "advance",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 415
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 417
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 421
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 423
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 424
+        },
+        {
+          "func": "decode_multicast_vpn",
+          "ret_var": "advance",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 425
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 427
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 431
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 434
+        },
+        {
+          "func": "decode_mdt_vpn_nlri",
+          "ret_var": "advance",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 435
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 437
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 441
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 443
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 444
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 445
+        },
+        {
+          "func": "decode_prefix6",
+          "ret_var": "advance",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 446
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 448
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 454
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 456
+        },
+        {
+          "func": "decode_labeled_prefix6",
+          "ret_var": "advance",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 457
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 459
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 465
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 467
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 468
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 469
+        },
+        {
+          "func": "decode_labeled_vpn_prefix6",
+          "ret_var": "advance",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 470
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 472
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 476
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 478
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 479
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 480
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 481
+        },
+        {
+          "func": "decode_labeled_vpn_l2",
+          "ret_var": "advance",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 482
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 484
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 488
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 490
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 491
+        },
+        {
+          "func": "case",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 492
+        }
+      ],
+      "branch_skips": [
+        {
+          "start": 19,
+          "end": 20,
+          "condition": "if (len != 1)",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 34,
+          "end": 37,
+          "condition": "if (len % 2) {",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 38,
+          "end": 41,
+          "condition": "if (!len) {",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 74,
+          "end": 75,
+          "condition": "if (len != 4)",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 83,
+          "end": 84,
+          "condition": "if (len != 4)",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 100,
+          "end": 103,
+          "condition": "if (len != 6 && len != 8) {",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 105,
+          "end": 113,
+          "condition": "if (len == 6) {",
+          "calls": [
+            "EXTRACT_16BITS",
+            "ipaddr_string",
+            "ND_PRINT",
+            "EXTRACT_32BITS",
+            "as_printf"
+          ]
+        },
+        {
+          "start": 116,
+          "end": 119,
+          "condition": "if (len != 8) {",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 126,
+          "end": 129,
+          "condition": "if (len % 4) {",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 156,
+          "end": 159,
+          "condition": "if (len != 4) {",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 164,
+          "end": 167,
+          "condition": "if (len % 4) {",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 234,
+          "end": 358,
+          "condition": "if (tlen) {",
+          "calls": [
+            "ipaddr_string",
+            "ND_TCHECK2",
+            "case",
+            "EXTRACT_24BITS",
+            "ND_PRINT",
+            "isonsap_string",
+            "ip6addr_string",
+            "print_unknown_data",
+            "bgp_vpn_rd_print",
+            "EXTRACT_32BITS"
+          ]
+        },
+        {
+          "start": 366,
+          "end": 375,
+          "condition": "if (snpa) {",
+          "calls": [
+            "ND_PRINT",
+            "ND_TCHECK"
+          ]
+        }
+      ]
+    }
+  },
+  "sink_info": {
+    "sink_labels": [],
+    "sink_conditions": [],
+    "buffer_requirements": []
+  },
+  "stub_prescriptions": {
+    "ND_PRINT": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "ND_TCHECK2": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "memcpy": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "ntohs": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "tok2str": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "bgp_open_print": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "EXTRACT_16BITS": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "bgp_attr_lenlen": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "bgp_attr_len": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "ND_TCHECK": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "bgp_attr_get_as_size": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "as_printf": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "EXTRACT_32BITS": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "ipaddr_string": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "case": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "print_unknown_data": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "decode_prefix4": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "decode_labeled_prefix4": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "decode_labeled_vpn_prefix4": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "decode_rt_routing_info": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "decode_multicast_vpn": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "decode_mdt_vpn_nlri": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "decode_prefix6": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "decode_labeled_prefix6": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "decode_labeled_vpn_prefix6": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "decode_labeled_vpn_l2": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    }
+  },
+  "constants": {
+    "BGP_SIZE": 19,
+    "BGP_OPEN_SIZE": 29,
+    "BGP_OPT_SIZE": 2,
+    "BGP_CAP_HEADER_SIZE": 2,
+    "BGP_NOTIFICATION_SIZE": 21,
+    "BGP_ROUTE_REFRESH_SIZE": 23,
+    "BGP_MP_NLRI_MINSIZE": 3,
+    "BGP_NOTIFY_MINOR_CEASE_MAXPRFX": 1
+  },
+  "init_template": "/* === PATH-SENSITIVE INITIALIZATION TEMPLATE ===\n * Generated from backward analysis: sink \u2192 target \u2192 entry \u2192 driver */\n\n// === bgp_print \u2192 bgp_header_print: Calls needing stubs ===\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  memcpy() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ntohs() \u2192 trivial stub (return 0)\n\n// === bgp_header_print \u2192 bgp_update_print: Calls needing stubs ===\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  memcpy() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  tok2str() \u2192 trivial stub (return 0)\n//  bgp_open_print() \u2192 trivial stub (return 0)\n\n// === bgp_update_print \u2192 bgp_attr_print: Calls needing stubs ===\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  memcpy() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  EXTRACT_16BITS() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  EXTRACT_16BITS() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  bgp_attr_lenlen() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  bgp_attr_len() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  tok2str() \u2192 trivial stub (return 0)\n\n// === bgp_attr_print \u2192 decode_clnp_prefix: Calls needing stubs ===\n//  ND_TCHECK() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  bgp_attr_get_as_size() \u2192 trivial stub (return 0)\n//  ND_TCHECK() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_TCHECK() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  as_printf() \u2192 trivial stub (return 0)\n//  EXTRACT_16BITS() \u2192 trivial stub (return 0)\n//  EXTRACT_32BITS() \u2192 trivial stub (return 0)\n//  ND_TCHECK() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_TCHECK() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  as_printf() \u2192 trivial stub (return 0)\n//  ipaddr_string() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  EXTRACT_32BITS() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ipaddr_string() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  EXTRACT_16BITS() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  tok2str() \u2192 trivial stub (return 0)\n//  tok2str() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  print_unknown_data() \u2192 trivial stub (return 0)\n//  ND_TCHECK() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_TCHECK() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  decode_prefix4() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  decode_labeled_prefix4() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  decode_labeled_vpn_prefix4() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  decode_rt_routing_info() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  decode_multicast_vpn() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  decode_mdt_vpn_nlri() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  decode_prefix6() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  decode_labeled_prefix6() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  decode_labeled_vpn_prefix6() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  decode_labeled_vpn_l2() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n//  case() \u2192 trivial stub (return 0)\n\n"
+}

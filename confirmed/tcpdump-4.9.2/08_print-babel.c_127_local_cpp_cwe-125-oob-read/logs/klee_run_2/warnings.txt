@@ -1,0 +1,2 @@
+KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+KLEE: WARNING ONCE: babel_print: SPINE_PROBE:babel_print:ENTRY

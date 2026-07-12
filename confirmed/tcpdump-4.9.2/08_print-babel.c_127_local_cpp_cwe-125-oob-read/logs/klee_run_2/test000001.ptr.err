@@ -1,0 +1,14 @@
+Error: memory error: invalid pointer: klee_get_obj_size
+File: print-babel.c
+Line: 18
+assembly.ll line: 81
+State: 1
+Stack: 
+	#000000081 in format_prefix(132040800804864) at print-babel.c:18
+	#100000064 in babel_print_v2(132040800804864, 132246959235072, 64) at print-babel.c:31
+	#200000119 in babel_print(132040800804864, 132246959235072, 64) at print-babel.c:39
+	#300000040 in main() at driver.c:13
+Info: 
+	address: 0
+	next: object at 131735858126848 of size 1
+		MO62[1] allocated at format_prefix():  %4 = alloca i8, align 1

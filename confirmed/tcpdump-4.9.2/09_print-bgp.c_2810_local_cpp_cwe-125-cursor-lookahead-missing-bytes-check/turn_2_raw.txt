@@ -1,0 +1,1 @@
+{"thought":"I have the vulnerability context now. Next I need the exact function body excerpt for bgp_print, plus any needed types. Per instructions, I'll gather code once for bgp_print and relevant types if needed.", "tool": "GatherCode", "args": {"functions": "bgp_print", "types": "netdissect_options,bgp"}}

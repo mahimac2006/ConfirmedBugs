@@ -1,0 +1,94 @@
+{
+  "schema": "llmse.vul_spec.v1",
+  "id": "local_cpp_cwe-125-oob-read@print-cip.c:80",
+  "project": null,
+  "rule_id": "local/cpp/cwe-125-oob-read",
+  "family": "OOB_MEMCMP",
+  "file": "/app/dataset/tcp/tcpdump-4.9.2/print-cip.c",
+  "line": 80,
+  "column": 6,
+  "end_line": 80,
+  "end_column": 12,
+  "message": "CWE-125: Potential OOB Read via memcmp (unchecked length).",
+  "context": {
+    "contextStart": 60,
+    "contextEnd": 100,
+    "snippet": "cip_if_print(netdissect_options *ndo, const struct pcap_pkthdr *h, const u_char *p)\n{\n\tu_int caplen = h->caplen;\n\tu_int length = h->len;\n\tsize_t cmplen;\n\tint llc_hdrlen;\n\n\tcmplen = sizeof(rfcllc);\n\tif (cmplen > caplen)\n\t\tcmplen = caplen;\n\tif (cmplen > length)\n\t\tcmplen = length;\n\n\tif (ndo->ndo_eflag)\n\t\tcip_print(ndo, length);\n\n\tif (cmplen == 0) {\n\t\tND_PRINT((ndo, \"[|cip]\"));\n\t\treturn 0;\n\t}\n\tif (memcmp(rfcllc, p, cmplen) == 0) {\n\t\t/*\n\t\t * LLC header is present.  Try to print it & higher layers.\n\t\t */\n\t\tllc_hdrlen = llc_print(ndo, p, length, caplen, NULL, NULL);\n\t\tif (llc_hdrlen < 0) {\n\t\t\t/* packet type not known, print raw packet */\n\t\t\tif (!ndo->ndo_suppress_default_print)\n\t\t\t\tND_DEFAULTPRINT(p, caplen);\n\t\t\tllc_hdrlen = -llc_hdrlen;\n\t\t}\n\t} else {\n\t\t/*\n\t\t * LLC header is absent; treat it as just IP.\n\t\t */\n\t\tllc_hdrlen = 0;\n\t\tip_print(ndo, p, length);\n\t}\n\n\treturn (llc_hdrlen);\n}"
+  },
+  "target_statement": {
+    "text": null,
+    "line": 80,
+    "column_start": 6,
+    "column_end": 12
+  },
+  "facts": {
+    "suspect_calls": [
+      "ND_DEFAULTPRINT",
+      "ND_PRINT",
+      "cip_if_print",
+      "cip_print",
+      "ip_print",
+      "llc_print",
+      "memcmp"
+    ],
+    "pointer_vars": [
+      "h",
+      "ndo",
+      "p"
+    ],
+    "length_vars": [
+      "caplen",
+      "cmplen",
+      "known",
+      "len",
+      "llc_hdrlen",
+      "return"
+    ],
+    "bounds_hints": [
+      {
+        "var": "caplen",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "cmplen",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "known",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "len",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "llc_hdrlen",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "return",
+        "relation": ">= 0",
+        "source": "heuristic"
+      }
+    ]
+  },
+  "llm_hints": {
+    "entrypoint": {
+      "strategy": "LLM_INFER",
+      "candidates": []
+    },
+    "assertions": {
+      "presence_assertion_hint": "/* model: n <= min(len(lhs), len(rhs)) */ /* fill with program vars */",
+      "reachability_assertion": "klee_assert(0);  /* must be placed immediately before the vulnerable instruction */"
+    },
+    "notes": [
+      "Non-in-path helpers should be stub candidates.",
+      "Groom all in-path data structures to avoid null derefs."
+    ]
+  }
+}

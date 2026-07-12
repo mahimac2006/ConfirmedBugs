@@ -1,0 +1,149 @@
+{
+  "print-cip.c": {
+    "3": {
+      "orig_file": "print-cip.c",
+      "orig_line": 29,
+      "code": "#include <string.h>"
+    },
+    "21": {
+      "orig_file": "print-cip.c",
+      "orig_line": 51,
+      "code": "}"
+    },
+    "25": {
+      "orig_file": "print-cip.c",
+      "orig_line": 46,
+      "code": "{"
+    },
+    "27": {
+      "orig_file": "print-cip.c",
+      "orig_line": 62,
+      "code": "u_int caplen = h->caplen;"
+    },
+    "28": {
+      "orig_file": "print-cip.c",
+      "orig_line": 63,
+      "code": "u_int length = h->len;"
+    },
+    "29": {
+      "orig_file": "print-cip.c",
+      "orig_line": 64,
+      "code": "size_t cmplen;"
+    },
+    "30": {
+      "orig_file": "print-cip.c",
+      "orig_line": 65,
+      "code": "int llc_hdrlen;"
+    },
+    "33": {
+      "orig_file": "print-cip.c",
+      "orig_line": 68,
+      "code": "if (cmplen > caplen)"
+    },
+    "34": {
+      "orig_file": "print-cip.c",
+      "orig_line": 69,
+      "code": "cmplen = caplen;"
+    },
+    "35": {
+      "orig_file": "print-cip.c",
+      "orig_line": 70,
+      "code": "if (cmplen > length)"
+    },
+    "36": {
+      "orig_file": "print-cip.c",
+      "orig_line": 71,
+      "code": "cmplen = length;"
+    },
+    "38": {
+      "orig_file": "print-cip.c",
+      "orig_line": 73,
+      "code": "if (ndo->ndo_eflag)"
+    },
+    "39": {
+      "orig_file": "print-cip.c",
+      "orig_line": 74,
+      "code": "cip_print(ndo, length);"
+    },
+    "41": {
+      "orig_file": "print-cip.c",
+      "orig_line": 76,
+      "code": "if (cmplen == 0) {"
+    },
+    "42": {
+      "orig_file": "print-cip.c",
+      "orig_line": 77,
+      "code": "ND_PRINT((ndo, \"[|cip]\"));"
+    },
+    "43": {
+      "orig_file": "print-cip.c",
+      "orig_line": 78,
+      "code": "return 0;"
+    },
+    "44": {
+      "orig_file": "print-cip.c",
+      "orig_line": 79,
+      "code": "}"
+    },
+    "46": {
+      "orig_file": "print-cip.c",
+      "orig_line": 84,
+      "code": "llc_hdrlen = llc_print(ndo, p, length, caplen, NULL, NULL);"
+    },
+    "47": {
+      "orig_file": "print-cip.c",
+      "orig_line": 85,
+      "code": "if (llc_hdrlen < 0) {"
+    },
+    "48": {
+      "orig_file": "print-cip.c",
+      "orig_line": 87,
+      "code": "if (!ndo->ndo_suppress_default_print)"
+    },
+    "49": {
+      "orig_file": "print-cip.c",
+      "orig_line": 88,
+      "code": "ND_DEFAULTPRINT(p, caplen);"
+    },
+    "50": {
+      "orig_file": "print-cip.c",
+      "orig_line": 89,
+      "code": "llc_hdrlen = -llc_hdrlen;"
+    },
+    "51": {
+      "orig_file": "print-cip.c",
+      "orig_line": 90,
+      "code": "}"
+    },
+    "52": {
+      "orig_file": "print-cip.c",
+      "orig_line": 91,
+      "code": "} else {"
+    },
+    "53": {
+      "orig_file": "print-cip.c",
+      "orig_line": 95,
+      "code": "llc_hdrlen = 0;"
+    },
+    "54": {
+      "orig_file": "print-cip.c",
+      "orig_line": 96,
+      "code": "ip_print(ndo, p, length);"
+    },
+    "55": {
+      "orig_file": "print-cip.c",
+      "orig_line": 97,
+      "code": "}"
+    },
+    "58": {
+      "orig_file": "print-cip.c",
+      "orig_line": 99,
+      "code": "return (llc_hdrlen);"
+    },
+    "59": {
+      "orig_file": "print-cip.c",
+      "orig_line": 100,
+      "code": "}"
+    }
+  }
+}

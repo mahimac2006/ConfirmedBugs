@@ -1,0 +1,19 @@
+{
+  "file": "/app/dataset/tcp/tcpdump-4.9.2/print-dvmrp.c",
+  "directory": "/app/dataset/tcp/tcpdump-4.9.2",
+  "arguments": [
+    "/usr/lib/llvm-14/bin/clang",
+    "-DHAVE_CONFIG_H",
+    "-D_U_=__attribute__((unused))",
+    "-I.",
+    "-I/usr/include",
+    "-g",
+    "-O2",
+    "-c",
+    "-I",
+    "/opt/klee/include",
+    "-I",
+    ".",
+    "./print-dvmrp.c"
+  ]
+}

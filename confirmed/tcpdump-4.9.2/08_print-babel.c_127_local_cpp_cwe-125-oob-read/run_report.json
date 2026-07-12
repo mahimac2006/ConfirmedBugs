@@ -1,0 +1,95 @@
+{
+  "search_status": "FOUND_LIKELY_TP",
+  "verdict": "LIKELY_TP",
+  "crash_relevance": "no_asan",
+  "secondary_bugs": 0,
+  "failure_reason": "",
+  "metrics": {
+    "tokens_total": 171644,
+    "tokens_prompt": 168296,
+    "tokens_completion": 3348,
+    "turns": 15,
+    "klee_runs": 2
+  },
+  "bug": {
+    "type": "ptr",
+    "file": "print-babel.c",
+    "line": 126,
+    "function": "format_prefix",
+    "asan_confirmed": false,
+    "cwe": "unknown"
+  },
+  "spec": "/app/specs/tcpdump-4.9.2/0specs/096_print-babel.c_127_local_cpp_cwe-125-oob-read.json",
+  "vul_file": "print-babel.c",
+  "vul_line": "127",
+  "bug_report": {
+    "summary": {
+      "verdict": "LIKELY_TP",
+      "asan_confirmed": false,
+      "crash_relevance": "no_asan",
+      "cwe": "unknown",
+      "cwe_description": "",
+      "total_asan_crashes": 0,
+      "target_asan_crashes": 0,
+      "secondary_asan_crashes": 0,
+      "target_crashes": 1,
+      "secondary_bugs": 0
+    },
+    "vulnerability": {
+      "original_file": "print-babel.c",
+      "original_line": 127,
+      "function": "format_prefix",
+      "entry_point": "babel_print",
+      "spine": [
+        "babel_print",
+        "babel_print_v2",
+        "format_prefix"
+      ],
+      "original_context": "122: \n123: static const char *\n124: format_prefix(netdissect_options *ndo, const u_char *prefix, unsigned char plen)\n125: {\n126:     static char buf[50];\n127:     if(plen >= 96 && memcmp(prefix, v4prefix, 12) == 0)\n128:         snprintf(buf, 50, \"%s/%u\", ipaddr_string(ndo, prefix + 12), plen - 96);\n129:     else\n130:         snprintf(buf, 50, \"%s/%u\", ip6addr_string(ndo, prefix), plen);\n131:     buf[49] = '\\0';\n132:     return buf;"
+    },
+    "klee_crash": {
+      "harness_file": "print-babel.c",
+      "harness_line": 18,
+      "original_file": "print-babel.c",
+      "original_line": 126,
+      "original_code": "static char buf[50];",
+      "original_context": "    123: static const char *\n    124: format_prefix(netdissect_options *ndo, const u_char *prefix, unsigned char plen)\n    125: {\n>>> 126:     static char buf[50];\n    127:     if(plen >= 96 && memcmp(prefix, v4prefix, 12) == 0)\n    128:         snprintf(buf, 50, \"%s/%u\", ipaddr_string(ndo, prefix + 12), plen - 96);\n    129:     else",
+      "error_type": "ptr",
+      "error_details": "Error: memory error: invalid pointer: klee_get_obj_size\nFile: print-babel.c\nLine: 18\nassembly.ll line: 81\nState: 1\nStack: \n\t#000000081 in format_prefix(132040800804864) at print-babel.c:18\n\t#100000064 in babel_print_v2(132040800804864, 132246959235072, 64) at print-babel.c:31\n\t#200000119 in babel_print(132040800804864, 132246959235072, 64) at print-babel.c:39\n\t#300000040 in main() at driver.c:13\nInfo: \n\taddress: 0\n\tnext: object at 131735858126848 of size 1\n\t\tMO62[1] allocated at format_prefix():"
+    },
+    "concrete_inputs": [
+      {
+        "name": "buf",
+        "size": 64,
+        "data": "b'\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x"
+      }
+    ],
+    "asan_result": {
+      "triggered": false,
+      "harness_artifact": false,
+      "error_type": "",
+      "crash_function": "",
+      "crash_file": "",
+      "crash_line": 0,
+      "original_file": "",
+      "original_line": 0,
+      "original_code": "",
+      "original_context": "",
+      "output": ""
+    },
+    "line_map_file": "/app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/harness/line_map.json",
+    "all_crashes": [
+      {
+        "harness_file": "print-babel.c",
+        "harness_line": 18,
+        "original_file": "print-babel.c",
+        "original_line": 126,
+        "error_type": "ptr",
+        "crash_function": "format_prefix",
+        "relevance": "target_crash",
+        "ktest": "/app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/logs/klee_run_2/test000001.ktest"
+      }
+    ],
+    "all_asan_crashes": []
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "search_status": "BUILD_ERROR",
+  "verdict": "SE_DETECTED",
+  "crash_relevance": "asan_confirmed",
+  "secondary_bugs": 0,
+  "failure_reason": "Agent never reached successful KLEE execution",
+  "metrics": {
+    "tokens_total": 0,
+    "tokens_prompt": 0,
+    "tokens_completion": 0,
+    "turns": 60,
+    "klee_runs": 0
+  },
+  "bug": {
+    "type": "heap-buffer-overflow",
+    "file": "",
+    "line": 0,
+    "function": "",
+    "asan_confirmed": true,
+    "cwe": "heap-buffer-overflow"
+  },
+  "spec": "/app/specs/tcpdump-4.9.2/171_print-bgp.c_2810_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check.json",
+  "vul_file": "print-bgp.c",
+  "vul_line": "2810",
+  "bug_report": {
+    "summary": {
+      "verdict": "SE_DETECTED",
+      "asan_confirmed": true,
+      "crash_relevance": "asan_confirmed",
+      "cwe": "heap-buffer-overflow",
+      "total_asan_crashes": 1
+    },
+    "vulnerability": {
+      "original_file": "print-bgp.c",
+      "original_line": 0
+    },
+    "all_crashes": [],
+    "all_asan_crashes": [
+      {
+        "error_type": "heap-buffer-overflow",
+        "crash_function": "bgp_print",
+        "crash_file": "print-bgp.c",
+        "crash_line": 2797
+      }
+    ],
+    "asan_result": {
+      "triggered": true,
+      "harness_artifact": false,
+      "error_type": "heap-buffer-overflow",
+      "crash_function": "bgp_print",
+      "crash_file": "print-bgp.c",
+      "crash_line": 2797,
+      "original_file": "",
+      "original_line": 0,
+      "original_code": "",
+      "original_context": "",
+      "output": "=================================================================\n==137173==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x507000000110 at pc 0x6493f7f9758c bp 0x7ffcec083f20 sp 0x7ffcec083f10\nREAD of size 8 at 0x507000000110 thread T0\n    #0 0x6493f7f9758b in bgp_print print-bgp.c:2797\n    #1 0x6493f7f88b8d in main /root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/171_print-bgp.c_2810_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/asan_real/replay_driver.c:29\n    #2 0x71d07102a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #3 0x71d07102a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #4 0x6493f7f888c4 in _start (/root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/171_print-bgp.c_2810_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/asan_real/replay_bin+0x1118c4) (BuildId: 4642d0bec4ff45a870154df73325830671dfb1a7)\n\n0x507000000110 is located 48 bytes after 80-byte region [0x507000000090,0x5070000000e0)\nallocated by thread T0 here:\n    #0 0x71d0718fd340 in calloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:77\n    #1 0x6493f7f889a3 in main /root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/171_print-bgp.c_2810_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/asan_real/replay_driver.c:14\n    #2 0x71d07102a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #3 0x71d07102a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #4 0x6493f7f888c4 in _start (/root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/171_print-bgp.c_2810_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/asan_real/replay_bin+0x1118c4) (BuildId: 4642d0bec4ff45a870154df73325830"
+    }
+  }
+}

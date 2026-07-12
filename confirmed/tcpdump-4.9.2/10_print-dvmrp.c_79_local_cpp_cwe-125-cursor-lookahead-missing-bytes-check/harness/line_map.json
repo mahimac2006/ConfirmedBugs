@@ -1,0 +1,134 @@
+{
+  "print-dvmrp.c": {
+    "18": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 70,
+      "code": "register const u_char *bp, register u_int len)"
+    },
+    "19": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 71,
+      "code": "{"
+    },
+    "21": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 72,
+      "code": "register const u_char *ep;"
+    },
+    "22": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 73,
+      "code": "register u_char type;"
+    },
+    "24": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 75,
+      "code": "ep = (const u_char *)ndo->ndo_snapend;"
+    },
+    "25": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 76,
+      "code": "if (bp >= ep)"
+    },
+    "26": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 77,
+      "code": "return;"
+    },
+    "28": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 79,
+      "code": "ND_TCHECK(bp[1]);"
+    },
+    "29": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 80,
+      "code": "type = bp[1];"
+    },
+    "32": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 83,
+      "code": "bp += 8;"
+    },
+    "33": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 84,
+      "code": "len -= 8;"
+    },
+    "35": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 86,
+      "code": "switch (type) {"
+    },
+    "38": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 89,
+      "code": "ND_PRINT((ndo, \" Probe\"));"
+    },
+    "39": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 90,
+      "code": "if (ndo->ndo_vflag) {"
+    },
+    "40": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 94,
+      "code": "break;"
+    },
+    "41": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 93,
+      "code": "}"
+    },
+    "42": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 94,
+      "code": "break;"
+    },
+    "45": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 97,
+      "code": "ND_PRINT((ndo, \" Report\"));"
+    },
+    "46": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 98,
+      "code": "if (ndo->ndo_vflag > 1) {"
+    },
+    "47": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 102,
+      "code": "break;"
+    },
+    "48": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 101,
+      "code": "}"
+    },
+    "49": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 102,
+      "code": "break;"
+    },
+    "50": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 151,
+      "code": "default:"
+    },
+    "51": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 153,
+      "code": "break;"
+    },
+    "53": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 154,
+      "code": "}"
+    },
+    "54": {
+      "orig_file": "print-dvmrp.c",
+      "orig_line": 154,
+      "code": "}"
+    }
+  }
+}

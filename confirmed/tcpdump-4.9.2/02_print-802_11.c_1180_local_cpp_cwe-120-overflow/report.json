@@ -1,0 +1,264 @@
+{
+  "findings": [],
+  "line_map": {
+    "print-802_11.c": {
+      "3": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 31,
+        "code": "#include <string.h>"
+      },
+      "8": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 430,
+        "code": "#define MAX_MCS_INDEX 76",
+        "match_type": "fuzzy"
+      },
+      "9": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 27,
+        "code": "#endif"
+      },
+      "19": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 109,
+        "code": "};"
+      },
+      "21": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 237,
+        "code": "struct tim_t {"
+      },
+      "27": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 235,
+        "code": "};"
+      },
+      "29": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 272,
+        "code": "struct mgmt_body_t {"
+      },
+      "30": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 295,
+        "code": "int tim_present;",
+        "match_type": "fuzzy"
+      },
+      "31": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1008,
+        "code": "struct tim_t tim;"
+      },
+      "32": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 978,
+        "code": "};"
+      },
+      "36": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 988,
+        "code": "return 0;"
+      },
+      "37": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 995,
+        "code": "}"
+      },
+      "40": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 2138,
+        "code": "const struct pcap_pkthdr *h, const u_char *p)"
+      },
+      "41": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 2139,
+        "code": "{"
+      },
+      "43": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 2140,
+        "code": "return ieee802_11_print(ndo, p, h->len, h->caplen, 0, 0);"
+      },
+      "44": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 2141,
+        "code": "}"
+      },
+      "47": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 999,
+        "code": "struct mgmt_body_t *pbody, const u_char *p, int offset,"
+      },
+      "48": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1000,
+        "code": "u_int length)"
+      },
+      "49": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1001,
+        "code": "{"
+      },
+      "51": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1002,
+        "code": "u_int elementlen;"
+      },
+      "52": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1008,
+        "code": "struct tim_t tim;"
+      },
+      "55": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1034,
+        "code": "switch (*(p + offset)) {"
+      },
+      "56": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1195,
+        "code": "default:"
+      },
+      "57": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1200,
+        "code": "offset += 2 + elementlen;"
+      },
+      "58": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1201,
+        "code": "length -= 2 + elementlen;"
+      },
+      "59": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1202,
+        "code": "break;"
+      },
+      "62": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1166,
+        "code": "memcpy(&tim, p + offset, 2);"
+      },
+      "63": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1167,
+        "code": "offset += 2;"
+      },
+      "64": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1168,
+        "code": "length -= 2;"
+      },
+      "65": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1169,
+        "code": "if (tim.length <= 3) {"
+      },
+      "66": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1170,
+        "code": "offset += tim.length;"
+      },
+      "67": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1171,
+        "code": "length -= tim.length;"
+      },
+      "68": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1172,
+        "code": "break;"
+      },
+      "69": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1173,
+        "code": "}"
+      },
+      "70": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1174,
+        "code": "if (tim.length - 3 > (int)sizeof tim.bitmap)"
+      },
+      "71": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1175,
+        "code": "return 0;"
+      },
+      "72": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1176,
+        "code": "memcpy(&tim.count, p + offset, 3);"
+      },
+      "73": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1177,
+        "code": "offset += 3;"
+      },
+      "74": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1178,
+        "code": "length -= 3;"
+      },
+      "76": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1180,
+        "code": "memcpy(tim.bitmap, p + offset, tim.length - 3);"
+      },
+      "77": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1181,
+        "code": "offset += tim.length - 3;"
+      },
+      "78": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1182,
+        "code": "length -= tim.length - 3;"
+      },
+      "79": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1190,
+        "code": "if (!pbody->tim_present) {"
+      },
+      "80": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1191,
+        "code": "pbody->tim = tim;"
+      },
+      "81": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1192,
+        "code": "pbody->tim_present = 1;"
+      },
+      "82": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1193,
+        "code": "}"
+      },
+      "83": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1194,
+        "code": "break;"
+      },
+      "84": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1193,
+        "code": "}"
+      },
+      "85": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1193,
+        "code": "}"
+      },
+      "87": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1207,
+        "code": "return 1;"
+      },
+      "88": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1208,
+        "code": "}"
+      }
+    }
+  }
+}

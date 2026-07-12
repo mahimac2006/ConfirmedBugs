@@ -1,0 +1,12 @@
+KLEE: Using Z3 solver backend
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7859122d2000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7856922d2000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x7756922d2000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x7736922d2000 size=128 GiB)
+KLEE: ERROR: runtime/Freestanding/memcmp.c:47: memory error: out of bound pointer
+KLEE: NOTE: now ignoring this error at this location
+KLEE: ERROR: print-bgp.c:56: failed external call: bgp_header_print
+KLEE: NOTE: now ignoring this error at this location
+KLEE: HaltTimer invoked
+KLEE: halting execution, dumping remaining states

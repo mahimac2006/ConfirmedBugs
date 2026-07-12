@@ -1,0 +1,7 @@
+Error: failed external call: beep_print
+File: driver.c
+Line: 53
+assembly.ll line: 56
+State: 1
+Stack: 
+	#000000056 in main() at driver.c:53

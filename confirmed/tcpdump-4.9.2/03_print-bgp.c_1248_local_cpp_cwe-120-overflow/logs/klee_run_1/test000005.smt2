@@ -1,0 +1,5 @@
+(set-logic QF_AUFBV )
+(declare-fun buf () (Array (_ BitVec 32) (_ BitVec 8) ) )
+(assert (and  (and  (and  (and  (and  (and  (and  (and  (and  (and  (and  (and  (and  (and  (and  (=  (_ bv255 8) (select  buf (_ bv0 32) ) ) (=  (_ bv255 8) (select  buf (_ bv1 32) ) ) ) (=  (_ bv255 8) (select  buf (_ bv2 32) ) ) ) (=  (_ bv255 8) (select  buf (_ bv3 32) ) ) ) (=  (_ bv255 8) (select  buf (_ bv4 32) ) ) ) (=  (_ bv255 8) (select  buf (_ bv5 32) ) ) ) (=  (_ bv255 8) (select  buf (_ bv6 32) ) ) ) (=  (_ bv255 8) (select  buf (_ bv7 32) ) ) ) (=  (_ bv255 8) (select  buf (_ bv8 32) ) ) ) (=  (_ bv255 8) (select  buf (_ bv9 32) ) ) ) (=  (_ bv255 8) (select  buf (_ bv10 32) ) ) ) (=  (_ bv255 8) (select  buf (_ bv11 32) ) ) ) (=  (_ bv255 8) (select  buf (_ bv12 32) ) ) ) (=  (_ bv255 8) (select  buf (_ bv13 32) ) ) ) (=  (_ bv255 8) (select  buf (_ bv14 32) ) ) ) (=  (_ bv255 8) (select  buf (_ bv15 32) ) ) ) )
+(check-sat)
+(exit)

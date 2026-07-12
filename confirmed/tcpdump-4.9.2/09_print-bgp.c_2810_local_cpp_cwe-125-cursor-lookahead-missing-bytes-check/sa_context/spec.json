@@ -1,0 +1,77 @@
+{
+  "schema": "llmse.vul_spec.v1",
+  "id": "local_cpp_cwe-125-cursor-lookahead-missing-bytes-check@print-bgp.c:2810",
+  "project": null,
+  "rule_id": "local/cpp/cwe-125-cursor-lookahead-missing-bytes-check",
+  "family": "GENERIC",
+  "file": "/app/dataset/tcp/tcpdump-4.9.2/print-bgp.c",
+  "line": 2810,
+  "column": 7,
+  "end_line": 2810,
+  "end_column": 11,
+  "message": "Potential OOB lookahead read: p\\[0\\] (requires 1 bytes) without a nearby remaining-bytes guard.",
+  "context": {
+    "contextStart": 2790,
+    "contextEnd": 2830,
+    "snippet": "\t\t0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,\n\t\t0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,\n\t};\n\tstruct bgp bgp;\n\tuint16_t hlen;\n\n\tep = dat + length;\n\tif (ndo->ndo_snapend < dat + length)\n\t\tep = ndo->ndo_snapend;\n\n\tND_PRINT((ndo, \": BGP\"));\n\n        if (ndo->ndo_vflag < 1) /* lets be less chatty */\n                return;\n\n\tp = dat;\n\tstart = p;\n\twhile (p < ep) {\n\t\tif (!ND_TTEST2(p[0], 1))\n\t\t\tbreak;\n\t\tif (p[0] != 0xff) {\n\t\t\tp++;\n\t\t\tcontinue;\n\t\t}\n\n\t\tif (!ND_TTEST2(p[0], sizeof(marker)))\n\t\t\tbreak;\n\t\tif (memcmp(p, marker, sizeof(marker)) != 0) {\n\t\t\tp++;\n\t\t\tcontinue;\n\t\t}\n\n\t\t/* found BGP header */\n\t\tND_TCHECK2(p[0], BGP_SIZE);\t/*XXX*/\n\t\tmemcpy(&bgp, p, BGP_SIZE);\n\n\t\tif (start != p)\n\t\t\tND_PRINT((ndo, \" [|BGP]\"));\n\n\t\thlen = ntohs(bgp.bgp_len);\n\t\tif (hlen < BGP_SIZE) {"
+  },
+  "target_statement": {
+    "text": null,
+    "line": 2810,
+    "column_start": 7,
+    "column_end": 11
+  },
+  "facts": {
+    "suspect_calls": [
+      "ND_PRINT",
+      "ND_TCHECK2",
+      "ND_TTEST2",
+      "memcmp",
+      "memcpy",
+      "ntohs"
+    ],
+    "pointer_vars": [],
+    "length_vars": [
+      "BGP_SIZE",
+      "bgp_len",
+      "hlen",
+      "return"
+    ],
+    "bounds_hints": [
+      {
+        "var": "BGP_SIZE",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "bgp_len",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "hlen",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "return",
+        "relation": ">= 0",
+        "source": "heuristic"
+      }
+    ]
+  },
+  "llm_hints": {
+    "entrypoint": {
+      "strategy": "LLM_INFER",
+      "candidates": []
+    },
+    "assertions": {
+      "presence_assertion_hint": "/* fill with program-specific property */",
+      "reachability_assertion": "klee_assert(0);  /* must be placed immediately before the vulnerable instruction */"
+    },
+    "notes": [
+      "Non-in-path helpers should be stub candidates.",
+      "Groom all in-path data structures to avoid null derefs."
+    ]
+  }
+}

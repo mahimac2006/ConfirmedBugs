@@ -1,0 +1,1 @@
+{"thought":"I have enough source for the spine excerpt. Next I need the exact struct definition for netdissect_options and any driver/stub helper context, so I can build a minimal harness and symbolic driver that satisfies bgp_print's preconditions without extra guards.", "tool": "ReadSAContext", "args": {"file": "spec.json"}}

@@ -1,0 +1,19 @@
+KLEE: output directory is "/app/se_runs/sailor_engine/tcpdump-4.9.2/096_print-babel.c_127_local_cpp_cwe-125-oob-read/logs/klee_run_1"
+KLEE: Using Z3 solver backend
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x79a271adc000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x799ff1adc000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x789ff1adc000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x787ff1adc000 size=128 GiB)
+KLEE: WARNING: undefined reference to function: babel_print
+KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+KLEE: WARNING ONCE: silently concretizing (reason: external call) expression (Read w8 2 buf) to value 0 (driver.c:24)
+KLEE: WARNING ONCE: calling external: babel_print(132868867997696, 133006306951168, 64) at driver.c:24 5
+KLEE: ERROR: driver.c:23: failed external call: babel_print
+KLEE: NOTE: now ignoring this error at this location
+
+KLEE: done: total instructions = 25
+KLEE: done: completed paths = 0
+KLEE: done: partially completed paths = 1
+KLEE: done: generated tests = 1
+

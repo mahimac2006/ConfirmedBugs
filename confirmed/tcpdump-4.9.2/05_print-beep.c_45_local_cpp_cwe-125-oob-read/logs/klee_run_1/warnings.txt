@@ -1,0 +1,3 @@
+KLEE: WARNING: undefined reference to function: beep_print
+KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+KLEE: WARNING ONCE: calling external: beep_print(124519746695168, 124244868788224, 4) at driver.c:54 5

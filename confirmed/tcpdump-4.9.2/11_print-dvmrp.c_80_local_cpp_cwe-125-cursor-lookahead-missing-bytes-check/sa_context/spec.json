@@ -1,0 +1,73 @@
+{
+  "schema": "llmse.vul_spec.v1",
+  "id": "local_cpp_cwe-125-cursor-lookahead-missing-bytes-check@print-dvmrp.c:80",
+  "project": null,
+  "rule_id": "local/cpp/cwe-125-cursor-lookahead-missing-bytes-check",
+  "family": "GENERIC",
+  "file": "/app/dataset/tcp/tcpdump-4.9.2/print-dvmrp.c",
+  "line": 80,
+  "column": 9,
+  "end_line": 80,
+  "end_column": 14,
+  "message": "Potential OOB lookahead read: bp\\[1\\] (requires 2 bytes) without a nearby remaining-bytes guard.",
+  "context": {
+    "contextStart": 60,
+    "contextEnd": 100,
+    "snippet": "static int print_neighbors(netdissect_options *, const u_char *, const u_char *, u_int);\nstatic int print_neighbors2(netdissect_options *, const u_char *, const u_char *, u_int);\nstatic int print_prune(netdissect_options *, const u_char *);\nstatic int print_graft(netdissect_options *, const u_char *);\nstatic int print_graft_ack(netdissect_options *, const u_char *);\n\nstatic uint32_t target_level;\n\nvoid\ndvmrp_print(netdissect_options *ndo,\n            register const u_char *bp, register u_int len)\n{\n\tregister const u_char *ep;\n\tregister u_char type;\n\n\tep = (const u_char *)ndo->ndo_snapend;\n\tif (bp >= ep)\n\t\treturn;\n\n\tND_TCHECK(bp[1]);\n\ttype = bp[1];\n\n\t/* Skip IGMP header */\n\tbp += 8;\n\tlen -= 8;\n\n\tswitch (type) {\n\n\tcase DVMRP_PROBE:\n\t\tND_PRINT((ndo, \" Probe\"));\n\t\tif (ndo->ndo_vflag) {\n\t\t\tif (print_probe(ndo, bp, ep, len) < 0)\n\t\t\t\tgoto trunc;\n\t\t}\n\t\tbreak;\n\n\tcase DVMRP_REPORT:\n\t\tND_PRINT((ndo, \" Report\"));\n\t\tif (ndo->ndo_vflag > 1) {\n\t\t\tif (print_report(ndo, bp, ep, len) < 0)\n\t\t\t\tgoto trunc;"
+  },
+  "target_statement": {
+    "text": null,
+    "line": 80,
+    "column_start": 9,
+    "column_end": 14
+  },
+  "facts": {
+    "suspect_calls": [
+      "ND_PRINT",
+      "ND_TCHECK",
+      "dvmrp_print",
+      "print_graft",
+      "print_graft_ack",
+      "print_neighbors",
+      "print_neighbors2",
+      "print_probe",
+      "print_prune",
+      "print_report"
+    ],
+    "pointer_vars": [
+      "bp",
+      "ep",
+      "ndo"
+    ],
+    "length_vars": [
+      "len",
+      "return"
+    ],
+    "bounds_hints": [
+      {
+        "var": "len",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "return",
+        "relation": ">= 0",
+        "source": "heuristic"
+      }
+    ]
+  },
+  "llm_hints": {
+    "entrypoint": {
+      "strategy": "LLM_INFER",
+      "candidates": []
+    },
+    "assertions": {
+      "presence_assertion_hint": "/* fill with program-specific property */",
+      "reachability_assertion": "klee_assert(0);  /* must be placed immediately before the vulnerable instruction */"
+    },
+    "notes": [
+      "Non-in-path helpers should be stub candidates.",
+      "Groom all in-path data structures to avoid null derefs."
+    ]
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "findings": [],
+  "line_map": {
+    "print-802_11.c": {
+      "4": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 31,
+        "code": "#include <string.h>"
+      },
+      "32": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 27,
+        "code": "#endif"
+      },
+      "35": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 999,
+        "code": "struct mgmt_body_t *pbody, const u_char *p, int offset,"
+      },
+      "36": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1000,
+        "code": "u_int length)"
+      },
+      "37": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1001,
+        "code": "{"
+      },
+      "39": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1002,
+        "code": "u_int elementlen;"
+      },
+      "40": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1003,
+        "code": "struct ssid_t ssid;"
+      },
+      "41": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1004,
+        "code": "struct challenge_t challenge;"
+      },
+      "42": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1005,
+        "code": "struct rates_t rates;"
+      },
+      "43": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1006,
+        "code": "struct ds_t ds;"
+      },
+      "44": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1007,
+        "code": "struct cf_t cf;"
+      },
+      "45": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1008,
+        "code": "struct tim_t tim;"
+      },
+      "48": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1195,
+        "code": "default:"
+      },
+      "49": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1194,
+        "code": "break;"
+      },
+      "50": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1141,
+        "code": "case E_CF:"
+      },
+      "52": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1142,
+        "code": "memcpy(&cf, p + offset, 2);"
+      },
+      "53": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1143,
+        "code": "offset += 2;"
+      },
+      "54": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1144,
+        "code": "length -= 2;"
+      },
+      "55": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1145,
+        "code": "if (cf.length != 6) {"
+      },
+      "56": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1146,
+        "code": "offset += cf.length;"
+      },
+      "57": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1147,
+        "code": "length -= cf.length;"
+      },
+      "58": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1148,
+        "code": "break;"
+      },
+      "59": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1149,
+        "code": "}"
+      },
+      "60": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1150,
+        "code": "memcpy(&cf.count, p + offset, 6);"
+      },
+      "61": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1151,
+        "code": "offset += 6;"
+      },
+      "62": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1152,
+        "code": "length -= 6;"
+      },
+      "63": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1160,
+        "code": "if (!pbody->cf_present) {"
+      },
+      "64": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1161,
+        "code": "pbody->cf = cf;"
+      },
+      "65": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1162,
+        "code": "pbody->cf_present = 1;"
+      },
+      "66": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1163,
+        "code": "}"
+      },
+      "67": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1164,
+        "code": "break;"
+      },
+      "68": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1163,
+        "code": "}"
+      },
+      "70": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1207,
+        "code": "return 1;"
+      },
+      "71": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1208,
+        "code": "}"
+      },
+      "74": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1217,
+        "code": "{"
+      },
+      "79": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1208,
+        "code": "}"
+      },
+      "82": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 2138,
+        "code": "const struct pcap_pkthdr *h, const u_char *p)"
+      },
+      "83": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 2139,
+        "code": "{"
+      },
+      "85": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 2140,
+        "code": "return ieee802_11_print(ndo, p, h->len, h->caplen, 0, 0);"
+      },
+      "86": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 2141,
+        "code": "}"
+      }
+    }
+  }
+}

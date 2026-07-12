@@ -1,0 +1,1 @@
+{"tool": "WriteStubs", "args": {"code": "// NO_HARNESS_TYPES\n#include <stdlib.h>\n#include <string.h>\n"}}

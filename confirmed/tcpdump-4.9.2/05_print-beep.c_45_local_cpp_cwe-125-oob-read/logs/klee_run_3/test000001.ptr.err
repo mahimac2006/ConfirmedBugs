@@ -1,0 +1,12 @@
+Error: memory error: out of bound pointer
+File: print-beep.c
+Line: 37
+assembly.ll line: 215
+State: 1
+Stack: 
+	#000000215 in beep_print(138022835015680, 137747957108736, 2) at print-beep.c:37
+	#100000077 in main() at driver.c:53
+Info: 
+	address: 138022835015832
+	next: object at 137449456881664 of size 4
+		MO41[4] allocated at main():  %3 = alloca i32, align 4

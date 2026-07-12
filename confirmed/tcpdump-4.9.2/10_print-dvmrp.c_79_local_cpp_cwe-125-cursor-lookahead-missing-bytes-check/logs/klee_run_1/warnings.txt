@@ -1,0 +1,5 @@
+KLEE: WARNING: undefined reference to function: dvmrp_print
+KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+KLEE: WARNING ONCE: Alignment of memory from call "malloc" is not modelled. Using alignment of 8.
+KLEE: WARNING ONCE: silently concretizing (reason: external call) expression (Read w8 0 buf) to value 0 (driver.c:31)
+KLEE: WARNING ONCE: calling external: dvmrp_print(123739635437568, 123722455568384, 16) at driver.c:31 5

@@ -1,0 +1,366 @@
+{
+  "findings": [
+    [
+      "LIKELY_TP",
+      "BUG TRIGGERED \u2014 KLEE  error at line 57 (sink assert at 58)\nCrash: CRASH: ptr at print-dvmrp.c:57\nOriginal: print-dvmrp.c:80 \u2192 type = bp[1];\nASan: not confirmed\n\nAll crashes (1):\n  ptr at print-dvmrp.c:57 \u2192 print-dvmrp.c:80\n"
+    ]
+  ],
+  "line_map": {
+    "print-dvmrp.c": {
+      "32": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 44,
+        "code": "#define DVMRP_NEIGHBORS2 6",
+        "match_type": "fuzzy"
+      },
+      "37": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 66,
+        "code": "static uint32_t target_level;"
+      },
+      "48": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 71,
+        "code": "{"
+      },
+      "50": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 72,
+        "code": "register const u_char *ep;"
+      },
+      "51": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 73,
+        "code": "register u_char type;"
+      },
+      "53": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 75,
+        "code": "ep = (const u_char *)ndo->ndo_snapend;"
+      },
+      "54": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 76,
+        "code": "if (bp >= ep)"
+      },
+      "55": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 77,
+        "code": "return;"
+      },
+      "57": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 80,
+        "code": "type = bp[1];"
+      },
+      "62": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 83,
+        "code": "bp += 8;"
+      },
+      "63": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 84,
+        "code": "len -= 8;"
+      },
+      "65": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 86,
+        "code": "switch (type) {"
+      },
+      "66": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 88,
+        "code": "case DVMRP_PROBE:"
+      },
+      "68": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 90,
+        "code": "if (ndo->ndo_vflag) {"
+      },
+      "69": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 91,
+        "code": "if (print_probe(ndo, bp, ep, len) < 0)"
+      },
+      "70": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 92,
+        "code": "goto trunc;"
+      },
+      "71": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 93,
+        "code": "}"
+      },
+      "72": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 94,
+        "code": "break;"
+      },
+      "73": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 96,
+        "code": "case DVMRP_REPORT:"
+      },
+      "75": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 98,
+        "code": "if (ndo->ndo_vflag > 1) {"
+      },
+      "76": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 99,
+        "code": "if (print_report(ndo, bp, ep, len) < 0)"
+      },
+      "77": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 100,
+        "code": "goto trunc;"
+      },
+      "78": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 101,
+        "code": "}"
+      },
+      "79": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 102,
+        "code": "break;"
+      },
+      "80": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 104,
+        "code": "case DVMRP_ASK_NEIGHBORS:"
+      },
+      "81": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 106,
+        "code": "break;"
+      },
+      "82": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 108,
+        "code": "case DVMRP_NEIGHBORS:"
+      },
+      "84": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 110,
+        "code": "if (print_neighbors(ndo, bp, ep, len) < 0)"
+      },
+      "85": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 111,
+        "code": "goto trunc;"
+      },
+      "86": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 112,
+        "code": "break;"
+      },
+      "87": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 114,
+        "code": "case DVMRP_ASK_NEIGHBORS2:"
+      },
+      "88": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 116,
+        "code": "break;"
+      },
+      "89": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 118,
+        "code": "case DVMRP_NEIGHBORS2:"
+      },
+      "91": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 124,
+        "code": "bp -= 4;"
+      },
+      "93": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 128,
+        "code": "bp += 4;"
+      },
+      "94": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 129,
+        "code": "if (print_neighbors2(ndo, bp, ep, len) < 0)"
+      },
+      "95": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 130,
+        "code": "goto trunc;"
+      },
+      "96": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 131,
+        "code": "break;"
+      },
+      "97": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 133,
+        "code": "case DVMRP_PRUNE:"
+      },
+      "99": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 135,
+        "code": "if (print_prune(ndo, bp) < 0)"
+      },
+      "100": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 136,
+        "code": "goto trunc;"
+      },
+      "101": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 137,
+        "code": "break;"
+      },
+      "102": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 139,
+        "code": "case DVMRP_GRAFT:"
+      },
+      "104": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 141,
+        "code": "if (print_graft(ndo, bp) < 0)"
+      },
+      "105": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 142,
+        "code": "goto trunc;"
+      },
+      "106": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 143,
+        "code": "break;"
+      },
+      "107": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 145,
+        "code": "case DVMRP_GRAFT_ACK:"
+      },
+      "109": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 147,
+        "code": "if (print_graft_ack(ndo, bp) < 0)"
+      },
+      "110": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 148,
+        "code": "goto trunc;"
+      },
+      "111": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 149,
+        "code": "break;"
+      },
+      "112": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 151,
+        "code": "default:"
+      },
+      "113": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 153,
+        "code": "break;"
+      },
+      "114": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 154,
+        "code": "}"
+      },
+      "115": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 155,
+        "code": "return;"
+      },
+      "116": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 157,
+        "code": "trunc:"
+      },
+      "119": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 159,
+        "code": "return;"
+      },
+      "120": {
+        "orig_file": "print-dvmrp.c",
+        "orig_line": 160,
+        "code": "}"
+      }
+    }
+  },
+  "bug_report": {
+    "summary": {
+      "verdict": "LIKELY_TP",
+      "asan_confirmed": false,
+      "crash_relevance": "no_asan",
+      "cwe": "unknown",
+      "cwe_description": "",
+      "total_asan_crashes": 0,
+      "target_asan_crashes": 0,
+      "secondary_asan_crashes": 0,
+      "target_crashes": 1,
+      "secondary_bugs": 0
+    },
+    "vulnerability": {
+      "original_file": "print-dvmrp.c",
+      "original_line": 80,
+      "function": "dvmrp_print",
+      "entry_point": "dvmrp_print",
+      "spine": [
+        "dvmrp_print"
+      ],
+      "original_context": "75: \tep = (const u_char *)ndo->ndo_snapend;\n76: \tif (bp >= ep)\n77: \t\treturn;\n78: \n79: \tND_TCHECK(bp[1]);\n80: \ttype = bp[1];\n81: \n82: \t/* Skip IGMP header */\n83: \tbp += 8;\n84: \tlen -= 8;\n85: "
+    },
+    "klee_crash": {
+      "harness_file": "print-dvmrp.c",
+      "harness_line": 57,
+      "original_file": "print-dvmrp.c",
+      "original_line": 80,
+      "original_code": "type = bp[1];",
+      "original_context": "    77: \t\treturn;\n    78: \n    79: \tND_TCHECK(bp[1]);\n>>> 80: \ttype = bp[1];\n    81: \n    82: \t/* Skip IGMP header */\n    83: \tbp += 8;",
+      "error_type": "ptr",
+      "error_details": "Error: memory error: out of bound pointer\nFile: print-dvmrp.c\nLine: 57\nassembly.ll line: 86\nState: 1\nStack: \n\t#000000086 in dvmrp_print(122999201472512, 122793043042304) at print-dvmrp.c:57\n\t#100000043 in main() at driver.c:18\nInfo: \n\taddress: 122793043042305\n\tnext: object at 122488100364288 of size 1\n\t\tMO44[1] allocated at dvmrp_print():  %7 = alloca i8, align 1\n"
+    },
+    "concrete_inputs": [
+      {
+        "name": "buf",
+        "size": 1,
+        "data": "b'\\x00'"
+      }
+    ],
+    "asan_result": {
+      "triggered": false,
+      "harness_artifact": false,
+      "error_type": "",
+      "crash_function": "",
+      "crash_file": "",
+      "crash_line": 0,
+      "original_file": "",
+      "original_line": 0,
+      "original_code": "",
+      "original_context": "",
+      "output": ""
+    },
+    "line_map_file": "/app/se_runs/sailor_engine/tcpdump-4.9.2/219_print-dvmrp.c_80_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/harness/line_map.json",
+    "all_crashes": [
+      {
+        "harness_file": "print-dvmrp.c",
+        "harness_line": 57,
+        "original_file": "print-dvmrp.c",
+        "original_line": 80,
+        "error_type": "ptr",
+        "crash_function": "dvmrp_print",
+        "relevance": "target_crash",
+        "ktest": "/app/se_runs/sailor_engine/tcpdump-4.9.2/219_print-dvmrp.c_80_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/logs/klee_run_3/test000001.ktest"
+      }
+    ],
+    "all_asan_crashes": []
+  }
+}

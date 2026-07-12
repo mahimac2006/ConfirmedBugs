@@ -1,0 +1,1 @@
+{"thought":"I have the vulnerability summary. Next I need the specific source excerpt around the sink and the path labels, so I can write the minimal neutralized harness and driver correctly. I’ll read the summary file content for the source context and driver hints.", "tool":"ReadSAContext", "args":{"file":"vulnerability_summary.json"}}

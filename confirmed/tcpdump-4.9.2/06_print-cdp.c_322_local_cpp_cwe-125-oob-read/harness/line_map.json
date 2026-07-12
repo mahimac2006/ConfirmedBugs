@@ -1,0 +1,209 @@
+{
+  "print-cdp.c": {
+    "3": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 35,
+      "code": "#include <string.h>"
+    },
+    "6": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 44,
+      "code": "#define CDP_HEADER_LEN 4",
+      "match_type": "fuzzy"
+    },
+    "7": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 49,
+      "code": "#define CDP_TLV_HEADER_LEN 4",
+      "match_type": "fuzzy"
+    },
+    "8": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 45,
+      "code": "#define CDP_HEADER_VERSION_OFFSET 0",
+      "match_type": "fuzzy"
+    },
+    "9": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 46,
+      "code": "#define CDP_HEADER_TTL_OFFSET 1",
+      "match_type": "fuzzy"
+    },
+    "10": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 47,
+      "code": "#define CDP_HEADER_CHECKSUM_OFFSET 2"
+    },
+    "11": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 50,
+      "code": "#define CDP_TLV_TYPE_OFFSET 0"
+    },
+    "12": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 51,
+      "code": "#define CDP_TLV_LEN_OFFSET 2",
+      "match_type": "fuzzy"
+    },
+    "16": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 31,
+      "code": "#endif"
+    },
+    "19": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 31,
+      "code": "#endif"
+    },
+    "41": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 283,
+      "code": "const u_char *endp = p + l;"
+    },
+    "52": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 329,
+      "code": "p += 10;"
+    },
+    "54": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 318,
+      "code": "ND_PRINT((ndo, \"IPv4 (%u) %s\", num, ipaddr_string(ndo, p)));"
+    },
+    "55": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 319,
+      "code": "p += 4;"
+    },
+    "56": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 320,
+      "code": "}"
+    },
+    "59": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 329,
+      "code": "p += 10;"
+    },
+    "61": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 334,
+      "code": "ND_PRINT((ndo, \"IPv6 (%u) %s\", num, ip6addr_string(ndo, p)));"
+    },
+    "62": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 335,
+      "code": "p += al;"
+    },
+    "63": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 336,
+      "code": "}"
+    },
+    "64": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 337,
+      "code": "else {"
+    },
+    "65": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 341,
+      "code": "ND_TCHECK2(*p, pl);"
+    },
+    "66": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 336,
+      "code": "}"
+    },
+    "68": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 364,
+      "code": "return 0;"
+    },
+    "69": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 362,
+      "code": "}"
+    },
+    "73": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 97,
+      "code": "int type, len, i, j;"
+    },
+    "74": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 98,
+      "code": "const u_char *tptr;"
+    },
+    "77": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 107,
+      "code": "ND_TCHECK2(*tptr, CDP_HEADER_LEN);"
+    },
+    "80": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 112,
+      "code": "tptr += CDP_HEADER_LEN;"
+    },
+    "81": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 114,
+      "code": "while (tptr < (pptr+length)) {"
+    },
+    "83": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 116,
+      "code": "type = EXTRACT_16BITS(tptr+CDP_TLV_TYPE_OFFSET);"
+    },
+    "86": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 131,
+      "code": "tptr += CDP_TLV_HEADER_LEN;"
+    },
+    "87": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 132,
+      "code": "len -= CDP_TLV_HEADER_LEN;"
+    },
+    "88": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 134,
+      "code": "ND_TCHECK2(*tptr, len);"
+    },
+    "90": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 145,
+      "code": "switch (type) {"
+    },
+    "96": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 130,
+      "code": "}"
+    },
+    "97": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 130,
+      "code": "}"
+    },
+    "99": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 130,
+      "code": "}"
+    },
+    "100": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 263,
+      "code": "trunc:"
+    },
+    "102": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 262,
+      "code": "return;"
+    },
+    "103": {
+      "orig_file": "print-cdp.c",
+      "orig_line": 265,
+      "code": "}"
+    }
+  }
+}

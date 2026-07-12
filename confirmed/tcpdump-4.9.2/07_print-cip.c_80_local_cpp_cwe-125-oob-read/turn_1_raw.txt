@@ -1,0 +1,2 @@
+{"thought":"Need inspect spec for entry conditions and sink path context.
+{"tool":"ReadSAContext","args":{"file":"spec.json"}}

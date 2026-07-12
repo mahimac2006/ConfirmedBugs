@@ -1,0 +1,60 @@
+{
+  "schema": "llmse.vul_spec.v1",
+  "id": "local_cpp_cwe-120-overflow@print-802_11.c:1150",
+  "project": null,
+  "rule_id": "local/cpp/cwe-120-overflow",
+  "family": "GENERIC",
+  "file": "/app/dataset/tcp/tcpdump-4.9.2/print-802_11.c",
+  "line": 1150,
+  "column": 4,
+  "end_line": 1150,
+  "end_column": 10,
+  "message": "CWE-120: Potential Buffer Overflow via memcpy (unchecked length).",
+  "context": {
+    "contextStart": 1130,
+    "contextEnd": 1170,
+    "snippet": "\t\t\t * Present and not truncated.\n\t\t\t *\n\t\t\t * If we haven't already seen a DS IE,\n\t\t\t * copy this one, otherwise ignore this one,\n\t\t\t * so we later report the first one we saw.\n\t\t\t */\n\t\t\tif (!pbody->ds_present) {\n\t\t\t\tpbody->ds = ds;\n\t\t\t\tpbody->ds_present = 1;\n\t\t\t}\n\t\t\tbreak;\n\t\tcase E_CF:\n\t\t\tmemcpy(&cf, p + offset, 2);\n\t\t\toffset += 2;\n\t\t\tlength -= 2;\n\t\t\tif (cf.length != 6) {\n\t\t\t\toffset += cf.length;\n\t\t\t\tlength -= cf.length;\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\tmemcpy(&cf.count, p + offset, 6);\n\t\t\toffset += 6;\n\t\t\tlength -= 6;\n\t\t\t/*\n\t\t\t * Present and not truncated.\n\t\t\t *\n\t\t\t * If we haven't already seen a CF IE,\n\t\t\t * copy this one, otherwise ignore this one,\n\t\t\t * so we later report the first one we saw.\n\t\t\t */\n\t\t\tif (!pbody->cf_present) {\n\t\t\t\tpbody->cf = cf;\n\t\t\t\tpbody->cf_present = 1;\n\t\t\t}\n\t\t\tbreak;\n\t\tcase E_TIM:\n\t\t\tmemcpy(&tim, p + offset, 2);\n\t\t\toffset += 2;\n\t\t\tlength -= 2;\n\t\t\tif (tim.length <= 3) {\n\t\t\t\toffset += tim.length;"
+  },
+  "target_statement": {
+    "text": null,
+    "line": 1150,
+    "column_start": 4,
+    "column_end": 10
+  },
+  "facts": {
+    "suspect_calls": [
+      "memcpy"
+    ],
+    "pointer_vars": [],
+    "length_vars": [
+      "haven",
+      "seen"
+    ],
+    "bounds_hints": [
+      {
+        "var": "haven",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "seen",
+        "relation": ">= 0",
+        "source": "heuristic"
+      }
+    ]
+  },
+  "llm_hints": {
+    "entrypoint": {
+      "strategy": "LLM_INFER",
+      "candidates": []
+    },
+    "assertions": {
+      "presence_assertion_hint": "/* fill with program-specific property */",
+      "reachability_assertion": "klee_assert(0);  /* must be placed immediately before the vulnerable instruction */"
+    },
+    "notes": [
+      "Non-in-path helpers should be stub candidates.",
+      "Groom all in-path data structures to avoid null derefs."
+    ]
+  }
+}

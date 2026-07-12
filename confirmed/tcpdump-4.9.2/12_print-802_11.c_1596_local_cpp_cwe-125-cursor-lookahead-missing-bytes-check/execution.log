@@ -1,0 +1,226 @@
+  [i] Copying source tree to /app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/src_copy...
+  [i] Source copy ready (2127 files)
+  [i] Build headers: 1 templates found, 0 headers generated
+  [i] Build headers: 1 templates found, 0 headers generated
+  [i] Loaded: compile_commands.json
+  [i] Loaded: fact_pack.json
+  [i] Loaded: findings.json
+  [i] Spec loaded: 233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check.json
+  [SA] fact_pack: 811 findings (list format)
+  [i] Vulnerable function: handle_action
+  [i] Entry from source scan: mgmt_body_print
+  [!] Entry 'mgmt_body_print' is static — searching for public caller
+  [✓] Found public entry: ieee802_11_if_print
+  [✓] New spine: ieee802_11_if_print → ieee802_11_print → mgmt_body_print → handle_action
+  [SA] Compile flags from compile_commands: 8 flags, build_dir=/app/dataset/tcp/tcpdump-4.9.2
+  [i] Struct groom: 1 guards, 6 stub prescriptions, 1 constants
+  [i] SA context written to /app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/sa_context
+  [i] Auto-generated baseline driver.c (930 chars)
+  [Turn 1] Tool: ReadSAContext
+  [Turn 2] Tool: GatherCode
+  [Tool] GatherCode(funcs=ieee802_11_if_print,ieee802_11_print,mgmt_body_print,handle_action, types=)
+  [!] JSON parse failed (attempt 1/3), retrying...
+  [Turn 3] Thought: Need inspect summary for exact switch case and labels before writing harness/driver correctly.
+  [Turn 3] Tool: ReadSAContext
+  [!] JSON parse failed (attempt 1/3), retrying...
+  [Turn 4] Thought: Need adjust harness/driver generation to valid JSON and likely minimal compile-able path; use current code as basis.
+  [Turn 4] Tool: WriteHarness
+    [+] Wrote harness: print-802_11.c (71 lines)
+    [+] Inserted 10 spine coverage probes
+    [+] Injected spine probes
+    [+] Line map: 34 harness lines mapped to original source
+    [+] Generated harness_types.h (18 lines, 0 structs, 0 typedefs)
+    [i] Driver MUST: #include "harness_types.h" for correct struct layouts
+  [Turn 5] Thought: Need driver and stubs minimal, include harness_types.h first; symbolic instate=3 and valid buffers.
+  [Turn 5] Tool: WriteDriver
+  [Tool] WriteDriver: 719 chars
+  [Turn 6] Tool: WriteStubs
+  [Tool] WriteStubs: 694 chars
+  [Turn 7] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Generating smart stubs...
+    [i] SmartStubs: 0 symbolic + 0 hardcoded + 1 proactive → smart_stubs.c
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+  [Turn 8] Tool: GrepSource
+  [Tool] GrepSource: '#include' in parser.c
+  [Turn 9] Thought: Need fix driver by avoiding harness_types include chain; use NO_HARNESS_TYPES and define minimal structs? But harness_types generated already. Let's replace driver top with local minimal defs maybe enough for compilation.
+  [Turn 9] Tool: ReplaceCode
+  [Turn 10] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Skipped harness_types.h injection into driver.c (NO_HARNESS_TYPES marker)
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+  [Turn 11] Tool: ReplaceCode
+  [Turn 12] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Skipped harness_types.h injection into driver.c (NO_HARNESS_TYPES marker)
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+  [Turn 13] Tool: ReplaceCode
+  [Turn 14] Tool: ReplaceCode
+  [Turn 15] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Skipped harness_types.h injection into driver.c (NO_HARNESS_TYPES marker)
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+  [Turn 16] Tool: ReplaceCode
+  [Turn 17] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Skipped harness_types.h injection into driver.c (NO_HARNESS_TYPES marker)
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+  [Turn 18] Tool: ReplaceCode
+  [Turn 19] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Skipped harness_types.h injection into driver.c (NO_HARNESS_TYPES marker)
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+    [+] print-802_11.c -> OK
+    [+] smart_stubs.c -> OK
+  [Turn 20] Tool: ReplaceCode
+  [Turn 21] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Skipped harness_types.h injection into driver.c (NO_HARNESS_TYPES marker)
+    [i] Skipped harness_types.h injection into stubs.c (NO_HARNESS_TYPES marker)
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+    [+] print-802_11.c -> OK
+    [+] smart_stubs.c -> OK
+    [+] stubs.c -> OK
+    [KLEE] Running: timeout=300s
+    [KLEE] Command: /opt/klee/bin/klee --output-dir=/app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/logs/klee_run_1 --max-time=300s --write-kqueries --write-smt2s --optimize --search=random-path --search=dfs --only-output-states-covering-new --external-calls=all --check-overshift --max-depth=1000 --max-memory=2048 /app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/harness/slice.bc
+    KLEE: output directory is "/app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/logs/klee_run_1"
+    KLEE: Using Z3 solver backend
+    KLEE: Deterministic allocator: Using quarantine queue size 8
+    KLEE: Deterministic allocator: globals (start-address=0x7028a8bbe000 size=10 GiB)
+    KLEE: Deterministic allocator: constants (start-address=0x702628bbe000 size=10 GiB)
+    KLEE: Deterministic allocator: heap (start-address=0x6f2628bbe000 size=1024 GiB)
+    KLEE: Deterministic allocator: stack (start-address=0x6f0628bbe000 size=128 GiB)
+    KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+    KLEE: WARNING ONCE: ieee802_11_if_print: SPINE_PROBE:ieee802_11_if_print:ENTRY
+    KLEE: ERROR: print-802_11.c:52: memory error: out of bound pointer
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: done: total instructions = 184
+    KLEE: done: completed paths = 0
+    KLEE: done: partially completed paths = 1
+    KLEE: done: generated tests = 1
+    [KLEE] Exit code: 0, Elapsed: 0.0s
+    [KLEE] Log saved: /app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/logs/klee_1.log
+    [KLEE] Crash: CRASH: ptr at print-802_11.c:52
+    [KLEE] SPINE COVERAGE: ieee802_11_if_print: REACHED [ENTRY] | ieee802_11_print: NOT REACHED | mgmt_body_print: NOT REACHED | handle_action: NOT REACHED
+    [KLEE] Results: bug_found=True, sink_reached=False, paths=0, tests=1
+    [KLEE] Crash: CRASH: ptr at print-802_11.c:52
+    [KLEE] Diagnostics: MEMORY ERROR detected by KLEE.; SPINE COVERAGE: ieee802_11_if_print: REACHED [ENTRY] | ieee802_11_print: NOT REACHED | mgmt_body_print: NOT REACHED | handle_action: NOT REACHED; BLOCKED: Reached ieee802_11_if_print (ENTRY) but handle_action NOT REACHED.; The call chain breaks at ieee802_11_if_print → ieee802_11_print. LIKELY CAUSE: The harness 'neutralized' ieee802_11_if_print too aggressively, removing the call to ieee802_11_print. FIX: In WriteHarness, ensure ieee802_11_if_print CALLS ieee802_11_print. Neutralization must KEEP calls to spine functions (remove only off-path code, NOT the call to the next spine function). Check the harness .c file for a call to ieee802_11_print().
+  [Turn 22] Tool: ReplaceCode
+  [Turn 23] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Skipped harness_types.h injection into driver.c (NO_HARNESS_TYPES marker)
+    [i] Skipped harness_types.h injection into stubs.c (NO_HARNESS_TYPES marker)
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+    [+] print-802_11.c -> OK
+    [+] smart_stubs.c -> OK
+    [+] stubs.c -> OK
+    [KLEE] Running: timeout=300s
+    [KLEE] Command: /opt/klee/bin/klee --output-dir=/app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/logs/klee_run_2 --max-time=300s --write-kqueries --write-smt2s --optimize --search=random-path --search=dfs --only-output-states-covering-new --external-calls=all --check-overshift --max-depth=1000 --max-memory=2048 /app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/harness/slice.bc
+    KLEE: output directory is "/app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/logs/klee_run_2"
+    KLEE: Using Z3 solver backend
+    KLEE: Deterministic allocator: Using quarantine queue size 8
+    KLEE: Deterministic allocator: globals (start-address=0x771a17179000 size=10 GiB)
+    KLEE: Deterministic allocator: constants (start-address=0x771797179000 size=10 GiB)
+    KLEE: Deterministic allocator: heap (start-address=0x761797179000 size=1024 GiB)
+    KLEE: Deterministic allocator: stack (start-address=0x75f797179000 size=128 GiB)
+    KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+    KLEE: WARNING ONCE: ieee802_11_if_print: SPINE_PROBE:ieee802_11_if_print:ENTRY
+    KLEE: ERROR: print-802_11.c:52: memory error: out of bound pointer
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: done: total instructions = 185
+    KLEE: done: completed paths = 0
+    KLEE: done: partially completed paths = 1
+    KLEE: done: generated tests = 1
+    [KLEE] Exit code: 0, Elapsed: 0.0s
+    [KLEE] Log saved: /app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/logs/klee_2.log
+    [KLEE] Crash: CRASH: ptr at print-802_11.c:52
+    [KLEE] SPINE COVERAGE: ieee802_11_if_print: REACHED [ENTRY] | ieee802_11_print: NOT REACHED | mgmt_body_print: NOT REACHED | handle_action: NOT REACHED
+    [KLEE] Results: bug_found=True, sink_reached=False, paths=0, tests=1
+    [KLEE] Crash: CRASH: ptr at print-802_11.c:52
+    [KLEE] Diagnostics: MEMORY ERROR detected by KLEE.; SPINE COVERAGE: ieee802_11_if_print: REACHED [ENTRY] | ieee802_11_print: NOT REACHED | mgmt_body_print: NOT REACHED | handle_action: NOT REACHED; BLOCKED: Reached ieee802_11_if_print (ENTRY) but handle_action NOT REACHED.; The call chain breaks at ieee802_11_if_print → ieee802_11_print. LIKELY CAUSE: The harness 'neutralized' ieee802_11_if_print too aggressively, removing the call to ieee802_11_print. FIX: In WriteHarness, ensure ieee802_11_if_print CALLS ieee802_11_print. Neutralization must KEEP calls to spine functions (remove only off-path code, NOT the call to the next spine function). Check the harness .c file for a call to ieee802_11_print().
+  [Turn 24] Tool: ReplaceCode
+  [Turn 25] Tool: ReplaceCode
+  [Turn 26] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Skipped harness_types.h injection into driver.c (NO_HARNESS_TYPES marker)
+    [i] Skipped harness_types.h injection into stubs.c (NO_HARNESS_TYPES marker)
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+    [+] print-802_11.c -> OK
+    [+] smart_stubs.c -> OK
+    [+] stubs.c -> OK
+    [KLEE] Running: timeout=300s
+    [KLEE] Command: /opt/klee/bin/klee --output-dir=/app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/logs/klee_run_3 --max-time=300s --write-kqueries --write-smt2s --optimize --search=random-path --search=dfs --only-output-states-covering-new --external-calls=all --check-overshift --max-depth=1000 --max-memory=2048 /app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/harness/slice.bc
+    KLEE: output directory is "/app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/logs/klee_run_3"
+    KLEE: Using Z3 solver backend
+    KLEE: Deterministic allocator: Using quarantine queue size 8
+    KLEE: Deterministic allocator: globals (start-address=0x72903b110000 size=10 GiB)
+    KLEE: Deterministic allocator: constants (start-address=0x728dbb110000 size=10 GiB)
+    KLEE: Deterministic allocator: heap (start-address=0x718dbb110000 size=1024 GiB)
+    KLEE: Deterministic allocator: stack (start-address=0x716dbb110000 size=128 GiB)
+    KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+    KLEE: WARNING ONCE: ieee802_11_if_print: SPINE_PROBE:ieee802_11_if_print:ENTRY
+    KLEE: ERROR: print-802_11.c:52: memory error: out of bound pointer
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: done: total instructions = 185
+    KLEE: done: completed paths = 0
+    KLEE: done: partially completed paths = 1
+    KLEE: done: generated tests = 1
+    [KLEE] Exit code: 0, Elapsed: 0.0s
+    [KLEE] Log saved: /app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/logs/klee_3.log
+    [KLEE] Crash: CRASH: ptr at print-802_11.c:52
+    [KLEE] SPINE COVERAGE: ieee802_11_if_print: REACHED [ENTRY] | ieee802_11_print: NOT REACHED | mgmt_body_print: NOT REACHED | handle_action: NOT REACHED
+    [KLEE] Results: bug_found=True, sink_reached=False, paths=0, tests=1
+    [KLEE] Crash: CRASH: ptr at print-802_11.c:52
+    [KLEE] Diagnostics: MEMORY ERROR detected by KLEE.; SPINE COVERAGE: ieee802_11_if_print: REACHED [ENTRY] | ieee802_11_print: NOT REACHED | mgmt_body_print: NOT REACHED | handle_action: NOT REACHED; BLOCKED: Reached ieee802_11_if_print (ENTRY) but handle_action NOT REACHED.; The call chain breaks at ieee802_11_if_print → ieee802_11_print. LIKELY CAUSE: The harness 'neutralized' ieee802_11_if_print too aggressively, removing the call to ieee802_11_print. FIX: In WriteHarness, ensure ieee802_11_if_print CALLS ieee802_11_print. Neutralization must KEEP calls to spine functions (remove only off-path code, NOT the call to the next spine function). Check the harness .c file for a call to ieee802_11_print().
+  [Turn 27] Tool: ReplaceCode
+  [Turn 28] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Skipped harness_types.h injection into driver.c (NO_HARNESS_TYPES marker)
+    [i] Skipped harness_types.h injection into stubs.c (NO_HARNESS_TYPES marker)
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+    [+] print-802_11.c -> OK
+    [+] smart_stubs.c -> OK
+    [+] stubs.c -> OK
+    [KLEE] Running: timeout=300s
+    [KLEE] Command: /opt/klee/bin/klee --output-dir=/app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/logs/klee_run_4 --max-time=300s --write-kqueries --write-smt2s --optimize --search=random-path --search=dfs --only-output-states-covering-new --external-calls=all --check-overshift --max-depth=1000 --max-memory=2048 /app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/harness/slice.bc
+    KLEE: output directory is "/app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/logs/klee_run_4"
+    KLEE: Using Z3 solver backend
+    KLEE: Deterministic allocator: Using quarantine queue size 8
+    KLEE: Deterministic allocator: globals (start-address=0x7706e9141000 size=10 GiB)
+    KLEE: Deterministic allocator: constants (start-address=0x770469141000 size=10 GiB)
+    KLEE: Deterministic allocator: heap (start-address=0x760469141000 size=1024 GiB)
+    KLEE: Deterministic allocator: stack (start-address=0x75e469141000 size=128 GiB)
+    KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+    KLEE: WARNING ONCE: ieee802_11_if_print: SPINE_PROBE:ieee802_11_if_print:ENTRY
+    KLEE: ERROR: print-802_11.c:52: memory error: out of bound pointer
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: done: total instructions = 185
+    KLEE: done: completed paths = 0
+    KLEE: done: partially completed paths = 1
+    KLEE: done: generated tests = 1
+    [KLEE] Exit code: 0, Elapsed: 0.0s
+    [KLEE] Log saved: /app/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/logs/klee_4.log
+    [KLEE] Crash: CRASH: ptr at print-802_11.c:52
+    [KLEE] SPINE COVERAGE: ieee802_11_if_print: REACHED [ENTRY] | ieee802_11_print: NOT REACHED | mgmt_body_print: NOT REACHED | handle_action: NOT REACHED
+    [KLEE] Results: bug_found=True, sink_reached=False, paths=0, tests=1
+    [KLEE] Crash: CRASH: ptr at print-802_11.c:52
+    [KLEE] Diagnostics: MEMORY ERROR detected by KLEE.; SPINE COVERAGE: ieee802_11_if_print: REACHED [ENTRY] | ieee802_11_print: NOT REACHED | mgmt_body_print: NOT REACHED | handle_action: NOT REACHED; BLOCKED: Reached ieee802_11_if_print (ENTRY) but handle_action NOT REACHED.; The call chain breaks at ieee802_11_if_print → ieee802_11_print. LIKELY CAUSE: The harness 'neutralized' ieee802_11_if_print too aggressively, removing the call to ieee802_11_print. FIX: In WriteHarness, ensure ieee802_11_if_print CALLS ieee802_11_print. Neutralization must KEEP calls to spine functions (remove only off-path code, NOT the call to the next spine function). Check the harness .c file for a call to ieee802_11_print().
+  [Turn 29] Tool: ReadSAContext
+  [System] BLOCKED: ReadSAContext called 3 times (limit: 2)
+  [Turn 30] Tool: WriteHarness
+    [+] Wrote harness: print-802_11.c (40 lines)
+    [+] Inserted 4 spine coverage probes
+    [+] Injected spine probes
+    [+] Line map: 12 harness lines mapped to original source
+    [+] Generated harness_types.h (18 lines, 2 structs, 4 typedefs)
+    [i] Driver MUST: #include "harness_types.h" for correct struct layouts
+Done.

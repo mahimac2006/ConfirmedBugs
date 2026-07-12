@@ -1,0 +1,1 @@
+{"tool": "Done", "args": {"verdict": "TP", "details": "KLEE triggered a real crash in print-beep.c:37 (ptr.err) during beep_print; this is a source bug found in the target spine. The run did not reach the l_strnstart sink probe, so this is recorded as a valid positive finding but not the originally intended sink line."}}

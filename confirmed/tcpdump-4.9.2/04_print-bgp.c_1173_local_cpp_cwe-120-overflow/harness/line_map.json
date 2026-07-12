@@ -1,0 +1,309 @@
+{
+  "print-bgp.c": {
+    "1": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 41,
+      "code": "#include <stdio.h>"
+    },
+    "4": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 42,
+      "code": "#include <string.h>"
+    },
+    "12": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 37,
+      "code": "#endif"
+    },
+    "16": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 37,
+      "code": "#endif"
+    },
+    "23": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 50,
+      "code": "struct bgp {"
+    },
+    "25": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 52,
+      "code": "uint16_t bgp_len;"
+    },
+    "27": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 54,
+      "code": "};"
+    },
+    "33": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 518,
+      "code": "{"
+    },
+    "35": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2494,
+      "code": "const u_char *p;"
+    },
+    "36": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2787,
+      "code": "const u_char *ep;"
+    },
+    "37": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2788,
+      "code": "const u_char *start;"
+    },
+    "38": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2789,
+      "code": "const u_char marker[] = {"
+    },
+    "39": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2790,
+      "code": "0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,"
+    },
+    "40": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2791,
+      "code": "0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,"
+    },
+    "41": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2792,
+      "code": "};"
+    },
+    "42": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2793,
+      "code": "struct bgp bgp;"
+    },
+    "43": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2794,
+      "code": "uint16_t hlen;"
+    },
+    "45": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2796,
+      "code": "ep = dat + length;"
+    },
+    "46": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2797,
+      "code": "if (ndo->ndo_snapend < dat + length)"
+    },
+    "47": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2798,
+      "code": "ep = ndo->ndo_snapend;"
+    },
+    "50": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2803,
+      "code": "return;"
+    },
+    "52": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2805,
+      "code": "p = dat;"
+    },
+    "53": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2806,
+      "code": "start = p;"
+    },
+    "54": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2807,
+      "code": "while (p < ep) {"
+    },
+    "55": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2810,
+      "code": "if (p[0] != 0xff) {"
+    },
+    "56": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2811,
+      "code": "p++;"
+    },
+    "57": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2812,
+      "code": "continue;"
+    },
+    "58": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2813,
+      "code": "}"
+    },
+    "59": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2817,
+      "code": "if (memcmp(p, marker, sizeof(marker)) != 0) {"
+    },
+    "60": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2818,
+      "code": "p++;"
+    },
+    "61": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2819,
+      "code": "continue;"
+    },
+    "62": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2820,
+      "code": "}"
+    },
+    "63": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2824,
+      "code": "memcpy(&bgp, p, BGP_SIZE);"
+    },
+    "64": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2829,
+      "code": "hlen = ntohs(bgp.bgp_len);"
+    },
+    "66": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2833,
+      "code": "break;"
+    },
+    "68": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2837,
+      "code": "if (!bgp_header_print(ndo, p, hlen))"
+    },
+    "69": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2838,
+      "code": "return;"
+    },
+    "70": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2839,
+      "code": "p += hlen;"
+    },
+    "71": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2840,
+      "code": "start = p;"
+    },
+    "72": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2841,
+      "code": "} else {"
+    },
+    "73": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2846,
+      "code": "break;"
+    },
+    "74": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2847,
+      "code": "}"
+    },
+    "75": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2848,
+      "code": "}"
+    },
+    "76": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2850,
+      "code": "return;"
+    },
+    "77": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2848,
+      "code": "}"
+    },
+    "80": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 1151,
+      "code": "const u_char *pptr, u_int itemlen, char *buf, u_int buflen)"
+    },
+    "81": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 1152,
+      "code": "{"
+    },
+    "83": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 1153,
+      "code": "struct in6_addr addr;"
+    },
+    "84": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 1154,
+      "code": "u_int plen, plenbytes;"
+    },
+    "86": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 538,
+      "code": "plen = pptr[0];"
+    },
+    "88": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 589,
+      "code": "itemlen -= 4;"
+    },
+    "89": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 591,
+      "code": "memset(&addr, 0, sizeof(addr));"
+    },
+    "90": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 592,
+      "code": "plenbytes = (plen + 7) / 8;"
+    },
+    "91": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 595,
+      "code": "memcpy(&addr, &pptr[4], plenbytes);"
+    },
+    "92": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 601,
+      "code": "snprintf(buf, buflen, \"%s/%d, label:%u %s\","
+    },
+    "93": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 1180,
+      "code": "ip6addr_string(ndo, &addr),"
+    },
+    "94": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 1181,
+      "code": "plen,"
+    },
+    "96": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 1183,
+      "code": "((pptr[3]&1)==0) ? \"(BOGUS: Bottom of Stack NOT set!)\" : \"(bottom)\" );"
+    },
+    "98": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 1185,
+      "code": "return 4 + plenbytes;"
+    },
+    "99": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 1192,
+      "code": "}"
+    },
+    "105": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 1192,
+      "code": "}"
+    }
+  }
+}

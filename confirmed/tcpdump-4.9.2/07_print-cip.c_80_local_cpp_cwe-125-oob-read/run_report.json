@@ -1,0 +1,25 @@
+{
+  "search_status": "FOUND_UNTARGETED",
+  "verdict": "FP",
+  "crash_relevance": "",
+  "secondary_bugs": 0,
+  "failure_reason": "",
+  "metrics": {
+    "tokens_total": 130026,
+    "tokens_prompt": 127295,
+    "tokens_completion": 2731,
+    "turns": 12,
+    "klee_runs": 3
+  },
+  "bug": {
+    "type": "",
+    "file": "",
+    "line": 0,
+    "function": "",
+    "asan_confirmed": false,
+    "cwe": ""
+  },
+  "spec": "/app/specs/tcpdump-4.9.2/0specs/094_print-cip.c_80_local_cpp_cwe-125-oob-read.json",
+  "vul_file": "print-cip.c",
+  "vul_line": "80"
+}

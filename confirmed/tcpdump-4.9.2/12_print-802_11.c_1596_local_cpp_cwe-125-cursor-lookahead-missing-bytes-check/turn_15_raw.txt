@@ -1,0 +1,1 @@
+{"tool": "ReplaceCode", "args": {"file": "print-802_11.c", "search": "struct lladdr_info { struct lladdr addr; };", "replace": "struct lladdr_info { const u_char *addr; };\nstruct pcap_pkthdr { u_int len; u_int caplen; };"} }

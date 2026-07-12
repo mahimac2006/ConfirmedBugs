@@ -1,0 +1,459 @@
+{
+  "path_map": {
+    "babel_print": {
+      "target": "babel_print_v2",
+      "target_line": 14,
+      "guards": [],
+      "on_path_calls": [
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 1
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 3
+        }
+      ],
+      "branch_skips": [
+        {
+          "start": 5,
+          "end": 10,
+          "condition": "if(cp[0] != 42) {",
+          "calls": [
+            "ND_PRINT"
+          ]
+        }
+      ]
+    },
+    "babel_print_v2": {
+      "target": "format_prefix",
+      "target_line": 167,
+      "guards": [],
+      "on_path_calls": [
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 7
+        },
+        {
+          "func": "EXTRACT_16BITS",
+          "ret_var": "bodylen",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 10
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 11
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 21
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 28
+        },
+        {
+          "func": "ICHECK",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 29
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 32
+        },
+        {
+          "func": "ICHECK",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 33
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 38
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 40
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 49
+        },
+        {
+          "func": "EXTRACT_16BITS",
+          "ret_var": "nonce",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 51
+        },
+        {
+          "func": "EXTRACT_16BITS",
+          "ret_var": "interval",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 52
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 53
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 63
+        },
+        {
+          "func": "EXTRACT_16BITS",
+          "ret_var": "nonce",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 65
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 66
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 76
+        },
+        {
+          "func": "EXTRACT_16BITS",
+          "ret_var": "seqno",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 78
+        },
+        {
+          "func": "EXTRACT_16BITS",
+          "ret_var": "interval",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 79
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 80
+        },
+        {
+          "func": "subtlvs_print",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 83
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 95
+        },
+        {
+          "func": "EXTRACT_16BITS",
+          "ret_var": "txcost",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 97
+        },
+        {
+          "func": "EXTRACT_16BITS",
+          "ret_var": "interval",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 98
+        },
+        {
+          "func": "network_address",
+          "ret_var": "rc",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 99
+        },
+        {
+          "func": "format_address",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 102
+        },
+        {
+          "func": "subtlvs_print",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 105
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 115
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 117
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 128
+        },
+        {
+          "func": "network_address",
+          "ret_var": "rc",
+          "stub_type": "constrained",
+          "constraint": {
+            "var": "rc",
+            "avoid_op": "<",
+            "avoid_val": "0"
+          },
+          "line": 130
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 132
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 139
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 141
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 143
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 152
+        },
+        {
+          "func": "network_prefix",
+          "ret_var": "rc",
+          "stub_type": "constrained",
+          "constraint": {
+            "var": "rc",
+            "avoid_op": "<",
+            "avoid_val": "0"
+          },
+          "line": 155
+        },
+        {
+          "func": "EXTRACT_16BITS",
+          "ret_var": "interval",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 160
+        },
+        {
+          "func": "EXTRACT_16BITS",
+          "ret_var": "seqno",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 161
+        },
+        {
+          "func": "EXTRACT_16BITS",
+          "ret_var": "metric",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 162
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 163
+        }
+      ],
+      "branch_skips": [
+        {
+          "start": 22,
+          "end": 26,
+          "condition": "if((type = message[0]) == MESSAGE_PAD1) {",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 46,
+          "end": 47,
+          "condition": "if (!ndo->ndo_vflag)",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 60,
+          "end": 61,
+          "condition": "if (!ndo->ndo_vflag)",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 73,
+          "end": 74,
+          "condition": "if (!ndo->ndo_vflag)",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 90,
+          "end": 91,
+          "condition": "if (!ndo->ndo_vflag)",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 100,
+          "end": 101,
+          "condition": "if(rc < 0) { ND_PRINT((ndo, \"%s\", tstr)); break; }",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 112,
+          "end": 113,
+          "condition": "if (!ndo->ndo_vflag)",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 123,
+          "end": 124,
+          "condition": "if (!ndo->ndo_vflag)",
+          "calls": [
+            "ND_PRINT"
+          ]
+        }
+      ]
+    }
+  },
+  "sink_info": {
+    "sink_labels": [],
+    "sink_conditions": [],
+    "buffer_requirements": []
+  },
+  "stub_prescriptions": {
+    "ND_PRINT": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "ND_TCHECK2": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "EXTRACT_16BITS": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "ICHECK": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "subtlvs_print": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "network_address": {
+      "type": "constrained",
+      "return": "0",
+      "reason": "return >= 0 to avoid error branch"
+    },
+    "format_address": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "network_prefix": {
+      "type": "constrained",
+      "return": "0",
+      "reason": "return >= 0 to avoid error branch"
+    }
+  },
+  "constants": {},
+  "init_template": "/* === PATH-SENSITIVE INITIALIZATION TEMPLATE ===\n * Generated from backward analysis: sink \u2192 target \u2192 entry \u2192 driver */\n\n// === babel_print \u2192 babel_print_v2: Calls needing stubs ===\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n\n// === babel_print_v2 \u2192 format_prefix: Calls needing stubs ===\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  EXTRACT_16BITS() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  ICHECK() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  ICHECK() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  EXTRACT_16BITS() \u2192 trivial stub (return 0)\n//  EXTRACT_16BITS() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  EXTRACT_16BITS() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  EXTRACT_16BITS() \u2192 trivial stub (return 0)\n//  EXTRACT_16BITS() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  subtlvs_print() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  EXTRACT_16BITS() \u2192 trivial stub (return 0)\n//  EXTRACT_16BITS() \u2192 trivial stub (return 0)\n//  network_address() \u2192 trivial stub (return 0)\n//  format_address() \u2192 trivial stub (return 0)\n//  subtlvs_print() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  network_address() \u2192 STUB returns 0  (return >= 0 to avoid error branch)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  network_prefix() \u2192 STUB returns 0  (return >= 0 to avoid error branch)\n//  EXTRACT_16BITS() \u2192 trivial stub (return 0)\n//  EXTRACT_16BITS() \u2192 trivial stub (return 0)\n//  EXTRACT_16BITS() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n\n"
+}

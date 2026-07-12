@@ -1,0 +1,1 @@
+{"thought":"Need inspect summary for exact switch case and labels before writing harness/driver correctly.","tool":"ReadSAContext","args":{"file":"vulnerability_summary.json"}}

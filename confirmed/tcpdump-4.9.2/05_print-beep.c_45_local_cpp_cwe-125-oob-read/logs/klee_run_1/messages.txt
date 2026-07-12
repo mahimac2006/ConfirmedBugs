@@ -1,0 +1,8 @@
+KLEE: Using Z3 solver backend
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x71da8344f000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x71d80344f000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x70d80344f000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x70b80344f000 size=128 GiB)
+KLEE: ERROR: driver.c:53: failed external call: beep_print
+KLEE: NOTE: now ignoring this error at this location

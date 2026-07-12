@@ -1,0 +1,1 @@
+{"tool": "WriteStubs", "args": {"code": "#include <stdlib.h>\n#include <string.h>\n#include <klee/klee.h>\n"}}

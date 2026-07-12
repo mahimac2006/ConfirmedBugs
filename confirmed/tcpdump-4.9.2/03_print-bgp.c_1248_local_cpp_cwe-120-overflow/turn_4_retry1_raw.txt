@@ -1,0 +1,1 @@
+{"thought":"Harness and driver are written. Next step is CompileSlice to see whether the minimal spine compiles and whether KLEE reaches the sink. I used symbolic buffer setup and forced BGP_UPDATE in the header to drive into bgp_update_print → bgp_attr_print → decode_clnp_prefix.","tool":"CompileSlice","args":{}}

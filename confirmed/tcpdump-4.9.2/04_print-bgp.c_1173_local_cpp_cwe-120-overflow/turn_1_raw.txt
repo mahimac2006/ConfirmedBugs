@@ -1,0 +1,1 @@
+{"thought":"Need gather code for entry and vulnerable function only once.", "tool":"GatherCode", "args":{"functions":"bgp_print,decode_labeled_prefix6","types":"netdissect_options"}}

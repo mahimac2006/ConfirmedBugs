@@ -1,0 +1,204 @@
+{
+  "print-bgp.c": {
+    "2": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 42,
+      "code": "#include <string.h>"
+    },
+    "9": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 37,
+      "code": "#endif"
+    },
+    "30": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 54,
+      "code": "};"
+    },
+    "33": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 518,
+      "code": "{"
+    },
+    "35": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2494,
+      "code": "const u_char *p;"
+    },
+    "36": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2787,
+      "code": "const u_char *ep;"
+    },
+    "37": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2788,
+      "code": "const u_char *start;"
+    },
+    "38": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2789,
+      "code": "const u_char marker[] = {"
+    },
+    "39": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2790,
+      "code": "0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,"
+    },
+    "40": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2791,
+      "code": "0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,"
+    },
+    "41": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2792,
+      "code": "};"
+    },
+    "43": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2794,
+      "code": "uint16_t hlen;"
+    },
+    "45": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2796,
+      "code": "ep = dat + length;"
+    },
+    "46": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2797,
+      "code": "if (ndo->ndo_snapend < dat + length)"
+    },
+    "47": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2798,
+      "code": "ep = ndo->ndo_snapend;"
+    },
+    "49": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2805,
+      "code": "p = dat;"
+    },
+    "50": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2806,
+      "code": "start = p;"
+    },
+    "52": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2803,
+      "code": "return;"
+    },
+    "54": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2807,
+      "code": "while (p < ep) {"
+    },
+    "55": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2810,
+      "code": "if (p[0] != 0xff) {"
+    },
+    "56": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2811,
+      "code": "p++;"
+    },
+    "57": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2812,
+      "code": "continue;"
+    },
+    "58": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2813,
+      "code": "}"
+    },
+    "60": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2817,
+      "code": "if (memcmp(p, marker, sizeof(marker)) != 0) {"
+    },
+    "61": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2818,
+      "code": "p++;"
+    },
+    "62": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2819,
+      "code": "continue;"
+    },
+    "63": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2820,
+      "code": "}"
+    },
+    "65": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2824,
+      "code": "memcpy(&bgp, p, BGP_SIZE);"
+    },
+    "66": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2829,
+      "code": "hlen = ntohs(bgp.bgp_len);"
+    },
+    "67": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2830,
+      "code": "if (hlen < BGP_SIZE) {"
+    },
+    "68": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2833,
+      "code": "break;"
+    },
+    "69": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2834,
+      "code": "}"
+    },
+    "72": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2839,
+      "code": "p += hlen;"
+    },
+    "73": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2840,
+      "code": "start = p;"
+    },
+    "74": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2841,
+      "code": "} else {"
+    },
+    "75": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2846,
+      "code": "break;"
+    },
+    "76": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2847,
+      "code": "}"
+    },
+    "77": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2848,
+      "code": "}"
+    },
+    "79": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2850,
+      "code": "return;"
+    },
+    "80": {
+      "orig_file": "print-bgp.c",
+      "orig_line": 2848,
+      "code": "}"
+    }
+  }
+}

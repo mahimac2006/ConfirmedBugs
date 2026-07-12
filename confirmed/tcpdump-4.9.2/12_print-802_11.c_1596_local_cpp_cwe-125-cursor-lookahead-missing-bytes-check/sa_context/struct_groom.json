@@ -1,0 +1,165 @@
+{
+  "path_map": {
+    "ieee802_11_if_print": {
+      "target": "ieee802_11_print",
+      "target_line": 1,
+      "guards": [],
+      "on_path_calls": [],
+      "branch_skips": []
+    },
+    "ieee802_11_print": {
+      "target": "mgmt_body_print",
+      "target_line": 60,
+      "guards": [],
+      "on_path_calls": [
+        {
+          "func": "EXTRACT_LE_16BITS",
+          "ret_var": "fc",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 25
+        },
+        {
+          "func": "extract_header_length",
+          "ret_var": "hdrlen",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 26
+        },
+        {
+          "func": "roundup2",
+          "ret_var": "hdrlen",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 32
+        },
+        {
+          "func": "ieee_802_11_hdr_print",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 46
+        },
+        {
+          "func": "get_mgmt_src_dst_mac",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 59
+        }
+      ],
+      "branch_skips": [
+        {
+          "start": 8,
+          "end": 11,
+          "condition": "if (length < fcslen) {",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 13,
+          "end": 18,
+          "condition": "if (caplen > length) {",
+          "calls": []
+        },
+        {
+          "start": 20,
+          "end": 23,
+          "condition": "if (caplen < IEEE802_11_FC_LEN) {",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 27,
+          "end": 30,
+          "condition": "if (hdrlen == 0) {",
+          "calls": []
+        },
+        {
+          "start": 33,
+          "end": 37,
+          "condition": "if (ndo->ndo_Hflag && FC_TYPE(fc) == T_DATA &&",
+          "calls": [
+            "FC_TYPE",
+            "extract_mesh_header_length",
+            "DATA_FRAME_IS_QOS",
+            "FC_SUBTYPE"
+          ]
+        },
+        {
+          "start": 40,
+          "end": 43,
+          "condition": "if (caplen < hdrlen) {",
+          "calls": [
+            "ND_PRINT"
+          ]
+        }
+      ]
+    },
+    "mgmt_body_print": {
+      "target": "handle_action",
+      "target_line": 30,
+      "guards": [
+        {
+          "condition": "FC_PROTECTED(fc)",
+          "start_line": 4,
+          "end_line": 5,
+          "inits": []
+        }
+      ],
+      "on_path_calls": [
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 1
+        }
+      ],
+      "branch_skips": []
+    }
+  },
+  "sink_info": {
+    "sink_labels": [],
+    "sink_conditions": [],
+    "buffer_requirements": []
+  },
+  "stub_prescriptions": {
+    "EXTRACT_LE_16BITS": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "extract_header_length": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "roundup2": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "ieee_802_11_hdr_print": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "get_mgmt_src_dst_mac": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "ND_PRINT": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    }
+  },
+  "constants": {
+    "MAX_MCS_INDEX": 76
+  },
+  "init_template": "/* === PATH-SENSITIVE INITIALIZATION TEMPLATE ===\n * Generated from backward analysis: sink \u2192 target \u2192 entry \u2192 driver */\n\n// === ieee802_11_print \u2192 mgmt_body_print: Calls needing stubs ===\n//  EXTRACT_LE_16BITS() \u2192 trivial stub (return 0)\n//  extract_header_length() \u2192 trivial stub (return 0)\n//  roundup2() \u2192 trivial stub (return 0)\n//  ieee_802_11_hdr_print() \u2192 trivial stub (return 0)\n//  get_mgmt_src_dst_mac() \u2192 trivial stub (return 0)\n\n// === mgmt_body_print \u2192 handle_action: Guards ===\n//  if (FC_PROTECTED(fc)) return \u2192 to PASS:\n\n// === mgmt_body_print \u2192 handle_action: Calls needing stubs ===\n//  ND_PRINT() \u2192 trivial stub (return 0)\n\n"
+}

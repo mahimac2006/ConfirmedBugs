@@ -1,0 +1,52 @@
+ASan Confirmed Specs: 12
+============================================================
+
+1. 01_print-802_11.c_1150_local_cpp_cwe-120-overflow
+   Error: heap-buffer-overflow
+   Location: ieee802_11_if_print @ print-802_11.c:2140
+
+2. 02_print-802_11.c_1180_local_cpp_cwe-120-overflow
+   Error: heap-buffer-overflow
+   Location: ieee802_11_print @ print-802_11.c:2059
+
+3. 03_print-bgp.c_1248_local_cpp_cwe-120-overflow
+   Error: heap-buffer-overflow
+   Location: bgp_print @ print-bgp.c:2797
+
+4. 04_print-bgp.c_1173_local_cpp_cwe-120-overflow
+   Error: heap-buffer-overflow
+   Location: bgp_print @ print-bgp.c:2797
+
+5. 05_print-beep.c_45_local_cpp_cwe-125-oob-read
+   Error: heap-buffer-overflow
+   Location: beep_print @ print-beep.c:67
+
+6. 06_print-cdp.c_322_local_cpp_cwe-125-oob-read
+   Error: heap-buffer-overflow
+   Location: cdp_print @ print-cdp.c:107
+
+7. 07_print-cip.c_80_local_cpp_cwe-125-oob-read
+   Error: heap-buffer-overflow
+   Location: cip_print @ print-cip.c:50
+
+8. 08_print-babel.c_127_local_cpp_cwe-125-oob-read
+   Error: heap-buffer-overflow
+   Location: babel_print @ print-babel.c:52
+
+9. 09_print-bgp.c_2810_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check
+   Error: heap-buffer-overflow
+   Location: bgp_print @ print-bgp.c:2797
+
+10. 10_print-dvmrp.c_79_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check
+   Error: heap-buffer-overflow
+   Location: dvmrp_print @ print-dvmrp.c:75
+
+11. 11_print-dvmrp.c_80_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check
+   Error: heap-buffer-overflow
+   Location: dvmrp_print @ print-dvmrp.c:75
+
+12. 12_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check
+   Error: heap-buffer-overflow
+   Location: ieee802_11_if_print @ print-802_11.c:2140
+
+

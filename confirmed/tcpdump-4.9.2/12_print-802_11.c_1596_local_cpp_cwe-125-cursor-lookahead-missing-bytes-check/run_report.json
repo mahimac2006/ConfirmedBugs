@@ -1,0 +1,25 @@
+{
+  "search_status": "INCONCLUSIVE",
+  "verdict": "INCONCLUSIVE_LOW_COVERAGE",
+  "crash_relevance": "",
+  "secondary_bugs": 0,
+  "failure_reason": "Could not reach handle_action via spine (only 0 completed paths \u2014 insufficient coverage)",
+  "metrics": {
+    "tokens_total": 291919,
+    "tokens_prompt": 286511,
+    "tokens_completion": 5408,
+    "turns": 30,
+    "klee_runs": 4
+  },
+  "bug": {
+    "type": "",
+    "file": "",
+    "line": 0,
+    "function": "",
+    "asan_confirmed": false,
+    "cwe": ""
+  },
+  "spec": "/app/specs/tcpdump-4.9.2/0specs/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check.json",
+  "vul_file": "print-802_11.c",
+  "vul_line": "1596"
+}

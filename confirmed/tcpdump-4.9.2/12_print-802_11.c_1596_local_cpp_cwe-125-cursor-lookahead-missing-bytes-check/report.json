@@ -1,0 +1,67 @@
+{
+  "findings": [],
+  "line_map": {
+    "print-802_11.c": {
+      "3": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 31,
+        "code": "#include <string.h>"
+      },
+      "14": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 3091,
+        "code": "u_int len;"
+      },
+      "22": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 3009,
+        "code": "default:"
+      },
+      "23": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 3006,
+        "code": "break;"
+      },
+      "24": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 3007,
+        "code": "}"
+      },
+      "25": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1607,
+        "code": "ND_PRINT((ndo, \"Reserved(%d) Act#%d\", p[0], p[1]));"
+      },
+      "27": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1586,
+        "code": "return 0;"
+      },
+      "28": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1591,
+        "code": "}"
+      },
+      "33": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1591,
+        "code": "}"
+      },
+      "38": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 1591,
+        "code": "}"
+      },
+      "42": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 2140,
+        "code": "return ieee802_11_print(ndo, p, h->len, h->caplen, 0, 0);"
+      },
+      "43": {
+        "orig_file": "print-802_11.c",
+        "orig_line": 2141,
+        "code": "}"
+      }
+    }
+  }
+}

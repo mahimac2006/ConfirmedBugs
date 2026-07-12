@@ -1,0 +1,9 @@
+KLEE: WARNING: undefined reference to function: bgp_header_print
+KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+KLEE: WARNING ONCE: bgp_print: SPINE_PROBE:bgp_print:ENTRY
+KLEE: WARNING ONCE: skipping fork (memory cap exceeded)
+KLEE: WARNING ONCE: silently concretizing (reason: external call) expression (Read w8 0 buf) to value 0 (print-bgp.c:56)
+KLEE: WARNING ONCE: calling external: bgp_header_print(131454221492224, 131729099399209, (ZExt w32 (Extract w16 0 (Or w32 (AShr w32 N0:(ZExt w32 (ReadLSB w16 41 buf))
+                                            8)
+                                  (Shl w32 N0 8))))) at print-bgp.c:56 8
+KLEE: WARNING: killing 24566 states (over memory cap: 2149MB)

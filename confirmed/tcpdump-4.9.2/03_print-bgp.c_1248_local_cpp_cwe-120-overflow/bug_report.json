@@ -1,0 +1,35 @@
+{
+    "summary": {
+        "verdict": "SE_DETECTED",
+        "asan_confirmed": true,
+        "crash_relevance": "asan_confirmed",
+        "cwe": "heap-buffer-overflow",
+        "total_asan_crashes": 1
+    },
+    "vulnerability": {
+        "original_file": "print-bgp.c",
+        "original_line": 0
+    },
+    "all_crashes": [],
+    "all_asan_crashes": [
+        {
+            "error_type": "heap-buffer-overflow",
+            "crash_function": "bgp_print",
+            "crash_file": "print-bgp.c",
+            "crash_line": 2797
+        }
+    ],
+    "asan_result": {
+        "triggered": true,
+        "harness_artifact": false,
+        "error_type": "heap-buffer-overflow",
+        "crash_function": "bgp_print",
+        "crash_file": "print-bgp.c",
+        "crash_line": 2797,
+        "original_file": "",
+        "original_line": 0,
+        "original_code": "",
+        "original_context": "",
+        "output": "=================================================================\n==137063==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x502000000090 at pc 0x5947b938a514 bp 0x7fffb7b88960 sp 0x7fffb7b88950\nREAD of size 8 at 0x502000000090 thread T0\n    #0 0x5947b938a513 in bgp_print print-bgp.c:2797\n    #1 0x5947b937bb01 in main /root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/055_print-bgp.c_1248_local_cpp_cwe-120-overflow/asan_real/replay_driver.c:22\n    #2 0x7eeddf22a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #3 0x7eeddf22a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #4 0x5947b937b8c4 in _start (/root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/055_print-bgp.c_1248_local_cpp_cwe-120-overflow/asan_real/replay_bin+0x1118c4) (BuildId: 5758ff45ca875820570d6280466b334503b2df9a)\n\n0x502000000090 is located 112 bytes after 16-byte region [0x502000000010,0x502000000020)\nallocated by thread T0 here:\n    #0 0x7eeddfafd340 in calloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:77\n    #1 0x5947b937b9a3 in main /root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/055_print-bgp.c_1248_local_cpp_cwe-120-overflow/asan_real/replay_driver.c:17\n    #2 0x7eeddf22a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #3 0x7eeddf22a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #4 0x5947b937b8c4 in _start (/root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/055_print-bgp.c_1248_local_cpp_cwe-120-overflow/asan_real/replay_bin+0x1118c4) (BuildId: 5758ff45ca875820570d6280466b334503b2df9a)\n\nSUMMARY: AddressSanitizer: heap-buffer-overflow print-bgp.c:2797 in bgp_print\nShadow bytes around t"
+    }
+}

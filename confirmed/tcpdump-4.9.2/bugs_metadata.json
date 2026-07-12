@@ -1,0 +1,135 @@
+{
+  "project": "tcpdump-4.9.2",
+  "total_bugs": 12,
+  "total_pairs": 66,
+  "total_output_files": 78,
+  "output_directory": "generated",
+  "bugs": [
+    {
+      "id": 1,
+      "harness_dir": "confirmed/tcpdump-4.9.2/01_print-802_11_c_1150_local_cpp_cwe-120-overflow",
+      "vulnerable_file": "print-802_11.c",
+      "crash_line": 2140,
+      "entry_function": "ieee802_11_if_print",
+      "vulnerability_type": "heap-buffer-overflow",
+      "cwe": "CWE-120",
+      "protocol_parser": "IEEE 802.11"
+    },
+    {
+      "id": 2,
+      "harness_dir": "confirmed/tcpdump-4.9.2/02_print-802_11_c_1180_local_cpp_cwe-120-overflow",
+      "vulnerable_file": "print-802_11.c",
+      "crash_line": 2059,
+      "entry_function": "ieee802_11_print",
+      "vulnerability_type": "heap-buffer-overflow",
+      "cwe": "CWE-120",
+      "protocol_parser": "IEEE 802.11"
+    },
+    {
+      "id": 3,
+      "harness_dir": "confirmed/tcpdump-4.9.2/03_print-bgp_c_1248_local_cpp_cwe-120-overflow",
+      "vulnerable_file": "print-bgp.c",
+      "crash_line": 2797,
+      "entry_function": "bgp_print",
+      "vulnerability_type": "heap-buffer-overflow",
+      "cwe": "CWE-120",
+      "protocol_parser": "BGP"
+    },
+    {
+      "id": 4,
+      "harness_dir": "confirmed/tcpdump-4.9.2/04_print-bgp_c_1173_local_cpp_cwe-120-overflow",
+      "vulnerable_file": "print-bgp.c",
+      "crash_line": 2797,
+      "entry_function": "bgp_print",
+      "vulnerability_type": "heap-buffer-overflow",
+      "cwe": "CWE-120",
+      "protocol_parser": "BGP"
+    },
+    {
+      "id": 5,
+      "harness_dir": "confirmed/tcpdump-4.9.2/05_print-beep_c_45_local_cpp_cwe-125-oob-read",
+      "vulnerable_file": "print-beep.c",
+      "crash_line": 67,
+      "entry_function": "beep_print",
+      "vulnerability_type": "heap-buffer-overflow",
+      "cwe": "CWE-125",
+      "protocol_parser": "BEEP"
+    },
+    {
+      "id": 6,
+      "harness_dir": "confirmed/tcpdump-4.9.2/06_print-cdp_c_322_local_cpp_cwe-125-oob-read",
+      "vulnerable_file": "print-cdp.c",
+      "crash_line": 107,
+      "entry_function": "cdp_print",
+      "vulnerability_type": "heap-buffer-overflow",
+      "cwe": "CWE-125",
+      "protocol_parser": "CDP"
+    },
+    {
+      "id": 7,
+      "harness_dir": "confirmed/tcpdump-4.9.2/07_print-cip_c_80_local_cpp_cwe-125-oob-read",
+      "vulnerable_file": "print-cip.c",
+      "crash_line": 50,
+      "entry_function": "cip_print",
+      "vulnerability_type": "heap-buffer-overflow",
+      "cwe": "CWE-125",
+      "protocol_parser": "CIP"
+    },
+    {
+      "id": 8,
+      "harness_dir": "confirmed/tcpdump-4.9.2/08_print-babel_c_127_local_cpp_cwe-125-oob-read",
+      "vulnerable_file": "print-babel.c",
+      "crash_line": 52,
+      "entry_function": "babel_print",
+      "vulnerability_type": "heap-buffer-overflow",
+      "cwe": "CWE-125",
+      "protocol_parser": "Babel"
+    },
+    {
+      "id": 9,
+      "harness_dir": "confirmed/tcpdump-4.9.2/09_print-bgp_c_2810_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check",
+      "vulnerable_file": "print-bgp.c",
+      "crash_line": 2797,
+      "entry_function": "bgp_print",
+      "vulnerability_type": "heap-buffer-overflow",
+      "cwe": "CWE-125",
+      "protocol_parser": "BGP"
+    },
+    {
+      "id": 10,
+      "harness_dir": "confirmed/tcpdump-4.9.2/10_print-dvmrp_c_79_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check",
+      "vulnerable_file": "print-dvmrp.c",
+      "crash_line": 75,
+      "entry_function": "dvmrp_print",
+      "vulnerability_type": "heap-buffer-overflow",
+      "cwe": "CWE-125",
+      "protocol_parser": "DVMRP"
+    },
+    {
+      "id": 11,
+      "harness_dir": "confirmed/tcpdump-4.9.2/11_print-dvmrp_c_80_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check",
+      "vulnerable_file": "print-dvmrp.c",
+      "crash_line": 75,
+      "entry_function": "dvmrp_print",
+      "vulnerability_type": "heap-buffer-overflow",
+      "cwe": "CWE-125",
+      "protocol_parser": "DVMRP"
+    },
+    {
+      "id": 12,
+      "harness_dir": "confirmed/tcpdump-4.9.2/12_print-802_11_c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check",
+      "vulnerable_file": "print-802_11.c",
+      "crash_line": 2140,
+      "entry_function": "ieee802_11_if_print",
+      "vulnerability_type": "heap-buffer-overflow",
+      "cwe": "CWE-125",
+      "protocol_parser": "IEEE 802.11"
+    }
+  ],
+  "generation_instructions": {
+    "stage_2_predicates": "Generate 12 predicate files (predicate_1.c through predicate_12.c). Each predicate follows Stage 2 algorithm: replicate vulnerable logic from entry_function, add explicit bounds checks, replace crash sinks with return 1, return 0 at guards.",
+    "stage_3_drivers": "Generate 66 driver files (driver_1_2.c through driver_11_12.c). Each driver follows Stage 3 algorithm: allocate shared symbolic buffer, call two predicates with identical inputs, constrain both to return 1, place klee_assert(0).",
+    "reference": "bugs_metadata.json provides bug locations and harness paths. Paper (Stages 2-3) provides transformation algorithms.",
+    "output": "All 78 files (12 predicates + 66 drivers) to generated/ directory"
+  }
+}

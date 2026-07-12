@@ -1,0 +1,35 @@
+{
+    "summary": {
+        "verdict": "SE_DETECTED",
+        "asan_confirmed": true,
+        "crash_relevance": "asan_confirmed",
+        "cwe": "heap-buffer-overflow",
+        "total_asan_crashes": 1
+    },
+    "vulnerability": {
+        "original_file": "print-cip.c",
+        "original_line": 0
+    },
+    "all_crashes": [],
+    "all_asan_crashes": [
+        {
+            "error_type": "heap-buffer-overflow",
+            "crash_function": "cip_print",
+            "crash_file": "print-cip.c",
+            "crash_line": 50
+        }
+    ],
+    "asan_result": {
+        "triggered": true,
+        "harness_artifact": false,
+        "error_type": "heap-buffer-overflow",
+        "crash_function": "cip_print",
+        "crash_file": "print-cip.c",
+        "crash_line": 50,
+        "original_file": "",
+        "original_line": 0,
+        "original_code": "",
+        "original_context": "",
+        "output": "=================================================================\n==137129==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x5020000000a8 at pc 0x584cdd7f4d03 bp 0x7fff8ba88270 sp 0x7fff8ba88260\nREAD of size 8 at 0x5020000000a8 thread T0\n    #0 0x584cdd7f4d02 in cip_print print-cip.c:50\n    #1 0x584cdd7f4e41 in cip_if_print print-cip.c:74\n    #2 0x584cdd7f4c6b in main /root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/094_print-cip.c_80_local_cpp_cwe-125-oob-read/asan_real/replay_driver.c:22\n    #3 0x7fb791c2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #4 0x7fb791c2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #5 0x584cdd7f48c4 in _start (/root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/094_print-cip.c_80_local_cpp_cwe-125-oob-read/asan_real/replay_bin+0x1118c4) (BuildId: 1fb24d6287cb756667bf819bb2af260946dbb5bd)\n\n0x5020000000a8 is located 116 bytes after 4-byte region [0x502000000030,0x502000000034)\nallocated by thread T0 here:\n    #0 0x7fb7924fd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69\n    #1 0x584cdd7f49c4 in main /root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/094_print-cip.c_80_local_cpp_cwe-125-oob-read/asan_real/replay_driver.c:11\n    #2 0x7fb791c2a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #3 0x7fb791c2a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #4 0x584cdd7f48c4 in _start (/root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/094_print-cip.c_80_local_cpp_cwe-125-oob-read/asan_real/replay_bin+0x1118c4) (BuildId: 1fb24d6287cb756667bf819bb2af260946dbb5bd)\n\nSUMMARY: AddressSanitizer: heap-buffer-overflow print-cip"
+    }
+}

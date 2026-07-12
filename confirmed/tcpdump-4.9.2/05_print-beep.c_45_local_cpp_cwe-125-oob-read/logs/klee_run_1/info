@@ -1,0 +1,22 @@
+/opt/klee/bin/klee --output-dir=/app/se_runs/sailor_engine/tcpdump-4.9.2/092_print-beep.c_45_local_cpp_cwe-125-oob-read/logs/klee_run_1 --max-time=300s --write-kqueries --write-smt2s --optimize --search=random-path --search=dfs --only-output-states-covering-new --external-calls=all --check-overshift --max-depth=1000 --max-memory=2048 /app/se_runs/sailor_engine/tcpdump-4.9.2/092_print-beep.c_45_local_cpp_cwe-125-oob-read/harness/slice.bc
+PID: 125
+Using monotonic steady clock with 1/1000000000s resolution
+Started: 2026-04-25 16:05:39
+BEGIN searcher description
+<InterleavedSearcher> containing 2 searchers:
+RandomPathSearcher
+DFSSearcher
+</InterleavedSearcher>
+END searcher description
+Finished: 2026-04-25 16:05:39
+Elapsed: 00:00:00
+KLEE: done: explored paths = 1
+KLEE: done: total queries = 0
+KLEE: done: valid queries = 0
+KLEE: done: invalid queries = 0
+KLEE: done: query cex = 0
+
+KLEE: done: total instructions = 104
+KLEE: done: completed paths = 0
+KLEE: done: partially completed paths = 1
+KLEE: done: generated tests = 1

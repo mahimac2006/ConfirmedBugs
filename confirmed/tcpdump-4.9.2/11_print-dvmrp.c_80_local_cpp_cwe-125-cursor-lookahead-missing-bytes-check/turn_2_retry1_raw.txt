@@ -1,0 +1,1 @@
+{"thought":"Need write minimal harness/driver; first gather dvmrp_print and netdissect_options, then write harness and driver.","tool":"GatherCode","args":{"functions":"dvmrp_print","types":"netdissect_options"}}

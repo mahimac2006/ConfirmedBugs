@@ -1,0 +1,28 @@
+KLEE: output directory is "/app/se_runs/sailor_engine/tcpdump-4.9.2/055_print-bgp.c_1248_local_cpp_cwe-120-overflow/logs/klee_run_1"
+KLEE: Using Z3 solver backend
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7859122d2000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7856922d2000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x7756922d2000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x7736922d2000 size=128 GiB)
+KLEE: WARNING: undefined reference to function: bgp_header_print
+KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+KLEE: WARNING ONCE: bgp_print: SPINE_PROBE:bgp_print:ENTRY
+KLEE: WARNING ONCE: skipping fork (memory cap exceeded)
+KLEE: ERROR: runtime/Freestanding/memcmp.c:47: memory error: out of bound pointer
+KLEE: NOTE: now ignoring this error at this location
+KLEE: WARNING ONCE: silently concretizing (reason: external call) expression (Read w8 0 buf) to value 0 (print-bgp.c:56)
+KLEE: WARNING ONCE: calling external: bgp_header_print(131454221492224, 131729099399209, (ZExt w32 (Extract w16 0 (Or w32 (AShr w32 N0:(ZExt w32 (ReadLSB w16 41 buf))
+                                            8)
+                                  (Shl w32 N0 8))))) at print-bgp.c:56 8
+KLEE: ERROR: print-bgp.c:56: failed external call: bgp_header_print
+KLEE: NOTE: now ignoring this error at this location
+KLEE: WARNING: killing 24566 states (over memory cap: 2149MB)
+KLEE: HaltTimer invoked
+KLEE: halting execution, dumping remaining states
+
+KLEE: done: total instructions = 43273926
+KLEE: done: completed paths = 148
+KLEE: done: partially completed paths = 522789
+KLEE: done: generated tests = 6
+

@@ -1,0 +1,5 @@
+KLEE: WARNING: undefined reference to function: ntohs
+KLEE: WARNING: undefined reference to function: snprintf
+KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+KLEE: WARNING ONCE: bgp_print: SPINE_PROBE:bgp_print:ENTRY
+KLEE: WARNING ONCE: calling external: ntohs(8192) at print-bgp.c:64 8

@@ -1,0 +1,69 @@
+{
+  "print-babel.c": {
+    "1": {
+      "orig_file": "print-babel.c",
+      "orig_line": 37,
+      "code": "#include <stdio.h>"
+    },
+    "2": {
+      "orig_file": "print-babel.c",
+      "orig_line": 38,
+      "code": "#include <string.h>"
+    },
+    "16": {
+      "orig_file": "print-babel.c",
+      "orig_line": 126,
+      "code": "static char buf[50];"
+    },
+    "22": {
+      "orig_file": "print-babel.c",
+      "orig_line": 128,
+      "code": "snprintf(buf, 50, \"%s/%u\", ipaddr_string(ndo, prefix + 12), plen - 96);"
+    },
+    "23": {
+      "orig_file": "print-babel.c",
+      "orig_line": 59,
+      "code": "} else {"
+    },
+    "24": {
+      "orig_file": "print-babel.c",
+      "orig_line": 130,
+      "code": "snprintf(buf, 50, \"%s/%u\", ip6addr_string(ndo, prefix), plen);"
+    },
+    "25": {
+      "orig_file": "print-babel.c",
+      "orig_line": 133,
+      "code": "}"
+    },
+    "26": {
+      "orig_file": "print-babel.c",
+      "orig_line": 131,
+      "code": "buf[49] = '\\0';"
+    },
+    "27": {
+      "orig_file": "print-babel.c",
+      "orig_line": 132,
+      "code": "return buf;"
+    },
+    "28": {
+      "orig_file": "print-babel.c",
+      "orig_line": 133,
+      "code": "}"
+    },
+    "35": {
+      "orig_file": "print-babel.c",
+      "orig_line": 133,
+      "code": "}"
+    },
+    "39": {
+      "orig_file": "print-babel.c",
+      "orig_line": 65,
+      "code": "babel_print_v2(ndo, cp, length);"
+    },
+    "40": {
+      "orig_file": "print-babel.c",
+      "orig_line": 70,
+      "code": "}"
+    }
+  }
+}

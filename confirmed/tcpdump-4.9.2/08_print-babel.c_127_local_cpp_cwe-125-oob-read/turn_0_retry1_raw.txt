@@ -1,0 +1,2 @@
+{"tool":"ReadSAContext","args":{}}
+{"thought":"Need vulnerability summary first, then code gather.","tool":"ReadSAContext","args":{}}

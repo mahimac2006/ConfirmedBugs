@@ -1,0 +1,230 @@
+  [i] Copying source tree to /app/se_runs/sailor_engine/tcpdump-4.9.2/049_print-802_11.c_1150_local_cpp_cwe-120-overflow/src_copy...
+  [i] Source copy ready (2127 files)
+  [i] Build headers: 1 templates found, 0 headers generated
+  [i] Build headers: 1 templates found, 0 headers generated
+  [i] Loaded: compile_commands.json
+  [i] Loaded: fact_pack.json
+  [i] Loaded: findings.json
+  [i] Spec loaded: 049_print-802_11.c_1150_local_cpp_cwe-120-overflow.json
+  [SA] fact_pack: 811 findings (list format)
+  [i] Vulnerable function: parse_elements
+  [i] Entry from source scan: handle_beacon
+  [!] Entry 'handle_beacon' is static — searching for public caller
+  [✓] Found public entry: ieee802_11_if_print
+  [✓] New spine: ieee802_11_if_print → ieee802_11_print → mgmt_body_print → handle_beacon → parse_elements
+  [SA] Compile flags from compile_commands: 8 flags, build_dir=/app/dataset/tcp/tcpdump-4.9.2
+  [i] Struct groom: 1 guards, 8 stub prescriptions, 1 constants
+  [i] SA context written to /app/se_runs/sailor_engine/tcpdump-4.9.2/049_print-802_11.c_1150_local_cpp_cwe-120-overflow/sa_context
+  [i] Auto-generated baseline driver.c (930 chars)
+  [Turn 1] Tool: 
+  [Turn 2] Tool: ReadSAContext
+  [Turn 3] Tool: GatherCode
+  [Tool] GatherCode(funcs=ieee802_11_if_print,parse_elements, types=netdissect_options,pcap_pkthdr,mgmt_body_t)
+  [!] JSON parse failed (attempt 1/3), retrying...
+  [Turn 4] Thought: Need a minimal compileable harness/driver; first write harness and driver/stubs in proper JSON tool-call format. Keep entry as direct pass-through and preserve target memcpy path via E_CF case.
+  [Turn 4] Tool: WriteHarness
+    [+] Wrote harness: print-802_11.c (70 lines)
+    [+] Inserted 6 spine coverage probes
+    [+] Injected sink assert at end of parse_elements (line 46)
+    [+] Injected spine probes
+    [+] Line map: 46 harness lines mapped to original source
+    [+] Generated harness_types.h (16 lines, 0 structs, 0 typedefs)
+    [i] Driver MUST: #include "harness_types.h" for correct struct layouts
+    [⚠] BROKEN CALL CHAIN: ieee802_11_print does NOT call mgmt_body_print!
+    [✓] AUTO-FIX: Injected 'mgmt_body_print(...)' into ieee802_11_print's body
+    [⚠] BROKEN CALL CHAIN: mgmt_body_print does NOT call handle_beacon!
+    [✓] AUTO-FIX: Injected 'handle_beacon(...)' into mgmt_body_print's body
+    [⚠] BROKEN CALL CHAIN: handle_beacon does NOT call parse_elements!
+    [✓] AUTO-FIX: Injected 'parse_elements(...)' into handle_beacon's body
+    [✓] Harness call chain auto-fixed and saved
+  [Turn 5] Tool: WriteDriver
+  [Tool] WriteDriver: 642 chars
+  [Turn 6] Tool: WriteStubs
+  [Tool] WriteStubs: 549 chars
+  [Turn 7] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Generating smart stubs...
+    [i] SmartStubs: 0 symbolic + 0 hardcoded + 0 proactive → smart_stubs.c
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+  [Turn 8] Tool: WriteDriver
+  [Tool] WriteDriver: 852 chars
+  [Turn 9] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Skipped harness_types.h injection into driver.c (NO_HARNESS_TYPES marker)
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+  [Turn 10] Tool: WriteHarness
+    [+] Wrote harness: print-802_11.c (92 lines)
+    [+] Inserted 6 spine coverage probes
+    [+] Injected sink assert at end of parse_elements (line 68)
+    [+] Injected spine probes
+    [+] Line map: 44 harness lines mapped to original source
+    [+] Generated harness_types.h (37 lines, 9 structs, 4 typedefs)
+    [i] Driver MUST: #include "harness_types.h" for correct struct layouts
+    [⚠] BROKEN CALL CHAIN: ieee802_11_print does NOT call mgmt_body_print!
+    [✓] AUTO-FIX: Injected 'mgmt_body_print(...)' into ieee802_11_print's body
+    [⚠] BROKEN CALL CHAIN: mgmt_body_print does NOT call handle_beacon!
+    [✓] AUTO-FIX: Injected 'handle_beacon(...)' into mgmt_body_print's body
+    [⚠] BROKEN CALL CHAIN: handle_beacon does NOT call parse_elements!
+    [✓] AUTO-FIX: Injected 'parse_elements(...)' into handle_beacon's body
+    [✓] Harness call chain auto-fixed and saved
+  [Turn 11] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Skipped harness_types.h injection into driver.c (NO_HARNESS_TYPES marker)
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+  [Turn 12] Tool: WriteHarness
+    [+] Wrote harness: print-802_11.c (82 lines)
+    [+] Inserted 4 spine coverage probes
+    [+] Injected sink assert at end of parse_elements (line 68)
+    [+] Injected spine probes
+    [+] Line map: 40 harness lines mapped to original source
+    [+] Generated harness_types.h (37 lines, 9 structs, 4 typedefs)
+    [i] Driver MUST: #include "harness_types.h" for correct struct layouts
+    [⚠] BROKEN CALL CHAIN: ieee802_11_print does NOT call mgmt_body_print!
+    [⚠] mgmt_body_print not defined in harness — auto-generating skeleton
+    [✓] AUTO-GENERATED skeleton for mgmt_body_print (0 lines)
+    [✓] AUTO-FIX: Injected 'mgmt_body_print(...)' into ieee802_11_print's body
+    [⚠] BROKEN CALL CHAIN: mgmt_body_print does NOT call handle_beacon!
+    [⚠] handle_beacon not defined in harness — auto-generating skeleton
+    [✓] AUTO-GENERATED skeleton for handle_beacon (0 lines)
+    [✓] AUTO-FIX: Injected 'handle_beacon(...)' into mgmt_body_print's body
+    [⚠] BROKEN CALL CHAIN: handle_beacon does NOT call parse_elements!
+    [✓] AUTO-FIX: Injected 'parse_elements(...)' into handle_beacon's body
+    [✓] Harness call chain auto-fixed and saved
+  [Turn 13] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Skipped harness_types.h injection into driver.c (NO_HARNESS_TYPES marker)
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+    [+] print-802_11.c -> OK
+    [+] smart_stubs.c -> OK
+  [Turn 14] Tool: WriteStubs
+  [Tool] WriteStubs: 63 chars
+  [Turn 15] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Skipped harness_types.h injection into driver.c (NO_HARNESS_TYPES marker)
+    [i] Auto-injected #include "harness_types.h" into stubs.c
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+    [+] print-802_11.c -> OK
+    [+] smart_stubs.c -> OK
+  [Turn 16] Tool: WriteStubs
+  [Tool] WriteStubs: 60 chars
+  [Turn 17] Tool: WriteDriver
+  [Tool] WriteDriver: 811 chars
+  [Turn 18] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Skipped harness_types.h injection into driver.c (NO_HARNESS_TYPES marker)
+    [i] Skipped harness_types.h injection into stubs.c (NO_HARNESS_TYPES marker)
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+    [+] print-802_11.c -> OK
+    [+] smart_stubs.c -> OK
+    [+] stubs.c -> OK
+    [KLEE] Running: timeout=300s
+    [KLEE] Command: /opt/klee/bin/klee --output-dir=/app/se_runs/sailor_engine/tcpdump-4.9.2/049_print-802_11.c_1150_local_cpp_cwe-120-overflow/logs/klee_run_1 --max-time=300s --write-kqueries --write-smt2s --optimize --search=random-path --search=dfs --only-output-states-covering-new --external-calls=all --check-overshift --max-depth=1000 --max-memory=2048 /app/se_runs/sailor_engine/tcpdump-4.9.2/049_print-802_11.c_1150_local_cpp_cwe-120-overflow/harness/slice.bc
+    KLEE: output directory is "/app/se_runs/sailor_engine/tcpdump-4.9.2/049_print-802_11.c_1150_local_cpp_cwe-120-overflow/logs/klee_run_1"
+    KLEE: Using Z3 solver backend
+    KLEE: Deterministic allocator: Using quarantine queue size 8
+    KLEE: Deterministic allocator: globals (start-address=0x7b3e24f11000 size=10 GiB)
+    KLEE: Deterministic allocator: constants (start-address=0x7b3ba4f11000 size=10 GiB)
+    KLEE: Deterministic allocator: heap (start-address=0x7a3ba4f11000 size=1024 GiB)
+    KLEE: Deterministic allocator: stack (start-address=0x7a1ba4f11000 size=128 GiB)
+    KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+    KLEE: WARNING ONCE: ieee802_11_if_print: SPINE_PROBE:ieee802_11_if_print:ENTRY
+    KLEE: ERROR: print-802_11.c:47: memory error: null page access
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: done: total instructions = 152
+    KLEE: done: completed paths = 0
+    KLEE: done: partially completed paths = 1
+    KLEE: done: generated tests = 1
+    [KLEE] Exit code: 0, Elapsed: 0.2s
+    [KLEE] Log saved: /app/se_runs/sailor_engine/tcpdump-4.9.2/049_print-802_11.c_1150_local_cpp_cwe-120-overflow/logs/klee_1.log
+    [KLEE] Crash: CRASH: ptr at print-802_11.c:47
+    [KLEE] SPINE COVERAGE: ieee802_11_if_print: REACHED [ENTRY] | ieee802_11_print: NOT REACHED | mgmt_body_print: NOT REACHED | handle_beacon: NOT REACHED | parse_elements: NOT REACHED
+    [KLEE] Results: bug_found=True, sink_reached=False, paths=0, tests=1
+    [KLEE] Crash: CRASH: ptr at print-802_11.c:47
+    [KLEE] Diagnostics: MEMORY ERROR detected by KLEE.; SPINE COVERAGE: ieee802_11_if_print: REACHED [ENTRY] | ieee802_11_print: NOT REACHED | mgmt_body_print: NOT REACHED | handle_beacon: NOT REACHED | parse_elements: NOT REACHED; BLOCKED: Reached ieee802_11_if_print (ENTRY) but parse_elements NOT REACHED.; The call chain breaks at ieee802_11_if_print → ieee802_11_print. LIKELY CAUSE: The harness 'neutralized' ieee802_11_if_print too aggressively, removing the call to ieee802_11_print. FIX: In WriteHarness, ensure ieee802_11_if_print CALLS ieee802_11_print. Neutralization must KEEP calls to spine functions (remove only off-path code, NOT the call to the next spine function). Check the harness .c file for a call to ieee802_11_print().
+  [Turn 19] Tool: ReplaceCode
+  [Turn 20] Tool: ReadSource
+  [Turn 21] Tool: ReplaceCode
+  [Turn 22] Tool: ReplaceCode
+  [Turn 23] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Skipped harness_types.h injection into driver.c (NO_HARNESS_TYPES marker)
+    [i] Skipped harness_types.h injection into stubs.c (NO_HARNESS_TYPES marker)
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+    [+] print-802_11.c -> OK
+    [+] smart_stubs.c -> OK
+    [+] stubs.c -> OK
+    [KLEE] Running: timeout=300s
+    [KLEE] Command: /opt/klee/bin/klee --output-dir=/app/se_runs/sailor_engine/tcpdump-4.9.2/049_print-802_11.c_1150_local_cpp_cwe-120-overflow/logs/klee_run_2 --max-time=300s --write-kqueries --write-smt2s --optimize --search=random-path --search=dfs --only-output-states-covering-new --external-calls=all --check-overshift --max-depth=1000 --max-memory=2048 /app/se_runs/sailor_engine/tcpdump-4.9.2/049_print-802_11.c_1150_local_cpp_cwe-120-overflow/harness/slice.bc
+    KLEE: output directory is "/app/se_runs/sailor_engine/tcpdump-4.9.2/049_print-802_11.c_1150_local_cpp_cwe-120-overflow/logs/klee_run_2"
+    KLEE: Using Z3 solver backend
+    KLEE: Deterministic allocator: Using quarantine queue size 8
+    KLEE: Deterministic allocator: globals (start-address=0x7e83c2027000 size=10 GiB)
+    KLEE: Deterministic allocator: constants (start-address=0x7e8142027000 size=10 GiB)
+    KLEE: Deterministic allocator: heap (start-address=0x7d8142027000 size=1024 GiB)
+    KLEE: Deterministic allocator: stack (start-address=0x7d6142027000 size=128 GiB)
+    KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+    KLEE: WARNING ONCE: ieee802_11_if_print: SPINE_PROBE:ieee802_11_if_print:ENTRY
+    KLEE: ERROR: print-802_11.c:69: ASSERTION FAIL: 0 && "SAILOR_SINK_REACHED"
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: done: total instructions = 508
+    KLEE: done: completed paths = 0
+    KLEE: done: partially completed paths = 2
+    KLEE: done: generated tests = 1
+    [KLEE] Exit code: 0, Elapsed: 0.3s
+    [KLEE] Log saved: /app/se_runs/sailor_engine/tcpdump-4.9.2/049_print-802_11.c_1150_local_cpp_cwe-120-overflow/logs/klee_2.log
+    [KLEE] Site reached (klee_assert fired) but NO crash at vulnerable statement.
+    [KLEE] The vulnerable code executed without error — possible FP or needs different input.
+    [KLEE] Crash: CRASH: assert at print-802_11.c:69
+    [KLEE] SPINE COVERAGE: ieee802_11_if_print: REACHED [ENTRY] | ieee802_11_print: NOT REACHED | mgmt_body_print: NOT REACHED | handle_beacon: NOT REACHED | parse_elements: NOT REACHED
+    [KLEE] Results: bug_found=True, sink_reached=True, paths=0, tests=1
+    [KLEE] Crash: CRASH: assert at print-802_11.c:69
+    [KLEE] Diagnostics: SITE REACHED (klee_assert fired) but no crash at vulnerable statement.; SPINE COVERAGE: ieee802_11_if_print: REACHED [ENTRY] | ieee802_11_print: NOT REACHED | mgmt_body_print: NOT REACHED | handle_beacon: NOT REACHED | parse_elements: NOT REACHED; WARNING: SINK ASSERT FIRED but parse_elements spine probe did NOT fire. This means klee_assert fired from a WRONG CODE PATH — the vulnerable statement was NOT actually executed. LIKELY CAUSES: (1) A loop/if guard in your harness has concrete values that make the vulnerable branch unsatisfiable (e.g., a variable is 0 but the loop requires it non-zero). (2) The sink assert is at the end of the function and fires from the fall-through/skip path, not the vulnerable path. FIX: Make loop/branch guard variables SYMBOLIC (not hardcoded concrete) so KLEE can explore the path into the vulnerable code. Ensure the sink assert is placed INSIDE the vulnerable branch, not after the function's closing brace.
+  [SINK REACHED] Vulnerability reachable but no crash — giving agent 8 more turns to trigger OOB
+  [Turn 24] Tool: ReplaceCode
+  [Turn 25] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Skipped harness_types.h injection into driver.c (NO_HARNESS_TYPES marker)
+    [i] Skipped harness_types.h injection into stubs.c (NO_HARNESS_TYPES marker)
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+    [+] print-802_11.c -> OK
+    [+] smart_stubs.c -> OK
+    [+] stubs.c -> OK
+    [KLEE] Running: timeout=300s
+    [KLEE] Command: /opt/klee/bin/klee --output-dir=/app/se_runs/sailor_engine/tcpdump-4.9.2/049_print-802_11.c_1150_local_cpp_cwe-120-overflow/logs/klee_run_3 --max-time=300s --write-kqueries --write-smt2s --optimize --search=random-path --search=dfs --only-output-states-covering-new --external-calls=all --check-overshift --max-depth=1000 --max-memory=2048 /app/se_runs/sailor_engine/tcpdump-4.9.2/049_print-802_11.c_1150_local_cpp_cwe-120-overflow/harness/slice.bc
+    KLEE: output directory is "/app/se_runs/sailor_engine/tcpdump-4.9.2/049_print-802_11.c_1150_local_cpp_cwe-120-overflow/logs/klee_run_3"
+    KLEE: Using Z3 solver backend
+    KLEE: Deterministic allocator: Using quarantine queue size 8
+    KLEE: Deterministic allocator: globals (start-address=0x7765af926000 size=10 GiB)
+    KLEE: Deterministic allocator: constants (start-address=0x77632f926000 size=10 GiB)
+    KLEE: Deterministic allocator: heap (start-address=0x76632f926000 size=1024 GiB)
+    KLEE: Deterministic allocator: stack (start-address=0x76432f926000 size=128 GiB)
+    KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+    KLEE: WARNING ONCE: ieee802_11_if_print: SPINE_PROBE:ieee802_11_if_print:ENTRY
+    KLEE: ERROR: print-802_11.c:69: ASSERTION FAIL: 0 && "SAILOR_SINK_REACHED"
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: done: total instructions = 507
+    KLEE: done: completed paths = 0
+    KLEE: done: partially completed paths = 2
+    KLEE: done: generated tests = 1
+    [KLEE] Exit code: 0, Elapsed: 0.1s
+    [KLEE] Log saved: /app/se_runs/sailor_engine/tcpdump-4.9.2/049_print-802_11.c_1150_local_cpp_cwe-120-overflow/logs/klee_3.log
+    [KLEE] Site reached (klee_assert fired) but NO crash at vulnerable statement.
+    [KLEE] The vulnerable code executed without error — possible FP or needs different input.
+    [KLEE] Crash: CRASH: assert at print-802_11.c:69
+    [KLEE] SPINE COVERAGE: ieee802_11_if_print: REACHED [ENTRY] | ieee802_11_print: NOT REACHED | mgmt_body_print: NOT REACHED | handle_beacon: NOT REACHED | parse_elements: NOT REACHED
+    [KLEE] Results: bug_found=True, sink_reached=True, paths=0, tests=1
+    [KLEE] Crash: CRASH: assert at print-802_11.c:69
+    [KLEE] Diagnostics: SITE REACHED (klee_assert fired) but no crash at vulnerable statement.; SPINE COVERAGE: ieee802_11_if_print: REACHED [ENTRY] | ieee802_11_print: NOT REACHED | mgmt_body_print: NOT REACHED | handle_beacon: NOT REACHED | parse_elements: NOT REACHED; WARNING: SINK ASSERT FIRED but parse_elements spine probe did NOT fire. This means klee_assert fired from a WRONG CODE PATH — the vulnerable statement was NOT actually executed. LIKELY CAUSES: (1) A loop/if guard in your harness has concrete values that make the vulnerable branch unsatisfiable (e.g., a variable is 0 but the loop requires it non-zero). (2) The sink assert is at the end of the function and fires from the fall-through/skip path, not the vulnerable path. FIX: Make loop/branch guard variables SYMBOLIC (not hardcoded concrete) so KLEE can explore the path into the vulnerable code. Ensure the sink assert is placed INSIDE the vulnerable branch, not after the function's closing brace.
+  [Turn 26] Tool: ExploreKleeOutput
+  [Turn 27] Tool: ReplaceCode
+  [Turn 28] Tool: ReadSource
+  [Turn 29] Tool: ReplaceCode
+  [Turn 30] Tool: ReadSource
+Done.

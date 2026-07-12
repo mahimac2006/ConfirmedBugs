@@ -1,0 +1,8 @@
+Error: ASSERTION FAIL: 0 && "SAILOR_SINK_REACHED"
+File: print-cip.c
+Line: 57
+assembly.ll line: 212
+State: 2
+Stack: 
+	#000000212 in cip_if_print(124016809398272, 124154248351744, 124222967828480) at print-cip.c:57
+	#100000060 in main() at driver.c:22

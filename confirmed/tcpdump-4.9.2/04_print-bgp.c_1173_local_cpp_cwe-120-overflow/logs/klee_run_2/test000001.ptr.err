@@ -1,0 +1,16 @@
+Error: memory error: null page access
+File: print-bgp.c
+Line: 86
+assembly.ll line: 368
+State: 1
+Stack: 
+	#000000368 in decode_labeled_prefix6(127951544725504) at print-bgp.c:86
+	#100000455 in bgp_attr_print(127951544725504, 128088983678976, 32) at print-bgp.c:105
+	#200000338 in bgp_update_print(127951544725504, 128088983678976, 32) at print-bgp.c:111
+	#300000320 in bgp_header_print(127951544725504, 128088983678976, 32) at print-bgp.c:118
+	#400000287 in bgp_print(127951544725504, 128088983678976, 64) at print-bgp.c:68
+	#500000145 in main() at driver.c:33
+Info: 
+	address: 0
+	next: object at 127582714408960 of size 4
+		MO277[4] allocated at decode_labeled_prefix6():  %4 = alloca i32, align 4

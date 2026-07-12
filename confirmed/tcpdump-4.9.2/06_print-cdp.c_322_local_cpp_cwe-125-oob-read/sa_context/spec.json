@@ -1,0 +1,55 @@
+{
+  "schema": "llmse.vul_spec.v1",
+  "id": "local_cpp_cwe-125-oob-read@print-cdp.c:322",
+  "project": null,
+  "rule_id": "local/cpp/cwe-125-oob-read",
+  "family": "OOB_MEMCMP",
+  "file": "/app/dataset/tcp/tcpdump-4.9.2/print-cdp.c",
+  "line": 322,
+  "column": 7,
+  "end_line": 322,
+  "end_column": 13,
+  "message": "CWE-125: Potential OOB Read via memcmp (unchecked length).",
+  "context": {
+    "contextStart": 302,
+    "contextEnd": 342,
+    "snippet": "\t\tND_TCHECK2(p[pl], 2);\n\t\tif (p + pl + 2 > endp)\n\t\t\tgoto trunc;\n\t\tal = EXTRACT_16BITS(&p[pl]);\t/* address length */\n\n\t\tif (pt == PT_NLPID && pl == 1 && *p == NLPID_IP && al == 4) {\n\t\t\t/*\n\t\t\t * IPv4: protocol type = NLPID, protocol length = 1\n\t\t\t * (1-byte NLPID), protocol = 0xcc (NLPID for IPv4),\n\t\t\t * address length = 4\n\t\t\t */\n\t\t\tp += 3;\n\n\t\t\tND_TCHECK2(*p, 4);\n\t\t\tif (p + 4 > endp)\n\t\t\t\tgoto trunc;\n\t\t\tND_PRINT((ndo, \"IPv4 (%u) %s\", num, ipaddr_string(ndo, p)));\n\t\t\tp += 4;\n\t\t}\n\t\telse if (pt == PT_IEEE_802_2 && pl == 8 &&\n\t\t    memcmp(p, prot_ipv6, 8) == 0 && al == 16) {\n\t\t\t/*\n\t\t\t * IPv6: protocol type = IEEE 802.2 header,\n\t\t\t * protocol length = 8 (size of LLC+SNAP header),\n\t\t\t * protocol = LLC+SNAP header with the IPv6\n\t\t\t * Ethertype, address length = 16\n\t\t\t */\n\t\t\tp += 10;\n\t\t\tND_TCHECK2(*p, al);\n\t\t\tif (p + al > endp)\n\t\t\t\tgoto trunc;\n\n\t\t\tND_PRINT((ndo, \"IPv6 (%u) %s\", num, ip6addr_string(ndo, p)));\n\t\t\tp += al;\n\t\t}\n\t\telse {\n\t\t\t/*\n\t\t\t * Generic case: just print raw data\n\t\t\t */\n\t\t\tND_TCHECK2(*p, pl);\n\t\t\tif (p + pl > endp)"
+  },
+  "target_statement": {
+    "text": null,
+    "line": 322,
+    "column_start": 7,
+    "column_end": 13
+  },
+  "facts": {
+    "suspect_calls": [
+      "EXTRACT_16BITS",
+      "IPv4",
+      "IPv6",
+      "ND_PRINT",
+      "ND_TCHECK2",
+      "ip6addr_string",
+      "ipaddr_string",
+      "memcmp"
+    ],
+    "pointer_vars": [
+      "Ethertype"
+    ],
+    "length_vars": [],
+    "bounds_hints": []
+  },
+  "llm_hints": {
+    "entrypoint": {
+      "strategy": "LLM_INFER",
+      "candidates": []
+    },
+    "assertions": {
+      "presence_assertion_hint": "/* model: n <= min(len(lhs), len(rhs)) */ /* fill with program vars */",
+      "reachability_assertion": "klee_assert(0);  /* must be placed immediately before the vulnerable instruction */"
+    },
+    "notes": [
+      "Non-in-path helpers should be stub candidates.",
+      "Groom all in-path data structures to avoid null derefs."
+    ]
+  }
+}

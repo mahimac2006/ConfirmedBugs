@@ -1,0 +1,9 @@
+Error: ASSERTION FAIL: 0 && "SAILOR_SINK_REACHED"
+File: print-beep.c
+Line: 15
+assembly.ll line: 315
+State: 1
+Stack: 
+	#000000315 in l_strnstart(133592325009408, 134246502215680, 133317447102464, 4) at print-beep.c:15
+	#100000104 in beep_print(133592325009408, 133317447102464, 4) at print-beep.c:22
+	#200000077 in main() at driver.c:53

@@ -1,0 +1,4 @@
+KLEE: WARNING: undefined reference to function: babel_print
+KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+KLEE: WARNING ONCE: silently concretizing (reason: external call) expression (Read w8 2 buf) to value 0 (driver.c:24)
+KLEE: WARNING ONCE: calling external: babel_print(132868867997696, 133006306951168, 64) at driver.c:24 5

@@ -1,0 +1,35 @@
+{
+    "summary": {
+        "verdict": "SE_DETECTED",
+        "asan_confirmed": true,
+        "crash_relevance": "asan_confirmed",
+        "cwe": "heap-buffer-overflow",
+        "total_asan_crashes": 1
+    },
+    "vulnerability": {
+        "original_file": "print-802",
+        "original_line": 0
+    },
+    "all_crashes": [],
+    "all_asan_crashes": [
+        {
+            "error_type": "heap-buffer-overflow",
+            "crash_function": "ieee802_11_if_print",
+            "crash_file": "print-802_11.c",
+            "crash_line": 2140
+        }
+    ],
+    "asan_result": {
+        "triggered": true,
+        "harness_artifact": false,
+        "error_type": "heap-buffer-overflow",
+        "crash_function": "ieee802_11_if_print",
+        "crash_file": "print-802_11.c",
+        "crash_line": 2140,
+        "original_file": "",
+        "original_line": 0,
+        "original_code": "",
+        "original_context": "",
+        "output": "=================================================================\n==137220==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x502000000020 at pc 0x59ed55741c0b bp 0x7ffe92e37200 sp 0x7ffe92e371f0\nREAD of size 4 at 0x502000000020 thread T0\n    #0 0x59ed55741c0a in ieee802_11_if_print print-802_11.c:2140\n    #1 0x59ed55736cd9 in main /root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/asan_real/replay_driver.c:37\n    #2 0x71b91b02a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #3 0x71b91b02a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #4 0x59ed557368c4 in _start (/root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/asan_real/replay_bin+0x1178c4) (BuildId: ba5cc2c0ecdaf7bc97e67faf150ab599f3c1ffb7)\n\n0x502000000020 is located 8 bytes after 8-byte region [0x502000000010,0x502000000018)\nallocated by thread T0 here:\n    #0 0x71b91b8fd340 in calloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:77\n    #1 0x59ed55736a34 in main /root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/asan_real/replay_driver.c:19\n    #2 0x71b91b02a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #3 0x71b91b02a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8e9fd827446c24067541ac5390e6f527fb5947bb)\n    #4 0x59ed557368c4 in _start (/root/wireshark-2.0.1/SAILOR_Replication_Package/se_runs/sailor_engine/tcpdump-4.9.2/233_print-802_11.c_1596_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/asan_real/replay_bin+0x1178c4) (BuildId: ba5cc2c0"
+    }
+}

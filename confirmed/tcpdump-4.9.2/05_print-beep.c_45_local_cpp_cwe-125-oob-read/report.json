@@ -1,0 +1,147 @@
+{
+  "findings": [
+    [
+      "TP",
+      "KLEE triggered a real crash in print-beep.c:37 (ptr.err) during beep_print; this is a source bug found in the target spine. The run did not reach the l_strnstart sink probe, so this is recorded as a valid positive finding but not the originally intended sink line.\n[SAILOR] sink_reached=False, probes={'SINK': 0, 'RUNG_1': 0, 'RUNG_2': 0, 'TRAP': 0, 'SUSPECT_HIT': 0}\n[SURPRISE FINDINGS] 1 additional real bugs found:\n  #1: ptr at print-beep.c:37 \u2014 CRASH: ptr at print-beep.c:37 (ktest: /app/se_runs/sailor_engine/tcpdump-4.9.2/092_print-beep.c_45_local_cpp_cwe-125-oob-read/logs/klee_run_3/test000001.ptr.ktest)"
+    ]
+  ],
+  "line_map": {
+    "print-beep.c": {
+      "1": {
+        "orig_file": "print-beep.c",
+        "orig_line": 14,
+        "code": "#ifdef HAVE_CONFIG_H"
+      },
+      "2": {
+        "orig_file": "print-beep.c",
+        "orig_line": 15,
+        "code": "#include \"config.h\""
+      },
+      "3": {
+        "orig_file": "print-beep.c",
+        "orig_line": 16,
+        "code": "#endif"
+      },
+      "4": {
+        "orig_file": "print-beep.c",
+        "orig_line": 18,
+        "code": "#include <netdissect-stdinc.h>"
+      },
+      "5": {
+        "orig_file": "print-beep.c",
+        "orig_line": 20,
+        "code": "#include <string.h>"
+      },
+      "6": {
+        "orig_file": "print-beep.c",
+        "orig_line": 22,
+        "code": "#include \"netdissect.h\""
+      },
+      "10": {
+        "orig_file": "print-beep.c",
+        "orig_line": 32,
+        "code": "const char *str2, u_int l2)"
+      },
+      "11": {
+        "orig_file": "print-beep.c",
+        "orig_line": 33,
+        "code": "{"
+      },
+      "16": {
+        "orig_file": "print-beep.c",
+        "orig_line": 45,
+        "code": "return (strncmp(tstr1, str2, tl1) == 0 ? 1 : 0);"
+      },
+      "17": {
+        "orig_file": "print-beep.c",
+        "orig_line": 46,
+        "code": "}"
+      },
+      "20": {
+        "orig_file": "print-beep.c",
+        "orig_line": 50,
+        "code": "{"
+      },
+      "23": {
+        "orig_file": "print-beep.c",
+        "orig_line": 53,
+        "code": "ND_PRINT((ndo, \" BEEP MSG\"));"
+      },
+      "24": {
+        "orig_file": "print-beep.c",
+        "orig_line": 54,
+        "code": "else if (l_strnstart(ndo, \"RPY \", 4, (const char *)bp, length))"
+      },
+      "25": {
+        "orig_file": "print-beep.c",
+        "orig_line": 55,
+        "code": "ND_PRINT((ndo, \" BEEP RPY\"));"
+      },
+      "26": {
+        "orig_file": "print-beep.c",
+        "orig_line": 56,
+        "code": "else if (l_strnstart(ndo, \"ERR \", 4, (const char *)bp, length))"
+      },
+      "27": {
+        "orig_file": "print-beep.c",
+        "orig_line": 57,
+        "code": "ND_PRINT((ndo, \" BEEP ERR\"));"
+      },
+      "28": {
+        "orig_file": "print-beep.c",
+        "orig_line": 58,
+        "code": "else if (l_strnstart(ndo, \"ANS \", 4, (const char *)bp, length))"
+      },
+      "29": {
+        "orig_file": "print-beep.c",
+        "orig_line": 59,
+        "code": "ND_PRINT((ndo, \" BEEP ANS\"));"
+      },
+      "30": {
+        "orig_file": "print-beep.c",
+        "orig_line": 60,
+        "code": "else if (l_strnstart(ndo, \"NUL \", 4, (const char *)bp, length))"
+      },
+      "31": {
+        "orig_file": "print-beep.c",
+        "orig_line": 61,
+        "code": "ND_PRINT((ndo, \" BEEP NUL\"));"
+      },
+      "32": {
+        "orig_file": "print-beep.c",
+        "orig_line": 62,
+        "code": "else if (l_strnstart(ndo, \"SEQ \", 4, (const char *)bp, length))"
+      },
+      "33": {
+        "orig_file": "print-beep.c",
+        "orig_line": 63,
+        "code": "ND_PRINT((ndo, \" BEEP SEQ\"));"
+      },
+      "34": {
+        "orig_file": "print-beep.c",
+        "orig_line": 64,
+        "code": "else if (l_strnstart(ndo, \"END\", 4, (const char *)bp, length))"
+      },
+      "35": {
+        "orig_file": "print-beep.c",
+        "orig_line": 65,
+        "code": "ND_PRINT((ndo, \" BEEP END\"));"
+      },
+      "36": {
+        "orig_file": "print-beep.c",
+        "orig_line": 66,
+        "code": "else"
+      },
+      "37": {
+        "orig_file": "print-beep.c",
+        "orig_line": 67,
+        "code": "ND_PRINT((ndo, \" BEEP (payload or undecoded)\"));"
+      },
+      "38": {
+        "orig_file": "print-beep.c",
+        "orig_line": 68,
+        "code": "}"
+      }
+    }
+  }
+}

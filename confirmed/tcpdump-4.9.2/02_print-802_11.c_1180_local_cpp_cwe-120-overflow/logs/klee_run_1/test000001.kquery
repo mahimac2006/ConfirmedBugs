@@ -1,0 +1,4 @@
+array buf[512] : w32 -> w8 = symbolic
+(query [(Eq false
+             (Eq 5 (Read w8 0 buf)))]
+        false)

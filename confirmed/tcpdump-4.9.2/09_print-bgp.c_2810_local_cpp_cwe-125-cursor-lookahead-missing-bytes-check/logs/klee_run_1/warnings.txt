@@ -1,0 +1,4 @@
+KLEE: WARNING: undefined reference to function: bgp_print
+KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+KLEE: WARNING ONCE: silently concretizing (reason: external call) expression (Read w8 1 buf) to value 0 (driver.c:47)
+KLEE: WARNING ONCE: calling external: bgp_print(126363025006592, 126294305529856, 64) at driver.c:47 5

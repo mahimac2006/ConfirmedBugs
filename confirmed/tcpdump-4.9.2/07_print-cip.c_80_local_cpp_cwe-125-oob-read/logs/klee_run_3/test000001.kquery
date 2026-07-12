@@ -1,0 +1,4 @@
+array p[4] : w32 -> w8 = symbolic
+(query [(Eq false
+             (Eq 170 (Read w8 0 p)))]
+        false)

@@ -1,0 +1,25 @@
+{
+  "search_status": "FOUND_UNTARGETED",
+  "verdict": "FP",
+  "crash_relevance": "",
+  "secondary_bugs": 0,
+  "failure_reason": "",
+  "metrics": {
+    "tokens_total": 179756,
+    "tokens_prompt": 174923,
+    "tokens_completion": 4833,
+    "turns": 13,
+    "klee_runs": 2
+  },
+  "bug": {
+    "type": "",
+    "file": "",
+    "line": 0,
+    "function": "",
+    "asan_confirmed": false,
+    "cwe": ""
+  },
+  "spec": "/app/specs/tcpdump-4.9.2/058_print-bgp.c_1173_local_cpp_cwe-120-overflow.json",
+  "vul_file": "print-bgp.c",
+  "vul_line": "1173"
+}

@@ -1,0 +1,13 @@
+Error: memory error: invalid pointer: klee_get_obj_size
+File: print-cdp.c
+Line: 57
+assembly.ll line: 451
+State: 29
+Stack: 
+	#000000451 in cdp_print_addr(123011565064192, 123217723494408, symbolic) at print-cdp.c:57
+	#100000248 in cdp_print(123011565064192, 123217723494400, 64, 64) at print-cdp.c:93
+	#200000059 in main() at driver.c:22
+Info: 
+	address: 123217723494408
+	next: object at 122711454224384 of size 4
+		MO66[4] allocated at cdp_print():  %11 = alloca i32, align 4

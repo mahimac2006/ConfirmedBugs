@@ -1,0 +1,1 @@
+{"thought":"Read SA context once to obtain the vulnerability summary, source context, struct defs, switch case, and driver_hint. Then I can write a minimal harness/driver without extra research.", "tool":"ReadSAContext", "args":{}}

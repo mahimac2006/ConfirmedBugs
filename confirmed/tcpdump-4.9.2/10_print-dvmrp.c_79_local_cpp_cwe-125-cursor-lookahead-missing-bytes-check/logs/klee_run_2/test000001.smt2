@@ -1,0 +1,5 @@
+(set-logic QF_AUFBV )
+(declare-fun buf () (Array (_ BitVec 32) (_ BitVec 8) ) )
+(assert (let ( (?B1 (select  buf (_ bv1 32) ) ) ) (and  (=  false (=  (_ bv0 8) ?B1 ) ) (=  false (=  (_ bv1 8) ?B1 ) ) ) ) )
+(check-sat)
+(exit)

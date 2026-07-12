@@ -1,0 +1,25 @@
+{
+  "search_status": "INCONCLUSIVE",
+  "verdict": "INCONCLUSIVE_LOW_COVERAGE",
+  "crash_relevance": "",
+  "secondary_bugs": 0,
+  "failure_reason": "Could not reach parse_elements via spine (only 0 completed paths \u2014 insufficient coverage)",
+  "metrics": {
+    "tokens_total": 115070,
+    "tokens_prompt": 111385,
+    "tokens_completion": 3685,
+    "turns": 12,
+    "klee_runs": 1
+  },
+  "bug": {
+    "type": "",
+    "file": "",
+    "line": 0,
+    "function": "",
+    "asan_confirmed": false,
+    "cwe": ""
+  },
+  "spec": "/app/specs/tcpdump-4.9.2/0specs/052_print-802_11.c_1180_local_cpp_cwe-120-overflow.json",
+  "vul_file": "print-802_11.c",
+  "vul_line": "1180"
+}

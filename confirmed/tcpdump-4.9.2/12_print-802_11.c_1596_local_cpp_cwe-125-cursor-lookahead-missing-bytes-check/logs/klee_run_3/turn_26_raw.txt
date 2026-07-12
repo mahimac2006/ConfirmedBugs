@@ -1,0 +1,1 @@
+{"tool": "ReplaceCode", "args": {"file": "print-802_11.c", "search": "Reserved(%d) Act#%d\", p[0], p[1]", "replace": "Reserved(%d) Act#%d\", (length > 0 ? p[0] : 0), (length > 1 ? p[1] : 0)"}}

@@ -1,0 +1,237 @@
+{
+  "findings": [],
+  "line_map": {
+    "print-bgp.c": {
+      "1": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 41,
+        "code": "#include <stdio.h>"
+      },
+      "3": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 42,
+        "code": "#include <string.h>"
+      },
+      "17": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 37,
+        "code": "#endif"
+      },
+      "24": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2428,
+        "code": "const u_char *dat, int length)"
+      },
+      "25": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2429,
+        "code": "{"
+      },
+      "27": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2494,
+        "code": "const u_char *p;"
+      },
+      "28": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2787,
+        "code": "const u_char *ep;"
+      },
+      "29": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2788,
+        "code": "const u_char *start;"
+      },
+      "30": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2789,
+        "code": "const u_char marker[] = {"
+      },
+      "31": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2790,
+        "code": "0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,"
+      },
+      "32": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2791,
+        "code": "0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,"
+      },
+      "33": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2792,
+        "code": "};"
+      },
+      "35": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2794,
+        "code": "uint16_t hlen;"
+      },
+      "37": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2796,
+        "code": "ep = dat + length;"
+      },
+      "38": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2797,
+        "code": "if (ndo->ndo_snapend < dat + length)"
+      },
+      "39": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2798,
+        "code": "ep = ndo->ndo_snapend;"
+      },
+      "41": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2805,
+        "code": "p = dat;"
+      },
+      "42": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2806,
+        "code": "start = p;"
+      },
+      "43": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2807,
+        "code": "while (p < ep) {"
+      },
+      "44": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2810,
+        "code": "if (p[0] != 0xff) {"
+      },
+      "45": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2811,
+        "code": "p++;"
+      },
+      "46": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2812,
+        "code": "continue;"
+      },
+      "47": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2813,
+        "code": "}"
+      },
+      "48": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2817,
+        "code": "if (memcmp(p, marker, sizeof(marker)) != 0) {"
+      },
+      "49": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2818,
+        "code": "p++;"
+      },
+      "50": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2819,
+        "code": "continue;"
+      },
+      "51": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2820,
+        "code": "}"
+      },
+      "52": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2824,
+        "code": "memcpy(&bgp, p, BGP_SIZE);"
+      },
+      "55": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2833,
+        "code": "break;"
+      },
+      "56": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2837,
+        "code": "if (!bgp_header_print(ndo, p, hlen))"
+      },
+      "57": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2838,
+        "code": "return;"
+      },
+      "58": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2839,
+        "code": "p += hlen;"
+      },
+      "59": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2840,
+        "code": "start = p;"
+      },
+      "60": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2847,
+        "code": "}"
+      },
+      "61": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 2848,
+        "code": "}"
+      },
+      "64": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 1265,
+        "code": "const u_char *pptr, char *buf, u_int buflen)"
+      },
+      "65": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 1266,
+        "code": "{"
+      },
+      "67": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 1267,
+        "code": "uint8_t addr[19];"
+      },
+      "68": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 1268,
+        "code": "u_int plen;"
+      },
+      "70": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 538,
+        "code": "plen = pptr[0];"
+      },
+      "72": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 1243,
+        "code": "if (152 < plen)"
+      },
+      "73": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 1244,
+        "code": "return -1;"
+      },
+      "75": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 1246,
+        "code": "memset(&addr, 0, sizeof(addr));"
+      },
+      "76": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 1248,
+        "code": "memcpy(&addr, &pptr[4], (plen + 7) / 8);"
+      },
+      "80": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 1257,
+        "code": "return 1 + (plen + 7) / 8;"
+      },
+      "81": {
+        "orig_file": "print-bgp.c",
+        "orig_line": 1261,
+        "code": "}"
+      }
+    }
+  }
+}

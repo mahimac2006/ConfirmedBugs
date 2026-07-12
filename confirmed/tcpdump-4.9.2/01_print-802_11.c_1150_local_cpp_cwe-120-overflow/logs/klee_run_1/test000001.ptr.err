@@ -1,0 +1,16 @@
+Error: memory error: null page access
+File: print-802_11.c
+Line: 47
+assembly.ll line: 120
+State: 1
+Stack: 
+	#000000120 in parse_elements(134568387612672, 134911984996352) at print-802_11.c:47
+	#100000082 in handle_beacon(134568387612672, 134911984996352, 512, 512, 0, 0) at print-802_11.c:77
+	#200000232 in mgmt_body_print(134568387612672, 134911984996352, 512, 512, 0, 0) at print-802_11.c:83
+	#300000263 in ieee802_11_print(134568387612672, 134911984996352, 512, 512) at print-802_11.c:91
+	#400000287 in ieee802_11_if_print(134568387612672, 134551207743488, 134911984996352) at print-802_11.c:103
+	#500000048 in main() at driver.c:28
+Info: 
+	address: 0
+	next: object at 134268008337408 of size 4
+		MO117[4] allocated at parse_elements():  %8 = alloca i32, align 4

@@ -1,0 +1,8 @@
+Error: calling function with too few arguments
+File: driver.c
+Line: 22
+assembly.ll line: 38
+State: 1
+Stack: 
+	#000000038 in bgp_print(symbolic, symbolic, symbolic) at driver.c:22
+	#100000038 in main() at driver.c:22

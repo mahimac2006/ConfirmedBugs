@@ -1,0 +1,1 @@
+{"tool": "ReplaceCode", "args": {"file": "print-802_11.c", "search": "ND_PRINT((ndo, \"Reserved(%d) Act#%d\", p[0], p[1]));", "replace": "if (length < 2) return 0;\nND_PRINT((ndo, \"Reserved(%d) Act#%d\", p[0], p[1]));"}}

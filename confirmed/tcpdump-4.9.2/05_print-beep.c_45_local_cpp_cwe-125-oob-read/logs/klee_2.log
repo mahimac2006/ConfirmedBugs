@@ -1,0 +1,17 @@
+KLEE: output directory is "/app/se_runs/sailor_engine/tcpdump-4.9.2/092_print-beep.c_45_local_cpp_cwe-125-oob-read/logs/klee_run_2"
+KLEE: Using Z3 solver backend
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7a1ae313b000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7a186313b000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x79186313b000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x78f86313b000 size=128 GiB)
+KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+KLEE: WARNING ONCE: beep_print: SPINE_PROBE:beep_print:ENTRY
+KLEE: ERROR: print-beep.c:15: ASSERTION FAIL: 0 && "SAILOR_SINK_REACHED"
+KLEE: NOTE: now ignoring this error at this location
+
+KLEE: done: total instructions = 181
+KLEE: done: completed paths = 0
+KLEE: done: partially completed paths = 1
+KLEE: done: generated tests = 1
+

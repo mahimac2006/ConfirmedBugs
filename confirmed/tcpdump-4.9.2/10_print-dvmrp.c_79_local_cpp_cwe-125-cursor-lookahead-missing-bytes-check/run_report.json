@@ -1,0 +1,25 @@
+{
+  "search_status": "FOUND_UNTARGETED",
+  "verdict": "FP",
+  "crash_relevance": "",
+  "secondary_bugs": 0,
+  "failure_reason": "",
+  "metrics": {
+    "tokens_total": 111501,
+    "tokens_prompt": 109344,
+    "tokens_completion": 2157,
+    "turns": 12,
+    "klee_runs": 3
+  },
+  "bug": {
+    "type": "",
+    "file": "",
+    "line": 0,
+    "function": "",
+    "asan_confirmed": false,
+    "cwe": ""
+  },
+  "spec": "/app/specs/tcpdump-4.9.2/0specs/217_print-dvmrp.c_79_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check.json",
+  "vul_file": "print-dvmrp.c",
+  "vul_line": "79"
+}

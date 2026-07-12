@@ -1,0 +1,74 @@
+{
+  "schema": "llmse.vul_spec.v1",
+  "id": "local_cpp_cwe-120-overflow@print-802_11.c:1180",
+  "project": null,
+  "rule_id": "local/cpp/cwe-120-overflow",
+  "family": "GENERIC",
+  "file": "/app/dataset/tcp/tcpdump-4.9.2/print-802_11.c",
+  "line": 1180,
+  "column": 4,
+  "end_line": 1180,
+  "end_column": 10,
+  "message": "CWE-120: Potential Buffer Overflow via memcpy (unchecked length).",
+  "context": {
+    "contextStart": 1160,
+    "contextEnd": 1200,
+    "snippet": "\t\t\tif (!pbody->cf_present) {\n\t\t\t\tpbody->cf = cf;\n\t\t\t\tpbody->cf_present = 1;\n\t\t\t}\n\t\t\tbreak;\n\t\tcase E_TIM:\n\t\t\tmemcpy(&tim, p + offset, 2);\n\t\t\toffset += 2;\n\t\t\tlength -= 2;\n\t\t\tif (tim.length <= 3) {\n\t\t\t\toffset += tim.length;\n\t\t\t\tlength -= tim.length;\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\tif (tim.length - 3 > (int)sizeof tim.bitmap)\n\t\t\t\treturn 0;\n\t\t\tmemcpy(&tim.count, p + offset, 3);\n\t\t\toffset += 3;\n\t\t\tlength -= 3;\n\n\t\t\tmemcpy(tim.bitmap, p + offset, tim.length - 3);\n\t\t\toffset += tim.length - 3;\n\t\t\tlength -= tim.length - 3;\n\t\t\t/*\n\t\t\t * Present and not truncated.\n\t\t\t *\n\t\t\t * If we haven't already seen a TIM IE,\n\t\t\t * copy this one, otherwise ignore this one,\n\t\t\t * so we later report the first one we saw.\n\t\t\t */\n\t\t\tif (!pbody->tim_present) {\n\t\t\t\tpbody->tim = tim;\n\t\t\t\tpbody->tim_present = 1;\n\t\t\t}\n\t\t\tbreak;\n\t\tdefault:\n#if 0\n\t\t\tND_PRINT((ndo, \"(1) unhandled element_id (%d)  \",\n\t\t\t    *(p + offset)));\n#endif\n\t\t\toffset += 2 + elementlen;"
+  },
+  "target_statement": {
+    "text": null,
+    "line": 1180,
+    "column_start": 4,
+    "column_end": 10
+  },
+  "facts": {
+    "suspect_calls": [
+      "ND_PRINT",
+      "element_id",
+      "memcpy"
+    ],
+    "pointer_vars": [],
+    "length_vars": [
+      "elementlen",
+      "haven",
+      "return",
+      "seen"
+    ],
+    "bounds_hints": [
+      {
+        "var": "elementlen",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "haven",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "return",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "seen",
+        "relation": ">= 0",
+        "source": "heuristic"
+      }
+    ]
+  },
+  "llm_hints": {
+    "entrypoint": {
+      "strategy": "LLM_INFER",
+      "candidates": []
+    },
+    "assertions": {
+      "presence_assertion_hint": "/* fill with program-specific property */",
+      "reachability_assertion": "klee_assert(0);  /* must be placed immediately before the vulnerable instruction */"
+    },
+    "notes": [
+      "Non-in-path helpers should be stub candidates.",
+      "Groom all in-path data structures to avoid null derefs."
+    ]
+  }
+}

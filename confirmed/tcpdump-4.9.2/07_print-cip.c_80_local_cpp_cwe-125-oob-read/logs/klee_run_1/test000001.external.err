@@ -1,0 +1,7 @@
+Error: failed external call: cip_if_print
+File: driver.c
+Line: 30
+assembly.ll line: 55
+State: 1
+Stack: 
+	#000000055 in main() at driver.c:30

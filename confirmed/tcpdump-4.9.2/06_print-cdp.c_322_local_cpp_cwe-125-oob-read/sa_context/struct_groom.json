@@ -1,0 +1,157 @@
+{
+  "path_map": {
+    "cdp_print": {
+      "target": "cdp_print_addr",
+      "target_line": 59,
+      "guards": [],
+      "on_path_calls": [
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 11
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 12
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 15
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 19
+        },
+        {
+          "func": "EXTRACT_16BITS",
+          "ret_var": "type",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 20
+        },
+        {
+          "func": "EXTRACT_16BITS",
+          "ret_var": "len",
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 21
+        },
+        {
+          "func": "ND_TCHECK2",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 38
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 43
+        },
+        {
+          "func": "tok2str",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 44
+        },
+        {
+          "func": "PLURAL_SUFFIX",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 47
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 53
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 54
+        },
+        {
+          "func": "ND_PRINT",
+          "ret_var": null,
+          "stub_type": "trivial",
+          "constraint": null,
+          "line": 56
+        }
+      ],
+      "branch_skips": [
+        {
+          "start": 4,
+          "end": 7,
+          "condition": "if (caplen < CDP_HEADER_LEN) {",
+          "calls": [
+            "ND_PRINT"
+          ]
+        },
+        {
+          "start": 22,
+          "end": 34,
+          "condition": "if (len < CDP_TLV_HEADER_LEN) {",
+          "calls": [
+            "s",
+            "ND_PRINT",
+            "tok2str",
+            "PLURAL_SUFFIX"
+          ]
+        }
+      ]
+    }
+  },
+  "sink_info": {
+    "sink_labels": [],
+    "sink_conditions": [],
+    "buffer_requirements": []
+  },
+  "stub_prescriptions": {
+    "ND_TCHECK2": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "ND_PRINT": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "EXTRACT_16BITS": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "tok2str": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    },
+    "PLURAL_SUFFIX": {
+      "type": "trivial",
+      "return": "0",
+      "reason": "not on critical path"
+    }
+  },
+  "constants": {},
+  "init_template": "/* === PATH-SENSITIVE INITIALIZATION TEMPLATE ===\n * Generated from backward analysis: sink \u2192 target \u2192 entry \u2192 driver */\n\n// === cdp_print \u2192 cdp_print_addr: Calls needing stubs ===\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  EXTRACT_16BITS() \u2192 trivial stub (return 0)\n//  EXTRACT_16BITS() \u2192 trivial stub (return 0)\n//  ND_TCHECK2() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  tok2str() \u2192 trivial stub (return 0)\n//  PLURAL_SUFFIX() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n//  ND_PRINT() \u2192 trivial stub (return 0)\n\n"
+}

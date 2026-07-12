@@ -1,0 +1,5 @@
+(set-logic QF_AUFBV )
+(declare-fun instate () (Array (_ BitVec 32) (_ BitVec 8) ) )
+(assert (=  (_ bv3 32) (concat  (select  instate (_ bv3 32) ) (concat  (select  instate (_ bv2 32) ) (concat  (select  instate (_ bv1 32) ) (select  instate (_ bv0 32) ) ) ) ) ) )
+(check-sat)
+(exit)

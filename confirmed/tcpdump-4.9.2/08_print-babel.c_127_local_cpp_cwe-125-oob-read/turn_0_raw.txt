@@ -1,0 +1,3 @@
+{"tool":"ReadSAContext","args":{}}
+{"tool":"GatherCode","args":{"functions":"babel_print,format_prefix","types":"netdissect_options"}}
+{"thought":"Need gather code and then write minimal harness/driver, but I don't have the gathered source yet. Proceeding with required code collection next.","tool":"GatherCode","args":{"functions":"babel_print,format_prefix","types":"netdissect_options"}}

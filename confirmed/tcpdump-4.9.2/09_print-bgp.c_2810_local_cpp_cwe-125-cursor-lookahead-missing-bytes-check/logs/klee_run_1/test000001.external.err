@@ -1,0 +1,7 @@
+Error: failed external call: bgp_print
+File: driver.c
+Line: 46
+assembly.ll line: 60
+State: 1
+Stack: 
+	#000000060 in main() at driver.c:46

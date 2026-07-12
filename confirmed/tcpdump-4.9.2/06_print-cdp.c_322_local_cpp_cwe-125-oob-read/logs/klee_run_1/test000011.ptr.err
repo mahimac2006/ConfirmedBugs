@@ -1,0 +1,19 @@
+Error: memory error: out of bound pointer
+File: print-cdp.c
+Line: 46
+assembly.ll line: 354
+State: 43
+Stack: 
+	#000000354 in cdp_print_addr(123011565064192, symbolic, symbolic) at print-cdp.c:46
+	#100000248 in cdp_print(123011565064192, 123217723494400, 64, 64) at print-cdp.c:93
+	#200000059 in main() at driver.c:22
+Info: 
+	address: (Add w64 123217723494412
+          (SExt w64 (Add w32 4294967292
+                             (Or w32 (Shl w32 (ZExt w32 (Read w8 6 buf))
+                                              8)
+                                     (ZExt w32 (Read w8 7 buf))))))
+	example: 123217723494464
+	range: [123217723494464, 123217723494464]
+	next: object at 122711454224384 of size 4
+		MO66[4] allocated at cdp_print():  %11 = alloca i32, align 4

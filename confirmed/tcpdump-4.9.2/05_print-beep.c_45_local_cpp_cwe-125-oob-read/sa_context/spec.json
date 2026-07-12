@@ -1,0 +1,89 @@
+{
+  "schema": "llmse.vul_spec.v1",
+  "id": "local_cpp_cwe-125-oob-read@print-beep.c:45",
+  "project": null,
+  "rule_id": "local/cpp/cwe-125-oob-read",
+  "family": "OOB_MEMCMP",
+  "file": "/app/dataset/tcp/tcpdump-4.9.2/print-beep.c",
+  "line": 45,
+  "column": 10,
+  "end_line": 45,
+  "end_column": 17,
+  "message": "CWE-125: Potential OOB Read via strncmp (unchecked length).",
+  "context": {
+    "contextStart": 25,
+    "contextEnd": 65,
+    "snippet": " * Return TRUE on match, FALSE otherwise\n *\n * Looks at the first few chars up to tl1 ...\n */\n\nstatic int\nl_strnstart(netdissect_options *ndo, const char *tstr1, u_int tl1,\n    const char *str2, u_int l2)\n{\n\tif (!ND_TTEST2(*str2, tl1)) {\n\t\t/*\n\t\t * We don't have tl1 bytes worth of captured data\n\t\t * for the string, so we can't check for this\n\t\t * string.\n\t\t */\n\t\treturn 0;\n\t}\n\tif (tl1 > l2)\n\t\treturn 0;\n\n\treturn (strncmp(tstr1, str2, tl1) == 0 ? 1 : 0);\n}\n\nvoid\nbeep_print(netdissect_options *ndo, const u_char *bp, u_int length)\n{\n\n\tif (l_strnstart(ndo, \"MSG\", 4, (const char *)bp, length)) /* A REQuest */\n\t\tND_PRINT((ndo, \" BEEP MSG\"));\n\telse if (l_strnstart(ndo, \"RPY \", 4, (const char *)bp, length))\n\t\tND_PRINT((ndo, \" BEEP RPY\"));\n\telse if (l_strnstart(ndo, \"ERR \", 4, (const char *)bp, length))\n\t\tND_PRINT((ndo, \" BEEP ERR\"));\n\telse if (l_strnstart(ndo, \"ANS \", 4, (const char *)bp, length))\n\t\tND_PRINT((ndo, \" BEEP ANS\"));\n\telse if (l_strnstart(ndo, \"NUL \", 4, (const char *)bp, length))\n\t\tND_PRINT((ndo, \" BEEP NUL\"));\n\telse if (l_strnstart(ndo, \"SEQ \", 4, (const char *)bp, length))\n\t\tND_PRINT((ndo, \" BEEP SEQ\"));\n\telse if (l_strnstart(ndo, \"END\", 4, (const char *)bp, length))\n\t\tND_PRINT((ndo, \" BEEP END\"));"
+  },
+  "target_statement": {
+    "text": null,
+    "line": 45,
+    "column_start": 10,
+    "column_end": 17
+  },
+  "facts": {
+    "suspect_calls": [
+      "ND_PRINT",
+      "ND_TTEST2",
+      "beep_print",
+      "l_strnstart",
+      "strncmp"
+    ],
+    "pointer_vars": [
+      "bp",
+      "for",
+      "ndo",
+      "str2",
+      "string",
+      "tstr1"
+    ],
+    "length_vars": [
+      "Return",
+      "can",
+      "don",
+      "on",
+      "return"
+    ],
+    "bounds_hints": [
+      {
+        "var": "Return",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "can",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "don",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "on",
+        "relation": ">= 0",
+        "source": "heuristic"
+      },
+      {
+        "var": "return",
+        "relation": ">= 0",
+        "source": "heuristic"
+      }
+    ]
+  },
+  "llm_hints": {
+    "entrypoint": {
+      "strategy": "LLM_INFER",
+      "candidates": []
+    },
+    "assertions": {
+      "presence_assertion_hint": "/* model: n <= min(len(lhs), len(rhs)) */ /* fill with program vars */",
+      "reachability_assertion": "klee_assert(0);  /* must be placed immediately before the vulnerable instruction */"
+    },
+    "notes": [
+      "Non-in-path helpers should be stub candidates.",
+      "Groom all in-path data structures to avoid null derefs."
+    ]
+  }
+}

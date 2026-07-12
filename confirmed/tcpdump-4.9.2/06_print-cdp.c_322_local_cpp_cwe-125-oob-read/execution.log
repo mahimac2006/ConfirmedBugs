@@ -1,0 +1,192 @@
+  [i] Copying source tree to /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/src_copy...
+  [i] Source copy ready (2127 files)
+  [i] Build headers: 1 templates found, 0 headers generated
+  [i] Build headers: 1 templates found, 0 headers generated
+  [i] Loaded: compile_commands.json
+  [i] Loaded: fact_pack.json
+  [i] Loaded: findings.json
+  [i] Spec loaded: 093_print-cdp.c_322_local_cpp_cwe-125-oob-read.json
+  [SA] fact_pack: 811 findings (list format)
+  [i] Vulnerable function: cdp_print_addr
+  [i] Entry from source scan: cdp_print
+  [SA] Compile flags from compile_commands: 8 flags, build_dir=/app/dataset/tcp/tcpdump-4.9.2
+  [i] Struct groom: 0 guards, 5 stub prescriptions, 0 constants
+  [i] SA context written to /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/sa_context
+  [i] Auto-generated baseline driver.c (1140 chars)
+  [Turn 1] Tool: ReadSAContext
+  [Turn 2] Tool: GatherCode
+  [Tool] GatherCode(funcs=cdp_print,cdp_print_addr, types=netdissect_options)
+  [Turn 3] Tool: WriteDriver
+  [Tool] WriteDriver: 688 chars
+  [Turn 4] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Generating smart stubs...
+    [i] SmartStubs: 0 symbolic + 0 hardcoded + 0 proactive → smart_stubs.c
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+  [Turn 5] Tool: ReadSAContext
+  [Turn 6] Tool: GatherCode
+  [System] NUDGE: Turn 6, no harness yet — write code now
+  [Tool] GatherCode(funcs=cdp_print,cdp_print_addr, types=netdissect_options)
+  [Turn 7] Tool: WriteHarness
+    [+] Wrote harness: print-cdp.c (98 lines)
+    [+] Inserted 5 spine coverage probes
+    [+] CWE-125 bounds check: klee_get_obj_size(p) < 8
+    [+] Injected spine probes
+    [+] Line map: 40 harness lines mapped to original source
+    [+] Generated harness_types.h (27 lines, 1 structs, 3 typedefs)
+    [i] Driver MUST: #include "harness_types.h" for correct struct layouts
+  [Turn 8] Tool: WriteDriver
+  [Tool] WriteDriver: 571 chars
+  [Turn 9] Tool: CompileSlice
+  [Tool] CompileSlice
+    [i] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h
+    [+] driver.c -> OK
+    [+] print-cdp.c -> OK
+    [+] smart_stubs.c -> OK
+    [KLEE] Running: timeout=300s
+    [KLEE] Command: /opt/klee/bin/klee --output-dir=/app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1 --max-time=300s --write-kqueries --write-smt2s --optimize --search=random-path --search=dfs --only-output-states-covering-new --external-calls=all --check-overshift --max-depth=1000 --max-memory=2048 /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/harness/slice.bc
+    KLEE: output directory is "/app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1"
+    KLEE: Using Z3 solver backend
+    KLEE: Deterministic allocator: Using quarantine queue size 8
+    KLEE: Deterministic allocator: globals (start-address=0x70bb5ca39000 size=10 GiB)
+    KLEE: Deterministic allocator: constants (start-address=0x70b8dca39000 size=10 GiB)
+    KLEE: Deterministic allocator: heap (start-address=0x6fb8dca39000 size=1024 GiB)
+    KLEE: Deterministic allocator: stack (start-address=0x6f98dca39000 size=128 GiB)
+    KLEE: WARNING ONCE: Alignment of memory from call "calloc" is not modelled. Using alignment of 8.
+    KLEE: WARNING ONCE: cdp_print: SPINE_PROBE:cdp_print:ENTRY
+    KLEE: ERROR: print-cdp.c:83: memory error: out of bound pointer
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: ERROR: print-cdp.c:84: memory error: out of bound pointer
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: ERROR: print-cdp.c:84: memory error: out of bound pointer
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: ERROR: print-cdp.c:57: memory error: invalid pointer: klee_get_obj_size
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: ERROR: print-cdp.c:46: memory error: out of bound pointer
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: ERROR: print-cdp.c:46: memory error: out of bound pointer
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: ERROR: print-cdp.c:47: memory error: out of bound pointer
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: ERROR: print-cdp.c:47: memory error: out of bound pointer
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: ERROR: print-cdp.c:48: memory error: out of bound pointer
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: ERROR: print-cdp.c:48: memory error: out of bound pointer
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: ERROR: print-cdp.c:49: memory error: out of bound pointer
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: ERROR: print-cdp.c:49: memory error: out of bound pointer
+    KLEE: NOTE: now ignoring this error at this location
+    KLEE: HaltTimer invoked
+    KLEE: halting execution, dumping remaining states
+    KLEE: done: total instructions = 2594
+    KLEE: done: completed paths = 39
+    KLEE: done: partially completed paths = 152
+    KLEE: done: generated tests = 18
+    [KLEE] Exit code: 0, Elapsed: 278.9s
+    [KLEE] Log saved: /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_1.log
+    [KLEE] *** BUG TRIGGERED — KLEE  error at line 57 (sink assert at 67) ***
+    [KLEE] Send to concrete validation.
+    [KLEE] Crash: CRASH: ptr at print-cdp.c:83
+    [KLEE] SPINE COVERAGE: cdp_print: REACHED [ENTRY] | cdp_print_addr: NOT REACHED
+    [KLEE] Results: bug_found=True, sink_reached=True, paths=39, tests=18
+    [KLEE] Crash: CRASH: ptr at print-cdp.c:83
+    [KLEE] Diagnostics: BUG TRIGGERED: KLEE  error at line 57 (sink assert at 67); MEMORY ERROR detected by KLEE.; SPINE COVERAGE: cdp_print: REACHED [ENTRY] | cdp_print_addr: NOT REACHED; NOTE: Spine probe for cdp_print_addr didn't fire, but bug_triggered=True. KLEE crashed at the vulnerable statement before the probe could execute.
+  [BUG] KLEE  error at line 57 (sink assert at 67)
+    [+] Line map: 40 harness lines mapped to original source
+  [MAP] harness print-cdp.c:83 → print-cdp.c:116
+  [MAP] Code: type = EXTRACT_16BITS(tptr+CDP_TLV_TYPE_OFFSET);
+  [Phase 5] Concrete validation (ASan replay)
+    [i] KLEE output: /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1
+    [i] test000003.ptr.err: ptr at print-cdp.c:83 [real]
+    [i] test000004.ptr.err: ptr at print-cdp.c:84 [real]
+    [i] test000005.ptr.err: ptr at print-cdp.c:84 [real]
+    [i] test000008.ptr.err: ptr at print-cdp.c:57 [real]
+    [i] test000011.ptr.err: ptr at print-cdp.c:46 [real]
+    [i] test000012.ptr.err: ptr at print-cdp.c:46 [real]
+    [i] test000013.ptr.err: ptr at print-cdp.c:47 [real]
+    [i] test000014.ptr.err: ptr at print-cdp.c:47 [real]
+    [i] test000015.ptr.err: ptr at print-cdp.c:48 [real]
+    [i] test000016.ptr.err: ptr at print-cdp.c:48 [real]
+    [i] test000017.ptr.err: ptr at print-cdp.c:49 [real]
+    [i] test000018.ptr.err: ptr at print-cdp.c:49 [real]
+    [i] Found 12 total errors, 12 real (non-harness)
+    [i] Decoded /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000003.ktest: 1 symbolic objects
+    [i] Decoded /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000004.ktest: 1 symbolic objects
+    [i] Decoded /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000005.ktest: 1 symbolic objects
+    [i] Decoded /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000008.ktest: 1 symbolic objects
+    [i] Decoded /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000011.ktest: 1 symbolic objects
+    [i] Decoded /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000012.ktest: 1 symbolic objects
+    [i] Decoded /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000013.ktest: 1 symbolic objects
+    [i] Decoded /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000014.ktest: 1 symbolic objects
+    [i] Decoded /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000015.ktest: 1 symbolic objects
+    [i] Decoded /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000016.ktest: 1 symbolic objects
+    [i] Decoded /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000017.ktest: 1 symbolic objects
+    [i] Decoded /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000018.ktest: 1 symbolic objects
+    [✓] Mapped: harness print-cdp.c:83 → print-cdp.c:116
+        Code: type = EXTRACT_16BITS(tptr+CDP_TLV_TYPE_OFFSET);
+    [✓] Mapped: harness print-cdp.c:84 → print-cdp.c:116
+        Code: type = EXTRACT_16BITS(tptr+CDP_TLV_TYPE_OFFSET);
+    [✓] Mapped: harness print-cdp.c:84 → print-cdp.c:116
+        Code: type = EXTRACT_16BITS(tptr+CDP_TLV_TYPE_OFFSET);
+    [✓] Mapped: harness print-cdp.c:57 → print-cdp.c:320
+        Code: }
+    [✓] Mapped: harness print-cdp.c:46 → print-cdp.c:283
+        Code: const u_char *endp = p + l;
+    [✓] Mapped: harness print-cdp.c:46 → print-cdp.c:283
+        Code: const u_char *endp = p + l;
+    [✓] Mapped: harness print-cdp.c:47 → print-cdp.c:329
+        Code: p += 10;
+    [✓] Mapped: harness print-cdp.c:47 → print-cdp.c:329
+        Code: p += 10;
+    [✓] Mapped: harness print-cdp.c:48 → print-cdp.c:329
+        Code: p += 10;
+    [✓] Mapped: harness print-cdp.c:48 → print-cdp.c:329
+        Code: p += 10;
+    [✓] Mapped: harness print-cdp.c:49 → print-cdp.c:329
+        Code: p += 10;
+    [✓] Mapped: harness print-cdp.c:49 → print-cdp.c:329
+        Code: p += 10;
+    [ASan-Real] Source: /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/src_copy/print-cdp.c
+    [ASan-Real] Auto-including /app/dataset/tcp/tcpdump-4.9.2/config.h (-I /app/dataset/tcp/tcpdump-4.9.2)
+    [ASan-Real] Copying source tree from /app/dataset/tcp/tcpdump-4.9.2 to /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/asan_real/asan_src...
+    [ASan-Real] Cleaning previous build...
+    [ASan-Real] configure (custom) + ASan...
+    [ASan-Real] Configured, running make...
+    [ASan-Real] Make errors: /bin/sh: 1: Syntax error: "(" unexpected
+make: *** [Makefile:71: setsignal.o] Error 2
+make: *** Waiting for unfinished jobs....
+/bin/sh: 1: Syntax error: "(" unexpected
+make: *** [Makefile:71: tcpdump.o] Error 2
+
+    [ASan-Real] No .a/.so files produced by build
+    [ASan-Real] Trying make with ASan in /app/dataset/tcp/tcpdump-4.9.2...
+    [ASan-Real] Make succeeded: /app/dataset/tcp/tcpdump-4.9.2/libnetdissect.a
+    [ASan-Real] Linking replay driver against libnetdissect.a...
+    [ASan-Real] Linking against existing library /app/dataset/tcp/tcpdump-4.9.2/libnetdissect.a...
+    [ASan-Real] Last resort: compiling real source directly...
+    [ASan-Real] All compilation approaches failed: /usr/bin/ld: /tmp/print-cdp-3b1186.o: in function `cdp_print':
+print-cdp.c:(.text+0x502): undefined reference to `tok2str'
+/usr/bin/ld: print-cdp.c:(.text+0x5a3): undefined reference to `tok2str'
+/usr/bin/ld: print-cdp.c:(.text+0x808): undefined reference to `tok2str'
+/usr/bin/ld: print-cdp.c:(.text
+    [Report] Verdict: LIKELY_TP
+    [Report] KLEE crash: harness print-cdp.c:83 → original print-cdp.c:116
+    [Report] Target crashes: 12
+    [✓] Bug report saved: /app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/bug_report.json
+    [SUMMARY] Verdict: LIKELY_TP
+    [SUMMARY] ptr at harness print-cdp.c:83 → print-cdp.c:116
+    [SUMMARY] ptr at harness print-cdp.c:84 → print-cdp.c:116
+    [SUMMARY] ptr at harness print-cdp.c:84 → print-cdp.c:116
+    [SUMMARY] ptr at harness print-cdp.c:57 → print-cdp.c:320
+    [SUMMARY] ptr at harness print-cdp.c:46 → print-cdp.c:283
+    [SUMMARY] ptr at harness print-cdp.c:46 → print-cdp.c:283
+    [SUMMARY] ptr at harness print-cdp.c:47 → print-cdp.c:329
+    [SUMMARY] ptr at harness print-cdp.c:47 → print-cdp.c:329
+    [SUMMARY] ptr at harness print-cdp.c:48 → print-cdp.c:329
+    [SUMMARY] ptr at harness print-cdp.c:48 → print-cdp.c:329
+    [SUMMARY] ptr at harness print-cdp.c:49 → print-cdp.c:329
+    [SUMMARY] ptr at harness print-cdp.c:49 → print-cdp.c:329
+  [AUTO-DONE] verdict=LIKELY_TP, asan=False
+Done.

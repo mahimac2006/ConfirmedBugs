@@ -1,0 +1,7 @@
+Error: failed external call: babel_print
+File: driver.c
+Line: 23
+assembly.ll line: 36
+State: 1
+Stack: 
+	#000000036 in main() at driver.c:23

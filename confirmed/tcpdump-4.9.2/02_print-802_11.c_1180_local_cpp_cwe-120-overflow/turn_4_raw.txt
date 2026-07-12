@@ -1,0 +1,1 @@
+{"thought":"Need compile now; maybe harness currently has dummy ieee802_11_print, parse_elements not wired. But compile/run will reveal. Use CompileSlice.", "tool": "CompileSlice", "args": {}}

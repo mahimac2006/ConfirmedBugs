@@ -1,0 +1,93 @@
+{
+  "search_status": "FOUND_LIKELY_TP",
+  "verdict": "LIKELY_TP",
+  "crash_relevance": "no_asan",
+  "secondary_bugs": 0,
+  "failure_reason": "",
+  "metrics": {
+    "tokens_total": 127011,
+    "tokens_prompt": 124489,
+    "tokens_completion": 2522,
+    "turns": 12,
+    "klee_runs": 3
+  },
+  "bug": {
+    "type": "ptr",
+    "file": "print-dvmrp.c",
+    "line": 80,
+    "function": "dvmrp_print",
+    "asan_confirmed": false,
+    "cwe": "unknown"
+  },
+  "spec": "/app/specs/tcpdump-4.9.2/0specs/219_print-dvmrp.c_80_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check.json",
+  "vul_file": "print-dvmrp.c",
+  "vul_line": "80",
+  "bug_report": {
+    "summary": {
+      "verdict": "LIKELY_TP",
+      "asan_confirmed": false,
+      "crash_relevance": "no_asan",
+      "cwe": "unknown",
+      "cwe_description": "",
+      "total_asan_crashes": 0,
+      "target_asan_crashes": 0,
+      "secondary_asan_crashes": 0,
+      "target_crashes": 1,
+      "secondary_bugs": 0
+    },
+    "vulnerability": {
+      "original_file": "print-dvmrp.c",
+      "original_line": 80,
+      "function": "dvmrp_print",
+      "entry_point": "dvmrp_print",
+      "spine": [
+        "dvmrp_print"
+      ],
+      "original_context": "75: \tep = (const u_char *)ndo->ndo_snapend;\n76: \tif (bp >= ep)\n77: \t\treturn;\n78: \n79: \tND_TCHECK(bp[1]);\n80: \ttype = bp[1];\n81: \n82: \t/* Skip IGMP header */\n83: \tbp += 8;\n84: \tlen -= 8;\n85: "
+    },
+    "klee_crash": {
+      "harness_file": "print-dvmrp.c",
+      "harness_line": 57,
+      "original_file": "print-dvmrp.c",
+      "original_line": 80,
+      "original_code": "type = bp[1];",
+      "original_context": "    77: \t\treturn;\n    78: \n    79: \tND_TCHECK(bp[1]);\n>>> 80: \ttype = bp[1];\n    81: \n    82: \t/* Skip IGMP header */\n    83: \tbp += 8;",
+      "error_type": "ptr",
+      "error_details": "Error: memory error: out of bound pointer\nFile: print-dvmrp.c\nLine: 57\nassembly.ll line: 86\nState: 1\nStack: \n\t#000000086 in dvmrp_print(122999201472512, 122793043042304) at print-dvmrp.c:57\n\t#100000043 in main() at driver.c:18\nInfo: \n\taddress: 122793043042305\n\tnext: object at 122488100364288 of size 1\n\t\tMO44[1] allocated at dvmrp_print():  %7 = alloca i8, align 1\n"
+    },
+    "concrete_inputs": [
+      {
+        "name": "buf",
+        "size": 1,
+        "data": "b'\\x00'"
+      }
+    ],
+    "asan_result": {
+      "triggered": false,
+      "harness_artifact": false,
+      "error_type": "",
+      "crash_function": "",
+      "crash_file": "",
+      "crash_line": 0,
+      "original_file": "",
+      "original_line": 0,
+      "original_code": "",
+      "original_context": "",
+      "output": ""
+    },
+    "line_map_file": "/app/se_runs/sailor_engine/tcpdump-4.9.2/219_print-dvmrp.c_80_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/harness/line_map.json",
+    "all_crashes": [
+      {
+        "harness_file": "print-dvmrp.c",
+        "harness_line": 57,
+        "original_file": "print-dvmrp.c",
+        "original_line": 80,
+        "error_type": "ptr",
+        "crash_function": "dvmrp_print",
+        "relevance": "target_crash",
+        "ktest": "/app/se_runs/sailor_engine/tcpdump-4.9.2/219_print-dvmrp.c_80_local_cpp_cwe-125-cursor-lookahead-missing-bytes-check/logs/klee_run_3/test000001.ktest"
+      }
+    ],
+    "all_asan_crashes": []
+  }
+}

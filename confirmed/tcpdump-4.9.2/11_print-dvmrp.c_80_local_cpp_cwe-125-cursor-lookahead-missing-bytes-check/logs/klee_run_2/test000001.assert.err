@@ -1,0 +1,8 @@
+Error: ASSERTION FAIL: 0 && "SAILOR_SINK_REACHED"
+File: print-dvmrp.c
+Line: 59
+assembly.ll line: 104
+State: 1
+Stack: 
+	#000000104 in dvmrp_print(128465300963328, 128327862009856) at print-dvmrp.c:59
+	#100000047 in main() at driver.c:19

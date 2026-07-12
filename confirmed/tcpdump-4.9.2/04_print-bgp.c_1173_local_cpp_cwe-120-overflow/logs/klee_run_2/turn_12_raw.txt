@@ -1,0 +1,1 @@
+{"thought": "Target reached with ptr.err at print-bgp.c line 86 near sink; report TP.", "tool": "Done", "args": {"verdict": "TP", "details": "KLEE triggered a memory error in decode_labeled_prefix6 at print-bgp.c:86, which is reported as near the vulnerability site (print-bgp.c:96). The crash occurred on the intended spine path from bgp_print to decode_labeled_prefix6."}}

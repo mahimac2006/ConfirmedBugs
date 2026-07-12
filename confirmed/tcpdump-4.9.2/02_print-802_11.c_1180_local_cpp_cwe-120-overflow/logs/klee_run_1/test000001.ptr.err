@@ -1,0 +1,16 @@
+Error: memory error: out of bound pointer
+File: print-802_11.c
+Line: 78
+assembly.ll line: 127
+State: 2
+Stack: 
+	#000000127 in parse_elements(126019955658752, 125568984092672, 126157394612224, 512) at print-802_11.c:78
+	#100000088 in handle_beacon(126019955658752, 126157394612224, 512, 512, 0, 0) at print-802_11.c:43
+	#200000285 in mgmt_body_print(126019955658752, 126157394612224, 512, 512, 0, 0) at print-802_11.c:49
+	#300000315 in ieee802_11_print(126019955658752, 126157394612224, 512, 512) at print-802_11.c:56
+	#400000339 in ieee802_11_if_print(126019955658752, 125951236182016, 126157394612224) at print-802_11.c:66
+	#500000049 in main() at driver.c:21
+Info: 
+	address: 126155979799469
+	next: object at 125513417953280 of size 4
+		MO383[4] allocated at parse_elements():  %10 = alloca i32, align 4

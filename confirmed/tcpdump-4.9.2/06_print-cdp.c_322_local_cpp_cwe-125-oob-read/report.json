@@ -1,0 +1,451 @@
+{
+  "findings": [
+    [
+      "LIKELY_TP",
+      "BUG TRIGGERED \u2014 KLEE  error at line 57 (sink assert at 67)\nCrash: CRASH: ptr at print-cdp.c:83\nOriginal: print-cdp.c:116 \u2192 type = EXTRACT_16BITS(tptr+CDP_TLV_TYPE_OFFSET);\nASan: not confirmed\n\nAll crashes (12):\n  ptr at print-cdp.c:83 \u2192 print-cdp.c:116\n  ptr at print-cdp.c:84 \u2192 print-cdp.c:116\n  ptr at print-cdp.c:84 \u2192 print-cdp.c:116\n  ptr at print-cdp.c:57 \u2192 print-cdp.c:320\n  ptr at print-cdp.c:46 \u2192 print-cdp.c:283\n  ptr at print-cdp.c:46 \u2192 print-cdp.c:283\n  ptr at print-cdp.c:47 \u2192 print-cdp.c:329\n  ptr at print-cdp.c:47 \u2192 print-cdp.c:329\n  ptr at print-cdp.c:48 \u2192 print-cdp.c:329\n  ptr at print-cdp.c:48 \u2192 print-cdp.c:329\n  ptr at print-cdp.c:49 \u2192 print-cdp.c:329\n  ptr at print-cdp.c:49 \u2192 print-cdp.c:329\n"
+    ]
+  ],
+  "line_map": {
+    "print-cdp.c": {
+      "3": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 35,
+        "code": "#include <string.h>"
+      },
+      "6": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 44,
+        "code": "#define CDP_HEADER_LEN 4",
+        "match_type": "fuzzy"
+      },
+      "7": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 49,
+        "code": "#define CDP_TLV_HEADER_LEN 4",
+        "match_type": "fuzzy"
+      },
+      "8": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 45,
+        "code": "#define CDP_HEADER_VERSION_OFFSET 0",
+        "match_type": "fuzzy"
+      },
+      "9": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 46,
+        "code": "#define CDP_HEADER_TTL_OFFSET 1",
+        "match_type": "fuzzy"
+      },
+      "10": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 47,
+        "code": "#define CDP_HEADER_CHECKSUM_OFFSET 2"
+      },
+      "11": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 50,
+        "code": "#define CDP_TLV_TYPE_OFFSET 0"
+      },
+      "12": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 51,
+        "code": "#define CDP_TLV_LEN_OFFSET 2",
+        "match_type": "fuzzy"
+      },
+      "16": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 31,
+        "code": "#endif"
+      },
+      "19": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 31,
+        "code": "#endif"
+      },
+      "41": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 283,
+        "code": "const u_char *endp = p + l;"
+      },
+      "52": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 329,
+        "code": "p += 10;"
+      },
+      "54": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 318,
+        "code": "ND_PRINT((ndo, \"IPv4 (%u) %s\", num, ipaddr_string(ndo, p)));"
+      },
+      "55": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 319,
+        "code": "p += 4;"
+      },
+      "56": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 320,
+        "code": "}"
+      },
+      "59": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 329,
+        "code": "p += 10;"
+      },
+      "61": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 334,
+        "code": "ND_PRINT((ndo, \"IPv6 (%u) %s\", num, ip6addr_string(ndo, p)));"
+      },
+      "62": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 335,
+        "code": "p += al;"
+      },
+      "63": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 336,
+        "code": "}"
+      },
+      "64": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 337,
+        "code": "else {"
+      },
+      "65": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 341,
+        "code": "ND_TCHECK2(*p, pl);"
+      },
+      "66": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 336,
+        "code": "}"
+      },
+      "68": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 364,
+        "code": "return 0;"
+      },
+      "69": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 362,
+        "code": "}"
+      },
+      "73": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 97,
+        "code": "int type, len, i, j;"
+      },
+      "74": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 98,
+        "code": "const u_char *tptr;"
+      },
+      "77": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 107,
+        "code": "ND_TCHECK2(*tptr, CDP_HEADER_LEN);"
+      },
+      "80": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 112,
+        "code": "tptr += CDP_HEADER_LEN;"
+      },
+      "81": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 114,
+        "code": "while (tptr < (pptr+length)) {"
+      },
+      "83": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 116,
+        "code": "type = EXTRACT_16BITS(tptr+CDP_TLV_TYPE_OFFSET);"
+      },
+      "86": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 131,
+        "code": "tptr += CDP_TLV_HEADER_LEN;"
+      },
+      "87": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 132,
+        "code": "len -= CDP_TLV_HEADER_LEN;"
+      },
+      "88": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 134,
+        "code": "ND_TCHECK2(*tptr, len);"
+      },
+      "90": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 145,
+        "code": "switch (type) {"
+      },
+      "96": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 130,
+        "code": "}"
+      },
+      "97": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 130,
+        "code": "}"
+      },
+      "99": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 130,
+        "code": "}"
+      },
+      "100": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 263,
+        "code": "trunc:"
+      },
+      "102": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 262,
+        "code": "return;"
+      },
+      "103": {
+        "orig_file": "print-cdp.c",
+        "orig_line": 265,
+        "code": "}"
+      }
+    }
+  },
+  "bug_report": {
+    "summary": {
+      "verdict": "LIKELY_TP",
+      "asan_confirmed": false,
+      "crash_relevance": "no_asan",
+      "cwe": "unknown",
+      "cwe_description": "",
+      "total_asan_crashes": 0,
+      "target_asan_crashes": 0,
+      "secondary_asan_crashes": 0,
+      "target_crashes": 12,
+      "secondary_bugs": 0
+    },
+    "vulnerability": {
+      "original_file": "print-cdp.c",
+      "original_line": 322,
+      "function": "cdp_print_addr",
+      "entry_point": "cdp_print",
+      "spine": [
+        "cdp_print",
+        "cdp_print_addr"
+      ],
+      "original_context": "317: \t\t\t\tgoto trunc;\n318: \t\t\tND_PRINT((ndo, \"IPv4 (%u) %s\", num, ipaddr_string(ndo, p)));\n319: \t\t\tp += 4;\n320: \t\t}\n321: \t\telse if (pt == PT_IEEE_802_2 && pl == 8 &&\n322: \t\t    memcmp(p, prot_ipv6, 8) == 0 && al == 16) {\n323: \t\t\t/*\n324: \t\t\t * IPv6: protocol type = IEEE 802.2 header,\n325: \t\t\t * protocol length = 8 (size of LLC+SNAP header),\n326: \t\t\t * protocol = LLC+SNAP header with the IPv6\n327: \t\t\t * Ethertype, address length = 16"
+    },
+    "klee_crash": {
+      "harness_file": "print-cdp.c",
+      "harness_line": 83,
+      "original_file": "print-cdp.c",
+      "original_line": 116,
+      "original_code": "type = EXTRACT_16BITS(tptr+CDP_TLV_TYPE_OFFSET);",
+      "original_context": "    113: \n    114: \twhile (tptr < (pptr+length)) {\n    115: \t\tND_TCHECK2(*tptr, CDP_TLV_HEADER_LEN); /* read out Type and Length */\n>>> 116: \t\ttype = EXTRACT_16BITS(tptr+CDP_TLV_TYPE_OFFSET);\n    117: \t\tlen  = EXTRACT_16BITS(tptr+CDP_TLV_LEN_OFFSET); /* object length includes the 4 bytes header length */\n    118: \t\tif (len < CDP_TLV_HEADER_LEN) {\n    119: \t\t    if (ndo->ndo_vflag)",
+      "error_type": "ptr",
+      "error_details": "Error: memory error: out of bound pointer\nFile: print-cdp.c\nLine: 83\nassembly.ll line: 170\nState: 6\nStack: \n\t#000000170 in cdp_print(123011565064192, 123217723494400, 64, 64) at print-cdp.c:83\n\t#100000059 in main() at driver.c:22\nInfo: \n\taddress: (Add w64 123217723494409\n          (SExt w64 (Add w32 4294967292\n                             (Or w32 (Shl w32 (ZExt w32 (Read w8 6 buf))\n                                              8)\n                                     (ZExt w32 (Read w8 7 buf)))))"
+    },
+    "concrete_inputs": [
+      {
+        "name": "buf",
+        "size": 64,
+        "data": "b';;;;\\x00\\x00\\x00;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'"
+      },
+      {
+        "name": "buf",
+        "size": 64,
+        "data": "b'::::\\x00\\x00\\x00:::::::::::::::::::::::::::::::::::::::::::::::::::::::::'"
+      },
+      {
+        "name": "buf",
+        "size": 64,
+        "data": "b'\\x00\\x00\\x00\\x00\\x00\\x00\\x009\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\"
+      },
+      {
+        "name": "buf",
+        "size": 64,
+        "data": "b'\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x80\\x00\\xff\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x"
+      },
+      {
+        "name": "buf",
+        "size": 64,
+        "data": "b'\\x00\\x00\\x00\\x00\\x00\\x00\\x008\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\"
+      },
+      {
+        "name": "buf",
+        "size": 64,
+        "data": "b'\\x00\\x00\\x00\\x00\\x00\\x00\\x007\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\"
+      },
+      {
+        "name": "buf",
+        "size": 64,
+        "data": "b'\\x00\\x00\\x00\\x00\\x00\\x00\\x006\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\"
+      },
+      {
+        "name": "buf",
+        "size": 64,
+        "data": "b'\\x00\\x00\\x00\\x00\\x01\\x00\\x005\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\"
+      },
+      {
+        "name": "buf",
+        "size": 64,
+        "data": "b'\\x00\\x00\\x00\\x00\\x00\\x00\\x004\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\"
+      },
+      {
+        "name": "buf",
+        "size": 64,
+        "data": "b'\\x00\\x00\\x00\\x00\\x01\\x00\\x003\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\"
+      },
+      {
+        "name": "buf",
+        "size": 64,
+        "data": "b'\\x00\\x00\\x00\\x00\\x00\\x00\\x002\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\"
+      },
+      {
+        "name": "buf",
+        "size": 64,
+        "data": "b'\\x00\\x00\\x00\\x00\\x00\\x00\\x001\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\"
+      }
+    ],
+    "asan_result": {
+      "triggered": false,
+      "harness_artifact": false,
+      "error_type": "",
+      "crash_function": "",
+      "crash_file": "",
+      "crash_line": 0,
+      "original_file": "",
+      "original_line": 0,
+      "original_code": "",
+      "original_context": "",
+      "output": ""
+    },
+    "line_map_file": "/app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/harness/line_map.json",
+    "all_crashes": [
+      {
+        "harness_file": "print-cdp.c",
+        "harness_line": 83,
+        "original_file": "print-cdp.c",
+        "original_line": 116,
+        "error_type": "ptr",
+        "crash_function": "cdp_print",
+        "relevance": "spine_crash",
+        "ktest": "/app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000003.ktest"
+      },
+      {
+        "harness_file": "print-cdp.c",
+        "harness_line": 84,
+        "original_file": "print-cdp.c",
+        "original_line": 116,
+        "error_type": "ptr",
+        "crash_function": "cdp_print",
+        "relevance": "spine_crash",
+        "ktest": "/app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000004.ktest"
+      },
+      {
+        "harness_file": "print-cdp.c",
+        "harness_line": 84,
+        "original_file": "print-cdp.c",
+        "original_line": 116,
+        "error_type": "ptr",
+        "crash_function": "cdp_print",
+        "relevance": "spine_crash",
+        "ktest": "/app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000005.ktest"
+      },
+      {
+        "harness_file": "print-cdp.c",
+        "harness_line": 57,
+        "original_file": "print-cdp.c",
+        "original_line": 320,
+        "error_type": "ptr",
+        "crash_function": "cdp_print_addr",
+        "relevance": "target_crash",
+        "ktest": "/app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000008.ktest"
+      },
+      {
+        "harness_file": "print-cdp.c",
+        "harness_line": 46,
+        "original_file": "print-cdp.c",
+        "original_line": 283,
+        "error_type": "ptr",
+        "crash_function": "cdp_print_addr",
+        "relevance": "target_crash",
+        "ktest": "/app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000011.ktest"
+      },
+      {
+        "harness_file": "print-cdp.c",
+        "harness_line": 46,
+        "original_file": "print-cdp.c",
+        "original_line": 283,
+        "error_type": "ptr",
+        "crash_function": "cdp_print_addr",
+        "relevance": "target_crash",
+        "ktest": "/app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000012.ktest"
+      },
+      {
+        "harness_file": "print-cdp.c",
+        "harness_line": 47,
+        "original_file": "print-cdp.c",
+        "original_line": 329,
+        "error_type": "ptr",
+        "crash_function": "cdp_print_addr",
+        "relevance": "target_crash",
+        "ktest": "/app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000013.ktest"
+      },
+      {
+        "harness_file": "print-cdp.c",
+        "harness_line": 47,
+        "original_file": "print-cdp.c",
+        "original_line": 329,
+        "error_type": "ptr",
+        "crash_function": "cdp_print_addr",
+        "relevance": "target_crash",
+        "ktest": "/app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000014.ktest"
+      },
+      {
+        "harness_file": "print-cdp.c",
+        "harness_line": 48,
+        "original_file": "print-cdp.c",
+        "original_line": 329,
+        "error_type": "ptr",
+        "crash_function": "cdp_print_addr",
+        "relevance": "target_crash",
+        "ktest": "/app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000015.ktest"
+      },
+      {
+        "harness_file": "print-cdp.c",
+        "harness_line": 48,
+        "original_file": "print-cdp.c",
+        "original_line": 329,
+        "error_type": "ptr",
+        "crash_function": "cdp_print_addr",
+        "relevance": "target_crash",
+        "ktest": "/app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000016.ktest"
+      },
+      {
+        "harness_file": "print-cdp.c",
+        "harness_line": 49,
+        "original_file": "print-cdp.c",
+        "original_line": 329,
+        "error_type": "ptr",
+        "crash_function": "cdp_print_addr",
+        "relevance": "target_crash",
+        "ktest": "/app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000017.ktest"
+      },
+      {
+        "harness_file": "print-cdp.c",
+        "harness_line": 49,
+        "original_file": "print-cdp.c",
+        "original_line": 329,
+        "error_type": "ptr",
+        "crash_function": "cdp_print_addr",
+        "relevance": "target_crash",
+        "ktest": "/app/se_runs/sailor_engine/tcpdump-4.9.2/093_print-cdp.c_322_local_cpp_cwe-125-oob-read/logs/klee_run_1/test000018.ktest"
+      }
+    ],
+    "all_asan_crashes": []
+  }
+}

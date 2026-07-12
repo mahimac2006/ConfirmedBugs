@@ -1,0 +1,19 @@
+{
+  "path_map": {
+    "beep_print": {
+      "target": "l_strnstart",
+      "target_line": 2,
+      "guards": [],
+      "on_path_calls": [],
+      "branch_skips": []
+    }
+  },
+  "sink_info": {
+    "sink_labels": [],
+    "sink_conditions": [],
+    "buffer_requirements": []
+  },
+  "stub_prescriptions": {},
+  "constants": {},
+  "init_template": "/* === PATH-SENSITIVE INITIALIZATION TEMPLATE ===\n * Generated from backward analysis: sink \u2192 target \u2192 entry \u2192 driver */\n\n"
+}
