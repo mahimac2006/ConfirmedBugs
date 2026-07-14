@@ -1,0 +1,6 @@
+KLEE: WARNING: undefined reference to function: strlen
+KLEE: WARNING: undefined reference to function: strnlen
+KLEE: WARNING ONCE: silently concretizing (reason: external call) expression (Read w8 0 needle) to value 255 (predicate_strncasestr-oob-read.c:0)
+KLEE: WARNING ONCE: calling external: strlen(125312560005120) at predicate_strncasestr-oob-read.c:0 0
+KLEE: WARNING ONCE: silently concretizing (reason: external call) expression (Read w8 2 buf) to value 223 (predicate_strncasestr-oob-read.c:0)
+KLEE: WARNING ONCE: calling external: strnlen(125314707488768, 12) at predicate_strncasestr-oob-read.c:0 0

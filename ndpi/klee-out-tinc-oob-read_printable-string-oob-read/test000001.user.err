@@ -1,0 +1,7 @@
+Error: invalid klee_assume call (provably false)
+File: driver_tinc-oob-read_printable-string-oob-read.c
+Line: 53
+assembly.ll line: 53
+State: 2
+Stack: 
+	#000000053 in main() at driver_tinc-oob-read_printable-string-oob-read.c:53

@@ -1,0 +1,7 @@
+Error: invalid klee_assume call (provably false)
+File: driver_cert-elements-oob-write_serializer-int32-oob-write.c
+Line: 100
+assembly.ll line: 122
+State: 2
+Stack: 
+	#000000122 in main() at driver_cert-elements-oob-write_serializer-int32-oob-write.c:100

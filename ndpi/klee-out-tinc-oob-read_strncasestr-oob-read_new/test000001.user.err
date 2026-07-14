@@ -1,0 +1,7 @@
+Error: invalid klee_assume call (provably false)
+File: driver_tinc-oob-read_strncasestr-oob-read_final.c
+Line: 68
+assembly.ll line: 371
+State: 5
+Stack: 
+	#000000371 in main() at driver_tinc-oob-read_strncasestr-oob-read_final.c:68

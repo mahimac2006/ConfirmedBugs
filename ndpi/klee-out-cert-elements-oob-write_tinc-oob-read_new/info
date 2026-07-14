@@ -1,0 +1,23 @@
+klee --optimize --solver-backend=z3 --external-calls=all --output-dir=klee-out-cert-elements-oob-write_tinc-oob-read_new linked_cert-elements-oob-write_tinc-oob-read_new.bc
+PID: 903436
+Using monotonic steady clock with 1/1000000000s resolution
+Started: 2026-07-12 23:05:06
+BEGIN searcher description
+<InterleavedSearcher> containing 2 searchers:
+RandomPathSearcher
+WeightedRandomSearcher::CoveringNew
+</InterleavedSearcher>
+END searcher description
+Finished: 2026-07-12 23:07:32
+Elapsed: 00:02:26
+KLEE: done: explored paths = 29902
+KLEE: done: avg. constructs per query = 75
+KLEE: done: total queries = 5151
+KLEE: done: valid queries = 1138
+KLEE: done: invalid queries = 4013
+KLEE: done: query cex = 5151
+
+KLEE: done: total instructions = 1277564
+KLEE: done: completed paths = 0
+KLEE: done: partially completed paths = 29902
+KLEE: done: generated tests = 1

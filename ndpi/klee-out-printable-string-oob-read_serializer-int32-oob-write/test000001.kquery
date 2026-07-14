@@ -1,0 +1,15 @@
+array ps_len[8] : w32 -> w8 = symbolic
+array size_used[4] : w32 -> w8 = symbolic
+array value[4] : w32 -> w8 = symbolic
+(query [(Ult 256
+              N0:(ReadLSB w64 0 ps_len))
+         (Ult N0 513)
+         (Eq false
+             (Eq 0
+                 N1:(ReadLSB w32 0 size_used)))
+         (Ult (Add w32 11 N1) 257)
+         (Ult 999999999
+              (ReadLSB w32 0 value))
+         (Or (Ult 256 N1)
+             (Ult (Sub w32 256 N1) 11))]
+        false)

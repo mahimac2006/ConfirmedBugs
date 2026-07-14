@@ -1,0 +1,7 @@
+Error: invalid klee_assume call (provably false)
+File: driver_tinc-oob-read_serializer-int32-oob-write.c
+Line: 83
+assembly.ll line: 89
+State: 2
+Stack: 
+	#000000089 in main() at driver_tinc-oob-read_serializer-int32-oob-write.c:83

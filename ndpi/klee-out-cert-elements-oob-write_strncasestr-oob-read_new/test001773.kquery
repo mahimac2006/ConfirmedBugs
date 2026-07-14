@@ -1,0 +1,150 @@
+array buf[64] : w32 -> w8 = symbolic
+array needle[66] : w32 -> w8 = symbolic
+(query [(Eq false
+             (Eq 0 (Read w8 0 needle)))
+         (Eq false
+             (Eq 0 (Read w8 1 needle)))
+         (Eq false
+             (Eq 0 (Read w8 2 needle)))
+         (Eq false
+             (Eq 0 (Read w8 3 needle)))
+         (Eq false
+             (Eq 0 (Read w8 4 needle)))
+         (Eq false
+             (Eq 0 (Read w8 5 needle)))
+         (Eq false
+             (Eq 0 (Read w8 6 needle)))
+         (Eq false
+             (Eq 0 (Read w8 7 needle)))
+         (Eq false
+             (Eq 0 (Read w8 8 needle)))
+         (Eq false
+             (Eq 0 (Read w8 9 needle)))
+         (Eq false
+             (Eq 0 (Read w8 10 needle)))
+         (Eq false
+             (Eq 0 (Read w8 11 needle)))
+         (Eq false
+             (Eq 0 (Read w8 12 needle)))
+         (Eq false
+             (Eq 0 (Read w8 13 needle)))
+         (Eq false
+             (Eq 0 (Read w8 14 needle)))
+         (Eq false
+             (Eq 0 (Read w8 15 needle)))
+         (Eq false
+             (Eq 0 (Read w8 16 needle)))
+         (Eq false
+             (Eq 0 (Read w8 17 needle)))
+         (Eq false
+             (Eq 0 (Read w8 18 needle)))
+         (Eq false
+             (Eq 0 (Read w8 19 needle)))
+         (Eq false
+             (Eq 0 (Read w8 20 needle)))
+         (Eq false
+             (Eq 0 (Read w8 21 needle)))
+         (Eq false
+             (Eq 0 (Read w8 22 needle)))
+         (Eq false
+             (Eq 0 (Read w8 23 needle)))
+         (Eq false
+             (Eq 0 (Read w8 24 needle)))
+         (Eq false
+             (Eq 0 (Read w8 25 needle)))
+         (Eq false
+             (Eq 0 (Read w8 26 needle)))
+         (Eq false
+             (Eq 0 (Read w8 27 needle)))
+         (Eq false
+             (Eq 0 (Read w8 28 needle)))
+         (Eq false
+             (Eq 0 (Read w8 29 needle)))
+         (Eq false
+             (Eq 0 (Read w8 30 needle)))
+         (Eq false
+             (Eq 0 (Read w8 31 needle)))
+         (Eq false
+             (Eq 0 (Read w8 32 needle)))
+         (Eq false
+             (Eq 0 (Read w8 33 needle)))
+         (Eq false
+             (Eq 0 (Read w8 34 needle)))
+         (Eq false
+             (Eq 0 (Read w8 35 needle)))
+         (Eq false
+             (Eq 0 (Read w8 36 needle)))
+         (Eq false
+             (Eq 0 (Read w8 37 needle)))
+         (Eq false
+             (Eq 0 (Read w8 38 needle)))
+         (Eq false
+             (Eq 0 (Read w8 39 needle)))
+         (Eq false
+             (Eq 0 (Read w8 40 needle)))
+         (Eq false
+             (Eq 0 (Read w8 41 needle)))
+         (Eq false
+             (Eq 0 (Read w8 42 needle)))
+         (Eq false
+             (Eq 0 (Read w8 43 needle)))
+         (Eq false
+             (Eq 0 (Read w8 44 needle)))
+         (Eq false
+             (Eq 0 (Read w8 45 needle)))
+         (Eq false
+             (Eq 0 (Read w8 46 needle)))
+         (Eq false
+             (Eq 0 (Read w8 47 needle)))
+         (Eq false
+             (Eq 0 (Read w8 48 needle)))
+         (Eq false
+             (Eq 0 (Read w8 49 needle)))
+         (Eq false
+             (Eq 0 (Read w8 50 needle)))
+         (Eq false
+             (Eq 0 (Read w8 51 needle)))
+         (Eq false
+             (Eq 0 (Read w8 52 needle)))
+         (Eq false
+             (Eq 0 (Read w8 53 needle)))
+         (Eq false
+             (Eq 0 (Read w8 54 needle)))
+         (Eq false
+             (Eq 0 (Read w8 55 needle)))
+         (Eq false
+             (Eq 0 (Read w8 56 needle)))
+         (Eq false
+             (Eq 0 (Read w8 57 needle)))
+         (Eq false
+             (Eq 0 (Read w8 58 needle)))
+         (Eq false
+             (Eq 0 (Read w8 59 needle)))
+         (Eq false
+             (Eq 0 (Read w8 60 needle)))
+         (Eq false
+             (Eq 0 (Read w8 61 needle)))
+         (Eq false
+             (Eq 0 (Read w8 62 needle)))
+         (Eq false
+             (Eq 0 (Read w8 63 needle)))
+         (Eq false
+             (Eq 0 (Read w8 64 needle)))
+         (Eq 85 (Read w8 0 buf))
+         (Eq 29 (Read w8 1 buf))
+         (Eq false
+             (Eq 17 N0:(Read w8 2 buf)))
+         (Eq false (Eq 85 N0))
+         (Eq false
+             (Eq 85 (Read w8 3 buf)))
+         (Eq false
+             (Eq 85 (Read w8 4 buf)))
+         (Eq 85 (Read w8 5 buf))
+         (Eq false
+             (Eq 29 N1:(Read w8 6 buf)))
+         (Eq false (Eq 85 N1))
+         (Eq false
+             (Eq 85 (Read w8 7 buf)))
+         (Eq false
+             (Eq 85 (Read w8 8 buf)))]
+        false)

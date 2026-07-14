@@ -1,0 +1,8 @@
+KLEE: Using Z3 solver backend
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7d80ff600000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7d7e7f600000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x7c7e7f600000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x7c5e7f600000 size=128 GiB)
+KLEE: ERROR: driver_strncasestr-oob-read_printable-string-oob-read.c:48: ASSERTION FAIL: 0 && "REACHED_BOTH_strncasestr-oob-read_printable-string-oob-read"
+KLEE: NOTE: now ignoring this error at this location

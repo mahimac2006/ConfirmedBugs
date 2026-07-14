@@ -1,0 +1,10 @@
+KLEE: Using Z3 solver backend
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7a89a3e00000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7a8723e00000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x798723e00000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x796723e00000 size=128 GiB)
+KLEE: ERROR: driver_printable-string-oob-read_serializer-int32-oob-write.c:74: invalid klee_assume call (provably false)
+KLEE: NOTE: now ignoring this error at this location
+KLEE: ERROR: driver_printable-string-oob-read_serializer-int32-oob-write.c:75: ASSERTION FAIL: 0 && "REACHED_BOTH_printable-string-oob-read_serializer-int32-oob-write"
+KLEE: NOTE: now ignoring this error at this location

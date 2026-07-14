@@ -1,0 +1,23 @@
+klee --optimize --solver-backend=z3 --external-calls=all --max-time=800 --output-dir=klee-out-printable-string-oob-read_serializer-int32-oob-write linked_printable-string-oob-read_serializer-int32-oob-write.bc
+PID: 880256
+Using monotonic steady clock with 1/1000000000s resolution
+Started: 2026-07-12 15:08:08
+BEGIN searcher description
+<InterleavedSearcher> containing 2 searchers:
+RandomPathSearcher
+WeightedRandomSearcher::CoveringNew
+</InterleavedSearcher>
+END searcher description
+Finished: 2026-07-12 15:08:08
+Elapsed: 00:00:00
+KLEE: done: explored paths = 2
+KLEE: done: avg. constructs per query = 28
+KLEE: done: total queries = 8
+KLEE: done: valid queries = 1
+KLEE: done: invalid queries = 7
+KLEE: done: query cex = 8
+
+KLEE: done: total instructions = 440
+KLEE: done: completed paths = 0
+KLEE: done: partially completed paths = 2
+KLEE: done: generated tests = 2

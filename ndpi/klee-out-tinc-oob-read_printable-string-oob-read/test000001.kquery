@@ -1,0 +1,8 @@
+array buf[256] : w32 -> w8 = symbolic
+array ps_len[8] : w32 -> w8 = symbolic
+(query [(Ult 256
+              N0:(ReadLSB w64 0 ps_len))
+         (Ult N0 513)
+         (Eq false
+             (Eq 49 (Read w8 0 buf)))]
+        false)

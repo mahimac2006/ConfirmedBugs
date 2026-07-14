@@ -1,0 +1,7 @@
+Error: ASSERTION FAIL: 0 && "REACHED_BOTH_tinc-oob-read_strncasestr-oob-read"
+File: driver_tinc-oob-read_strncasestr-oob-read_final.c
+Line: 69
+assembly.ll line: 372
+State: 35
+Stack: 
+	#000000372 in main() at driver_tinc-oob-read_strncasestr-oob-read_final.c:69

@@ -1,0 +1,7 @@
+Error: ASSERTION FAIL: 0 && "REACHED_BOTH_strncasestr-oob-read_printable-string-oob-read"
+File: driver_strncasestr-oob-read_printable-string-oob-read.c
+Line: 48
+assembly.ll line: 67
+State: 1
+Stack: 
+	#000000067 in main() at driver_strncasestr-oob-read_printable-string-oob-read.c:48

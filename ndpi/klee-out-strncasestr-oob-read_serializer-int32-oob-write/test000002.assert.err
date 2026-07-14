@@ -1,0 +1,7 @@
+Error: ASSERTION FAIL: 0 && "REACHED_BOTH_strncasestr-oob-read_serializer-int32-oob-write"
+File: driver_strncasestr-oob-read_serializer-int32-oob-write.c
+Line: 77
+assembly.ll line: 104
+State: 2
+Stack: 
+	#000000104 in main() at driver_strncasestr-oob-read_serializer-int32-oob-write.c:77

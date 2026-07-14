@@ -1,0 +1,7 @@
+Error: ASSERTION FAIL: 0 && "REACHED_BOTH_cert-elements-oob-write_serializer-int32-oob-write"
+File: driver_cert-elements-oob-write_serializer-int32-oob-write.c
+Line: 101
+assembly.ll line: 123
+State: 421
+Stack: 
+	#000000123 in main() at driver_cert-elements-oob-write_serializer-int32-oob-write.c:101

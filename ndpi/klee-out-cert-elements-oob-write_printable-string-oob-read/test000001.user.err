@@ -1,0 +1,7 @@
+Error: invalid klee_assume call (provably false)
+File: driver_cert-elements-oob-write_printable-string-oob-read.c
+Line: 67
+assembly.ll line: 86
+State: 2
+Stack: 
+	#000000086 in main() at driver_cert-elements-oob-write_printable-string-oob-read.c:67

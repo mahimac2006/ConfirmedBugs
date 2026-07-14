@@ -1,0 +1,7 @@
+Error: invalid klee_assume call (provably false)
+File: driver_strncasestr-oob-read_serializer-int32-oob-write.c
+Line: 76
+assembly.ll line: 103
+State: 1
+Stack: 
+	#000000103 in main() at driver_strncasestr-oob-read_serializer-int32-oob-write.c:76

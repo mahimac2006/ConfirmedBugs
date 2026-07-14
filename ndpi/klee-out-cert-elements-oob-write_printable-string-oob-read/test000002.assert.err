@@ -1,0 +1,7 @@
+Error: ASSERTION FAIL: 0 && "REACHED_BOTH_cert-elements-oob-write_printable-string-oob-read"
+File: driver_cert-elements-oob-write_printable-string-oob-read.c
+Line: 68
+assembly.ll line: 87
+State: 141
+Stack: 
+	#000000087 in main() at driver_cert-elements-oob-write_printable-string-oob-read.c:68

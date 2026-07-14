@@ -1,0 +1,122 @@
+]633;E;for dir in klee-out-*/;ccd2496f-ca60-4dfb-8d8b-eede5349f15c]633;C################################
+Directory: klee-out-cert-elements-oob-write_strncasestr-oob-read_new/
+################################
+
+--- INFO ---
+klee --optimize --solver-backend=z3 --external-calls=all --output-dir=klee-out-cert-elements-oob-write_strncasestr-oob-read_new linked_cert-elements-oob-write_strncasestr-oob-read_new.bc
+PID: 904181
+Using monotonic steady clock with 1/1000000000s resolution
+Started: 2026-07-12 23:09:50
+BEGIN searcher description
+<InterleavedSearcher> containing 2 searchers:
+RandomPathSearcher
+WeightedRandomSearcher::CoveringNew
+</InterleavedSearcher>
+END searcher description
+Finished: 2026-07-12 23:16:34
+Elapsed: 00:06:44
+KLEE: done: explored paths = 2979
+KLEE: done: avg. constructs per query = 82
+KLEE: done: total queries = 5412
+KLEE: done: valid queries = 1187
+KLEE: done: invalid queries = 4225
+KLEE: done: query cex = 5412
+
+KLEE: done: total instructions = 71200
+KLEE: done: completed paths = 0
+KLEE: done: partially completed paths = 2979
+KLEE: done: generated tests = 2669
+
+--- MESSAGES ---
+KLEE: Using Z3 solver backend
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x731266000000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x730fe6000000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x720fe6000000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x71efe6000000 size=128 GiB)
+KLEE: ERROR: driver_cert-elements-oob-write_strncasestr-oob-read_final.c:74: invalid klee_assume call (provably false)
+KLEE: NOTE: now ignoring this error at this location
+KLEE: ERROR: driver_cert-elements-oob-write_strncasestr-oob-read_final.c:75: ASSERTION FAIL: 0 && "REACHED_BOTH_cert-elements-oob-write_strncasestr-oob-read"
+KLEE: NOTE: now ignoring this error at this location
+KLEE: halting execution, dumping remaining states
+
+################################
+Directory: klee-out-cert-elements-oob-write_tinc-oob-read_new/
+################################
+
+--- INFO ---
+klee --optimize --solver-backend=z3 --external-calls=all --output-dir=klee-out-cert-elements-oob-write_tinc-oob-read_new linked_cert-elements-oob-write_tinc-oob-read_new.bc
+PID: 903436
+Using monotonic steady clock with 1/1000000000s resolution
+Started: 2026-07-12 23:05:06
+BEGIN searcher description
+<InterleavedSearcher> containing 2 searchers:
+RandomPathSearcher
+WeightedRandomSearcher::CoveringNew
+</InterleavedSearcher>
+END searcher description
+Finished: 2026-07-12 23:07:32
+Elapsed: 00:02:26
+KLEE: done: explored paths = 29902
+KLEE: done: avg. constructs per query = 75
+KLEE: done: total queries = 5151
+KLEE: done: valid queries = 1138
+KLEE: done: invalid queries = 4013
+KLEE: done: query cex = 5151
+
+KLEE: done: total instructions = 1277564
+KLEE: done: completed paths = 0
+KLEE: done: partially completed paths = 29902
+KLEE: done: generated tests = 1
+
+--- MESSAGES ---
+KLEE: Using Z3 solver backend
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7b32e7800000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7b3067800000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x7a3067800000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x7a1067800000 size=128 GiB)
+KLEE: ERROR: driver_cert-elements-oob-write_tinc-oob-read_final.c:76: invalid klee_assume call (provably false)
+KLEE: NOTE: now ignoring this error at this location
+
+################################
+Directory: klee-out-tinc-oob-read_strncasestr-oob-read_new/
+################################
+
+--- INFO ---
+klee --optimize --solver-backend=z3 --external-calls=all --output-dir=klee-out-tinc-oob-read_strncasestr-oob-read_new linked_tinc-oob-read_strncasestr-oob-read_new.bc
+PID: 903682
+Using monotonic steady clock with 1/1000000000s resolution
+Started: 2026-07-12 23:06:40
+BEGIN searcher description
+<InterleavedSearcher> containing 2 searchers:
+RandomPathSearcher
+WeightedRandomSearcher::CoveringNew
+</InterleavedSearcher>
+END searcher description
+Finished: 2026-07-12 23:06:53
+Elapsed: 00:00:13
+KLEE: done: explored paths = 600
+KLEE: done: avg. constructs per query = 7
+KLEE: done: total queries = 68
+KLEE: done: valid queries = 0
+KLEE: done: invalid queries = 68
+KLEE: done: query cex = 68
+
+KLEE: done: total instructions = 29077
+KLEE: done: completed paths = 0
+KLEE: done: partially completed paths = 600
+KLEE: done: generated tests = 2
+
+--- MESSAGES ---
+KLEE: Using Z3 solver backend
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x73149aa00000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x73121aa00000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x72121aa00000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x71f21aa00000 size=128 GiB)
+KLEE: ERROR: driver_tinc-oob-read_strncasestr-oob-read_final.c:68: invalid klee_assume call (provably false)
+KLEE: NOTE: now ignoring this error at this location
+KLEE: ERROR: driver_tinc-oob-read_strncasestr-oob-read_final.c:69: ASSERTION FAIL: 0 && "REACHED_BOTH_tinc-oob-read_strncasestr-oob-read"
+KLEE: NOTE: now ignoring this error at this location
+

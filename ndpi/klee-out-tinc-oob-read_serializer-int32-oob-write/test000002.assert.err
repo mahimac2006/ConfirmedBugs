@@ -1,0 +1,7 @@
+Error: ASSERTION FAIL: 0 && "REACHED_BOTH_tinc-oob-read_serializer-int32-oob-write"
+File: driver_tinc-oob-read_serializer-int32-oob-write.c
+Line: 84
+assembly.ll line: 90
+State: 20343
+Stack: 
+	#000000090 in main() at driver_tinc-oob-read_serializer-int32-oob-write.c:84
